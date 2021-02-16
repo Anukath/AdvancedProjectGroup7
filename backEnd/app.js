@@ -1,9 +1,6 @@
-AdvancedProjectGroup7
-
-
 const mysql = require("mysql");
 const express = require("express");
-const Joi = require("joi"); //used for validation
+// const Joi = require("joi"); //used for validation
 const app = express();
 app.use(express.json());
 
