@@ -1,0 +1,8 @@
+
+# Remove modules etc
+/node_modules
+/.vscode
+npm-debug.log
+
+.env
+
