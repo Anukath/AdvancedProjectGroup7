@@ -9,7 +9,7 @@ app.use(function (req, res, next) {
   global.con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "administrator",
+    password: "S9841348850@s",
     database: "calorietracker",
   });
   con.connect();
