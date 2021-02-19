@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,272 +35,388 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Calorie Intake Tracker</a>
-        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Calorie Intake Tracker</a>
+            </div>
 
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-        <!-- Top Navigation: Left Menu -->
-        <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="#"><i class="fa fa-home fa-fw"></i>FoodInformation</a></li>
-        </ul>
+            <!-- Top Navigation: Left Menu -->
+            <ul class="nav navbar-nav navbar-left navbar-top-links">
+                <li><a href="#"><i class="fa fa-home fa-fw"></i>FoodInformation</a></li>
+            </ul>
 
-        <!-- Top Navigation: Right Menu -->
-        <ul class="nav navbar-right navbar-top-links">
-            <li class="dropdown navbar-inverse">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu dropdown-alerts">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small">5 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> tsubedi <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+            <!-- Top Navigation: Right Menu -->
+            <ul class="nav navbar-right navbar-top-links">
+                <li class="dropdown navbar-inverse">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> New Comment
+                                    <span class="pull-right text-muted small">5 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> tsubedi <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
 
-        <!-- Sidebar -->
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse">
+            <!-- Sidebar -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
 
-                <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
-                        </div>
-                    </li>
-            
-                    <li>
-                    <li>
-                        <a href="dashboard.html" ><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
-                    </li>
+                            </div>
+                        </li>
 
-                    <li>
-                        <a href="activities.html" ><i class="fa fa-dashboard fa-fw"></i>Activities</a>
-                    </li>
-                    <li>
-                        <a href="doctors.html" ><i class="fa fa-dashboard fa-fw"></i>Doctors</a>
-                    </li>
-                </ul>
+                        <li>
+                        <li>
+                            <a href="dashboard.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                        </li>
 
-            </div>
-        </div>
-    </nav>
+                        <li>
+                            <a href="activities.html"><i class="fa fa-dashboard fa-fw"></i>Activities</a>
+                        </li>
+                        <li>
+                            <a href="doctors.html"><i class="fa fa-dashboard fa-fw"></i>Doctors</a>
+                        </li>
+                    </ul>
 
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header"><center><b><i> Food Information Table</i></b></center></h1>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            <center><b><i> Food Information Table</i></b></center>
+                        </h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Food Database with calorie information
+                            <center>Please make a Selection</center>
                         </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Calorie</th>
-                                    <th><i class="fa fa-plus-circle" aria-hidden="true"></i></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="odd gradeX">
-                                    <td>Apple</td>
-                                    <td>150</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>Orange</td>
-                                    <td>100</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="odd gradeA">
-                                    <td>Grapes</td>
-                                    <td>20</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="even gradeA">
-                                    <td>Banana</td>
-                                    <td>70</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="odd gradeA">
-                                    <td>Watermelon</td>
-                                    <td>50</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="even gradeA">
-                                    <td>Kiwi</td>
-                                    <td>60</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Peach</td>
-                                    <td>40</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Papaya</td>
-                                    <td>100</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Mango</td>
-                                    <td>100</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Salad</td>
-                                    <td>100</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Icecream</td>
-                                    <td>150</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Wine</td>
-                                    <td>100</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Juice</td>
-                                    <td>80</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Rice</td>
-                                    <td>100</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Bread</td>
-                                    <td>60</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Hot Dog</td>
-                                    <td>150</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Cookies</td>
-                                    <td>60</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Ham Burger</td>
-                                    <td>150</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Pizza</td>
-                                    <td>150</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Luzania</td>
-                                    <td>150</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Sweets</td>
-                                    <td>200</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>Chicken Wings</td>
-                                    <td>150</td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label>Food Name</label>
+                                <select class="form-control select2" style="width: 100%;" id="product">
+                                    <option selected="selected">Artichoke: artichoke (128 g) : 60 cals </option>
+                                    <option>Arugula: arugula leaf (2 g) : 1 cal</option>
+                                    <option>Asparagus :asparagus Spear (12 g): 2 cals</option>
+                                    <option>Aubergine: aubergine (458 g): 115 cals</option>
+                                    <option>Beetroot: beet (82 g): 35 cals</option>
+                                    <option>Bell Pepper: pepper (73 g): 15 cals</option>
+                                    <option>Black Olives: Olive (2.7 g): 2 cals</option>
+                                </select>
+                            </div>
 
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>Serving</label>
+                                <select class="form-control select2" style="width: 100%;" id="quantity">
+                                    <option selected="selected"> 1 </option>
+                                    <option>2 </option>
+                                    <option>3 </option>
+                                    <option>4 </option>
+                                    <option>5 </option>
+                                    <option>6 </option>
+                                    <option>7 </option>
+                                </select>
+                            </div>
+
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>Calorie</label>
+                                <select class="form-control select2" style="width: 100%;" id="cal">
+                                    <option selected="selected"> 60</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>115</option>
+                                    <option>35</option>
+                                    <option>15</option>
+                                    <option>2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <center>
+                                <button onclick="updateForm()">Add Food</button>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p><b><i>
+                                <center>OR</center>
+                            </i></b></p>
+                </div>
+
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <center>Customized Food Entry</center>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-lg-12">
+                                <form role="form">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Food Name" name="Food Name"
+                                                type="Food Name" autofocus>
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Serving" name="serving"
+                                                type="serving">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Calorie" name="calorie"
+                                                type="calorie">
+                                        </div>
+
+
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <center>
+                                <button onclick="myFunction1()">Add</button>
+                                <p id="demo"></p>
+                            </center>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.form-group -->
+
+
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <center>Customized Food Entry</center>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-lg-12">
+                                <center>
+                                    <script type="text/javascript">
+                                        var qtyTotal = 0;
+                                        var calTotal = 0;
+
+                                        function updateForm() {
+                                            var product = document.getElementById("product").value;
+
+                                            var qty = document.getElementById("quantity").value;
+                                            qtyTotal = qtyTotal + parseInt(qty);
+                                            document.getElementById("qtyTotals").innerHTML = " ";
+
+                                            var cal = document.getElementById("cal").value;
+                                            calTotal = calTotal + parseFloat(cal * qty);
+                                            document.getElementById("calTotals").innerHTML = calTotal;
+                                            if (calTotal > 1500 && calTotal < 2500)
+                                                window.alert("You are almost reached the goal. You consumed " +
+                                                    calTotal + " so far inclusive.");
+                                            else if (calTotal > 2500) {
+                                                window.alert("Oh Oh! You already reached the goal. You have consumed" +
+                                                    calTotal);
+                                            } else {
+                                                window.alert("Your goal is 2500 and you have consumed " + calTotal +
+                                                    " so far.");
+                                            }
+
+                                            var table = document.getElementById("results");
+                                            var row = table.insertRow(-1);
+                                            var cell1 = row.insertCell(0);
+                                            var cell2 = row.insertCell(1);
+                                            var cell3 = row.insertCell(2);
+                                            cell1.innerHTML = product;
+                                            cell2.innerHTML = qty;
+                                            cell3.innerHTML = cal * qty;
+                                        }
+                                    </script>
+                                    <form name="order" id="order">
+                                        <div class="table-responsive">
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <label for="product" style="color: rgb(63, 20, 255)">Food
+                                                            Name:</label>
+                                                    </td>
+                                                    <td>
+                                                        <input id="product" name="product"
+                                                            title="Please enter only alphabetic characters" type="text"
+                                                            size="28" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for="quantity"
+                                                            style="color: rgb(63, 20, 255)">Serving</label>
+                                                    </td>
+                                                    <td>
+                                                        <input id="quantity" name="quantity" title="Enter item quantity"
+                                                            width="196px" type="serving">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label for="cal"
+                                                            style="color: rgb(63, 20, 255)">Calorie:</label>
+                                                    </td>
+                                                    <td>
+                                                        <input id="cal" name="cal"
+                                                            title="Please enter only numeric characters" size="28" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <input type="reset" name="reset" id="resetbtn" class="resetbtn" value="Reset" />
+                                        <button type="button" onClick="updateForm();">Add Food</button>
+                                    </form>
+                                    <br>
+                                    <div class="table-responsive">
+
+                                        <table class="table table-striped table-dark" id="results" width="360">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" width="120">Food Name</th>
+                                                    <th scope="col" width="120">Serving</th>
+                                                    <th scope="col" width="120">Calorie</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div class="table-responsive">
+
+                                        <table id="resultTotals" class="table table-striped table-dark" width="360">
+                                            <tr>
+                                                <td scope="col" width="120">Totals</td>
+                                                <td scope="col" width="120">
+                                                    <div id="qtyTotals"></div>
+                                                </td>
+                                                <td scope="col" width="120">
+                                                    <div id="calTotals"></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </center>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
 
         </div>
+        <!-- /.row -->
+
+
+    </div>
+    <!-- /.card-body -->
+
+
     </div>
 
-</div>
+    <!-- /.form-group -->
+    </div>
+
+    </div>
+    <!-- /.row -->
 
 
- <!-- jQuery -->
- <script src="../js/jquery.min.js"></script>
+    </div>
+    <!-- /.card-body -->
+    </div>
+    </div>
 
- <!-- Bootstrap Core JavaScript -->
- <script src="../js/bootstrap.min.js"></script>
 
- <!-- Metis Menu Plugin JavaScript -->
- <script src="../js/metisMenu.min.js"></script>
 
- <!-- DataTables JavaScript -->
- <script src="../js/dataTables/jquery.dataTables.min.js"></script>
- <script src="../js/dataTables/dataTables.bootstrap.min.js"></script>
+    </div>
 
- <!-- Custom Theme JavaScript -->
- <script src="../js/startmin.js"></script>
 
- <!-- Page-Level Demo Scripts - Tables - Use for reference -->
- <script>
-     $(document).ready(function() {
-         $('#dataTables-example').DataTable({
-                 responsive: true
-         });
-     });
- </script>
+    <!-- jQuery -->
+    <script src="../js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../js/metisMenu.min.js"></script>
+
+    <!-- DataTables JavaScript -->
+    <script src="../js/dataTables/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables/dataTables.bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/startmin.js"></script>
+
+    <!-- // the below one is for foodinfo page when add button is clicked-->
+    <script>
+        function myFunction() {
+            document.getElementById("demo").innerHTML = "Food Item added.";
+        }
+    </script>
+
 
 </body>
+
 </html>
+<script type="text/javascript" src="jquery-2.1.4.min.js"></script>
