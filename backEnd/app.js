@@ -53,16 +53,6 @@ app.get("/calorie/:userId", (req, res) => {
     }
   );
 });
-//fetch foodActivity
-app.get("/userActivity/food/:userId", (req, res) => {
-  con.query(
-    "SELECT * from activityhistory where userid=" + req.params.userId,
-    function (error, results, fields) {
-      if (error) throw error;
-      res.send({ status: 200, error: null, response: results });
-    }
-  );
-});
 
 //insert food values
 app.post("/food/:name/:calorie", (req, res) => {
@@ -108,16 +98,40 @@ app.post("/register/:id/:password", (req, res) => {
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
 });
-//fetch userActivity
-// app.get("/userActivity/:userId", (req, res) => {
-//   con.query(
-//     "SELECT * from activityhistory where userid=" + req.params.userId,
-//     function (error, results, fields) {
-//       if (error) throw error;
-//       res.send({ status: 200, error: null, response: results });
-//     }
-//   );
-// });
+//fetch foodActivity
+app.get("/foodActivity/food/:userId", (req, res) => {
+  con.query(
+    "SELECT * from activityhistory where userid=" + req.params.userId,
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send({ status: 200, error: null, response: results });
+    }
+  );
+});
+//fetch foodCalorie
+app.get("/foodCalorie/:userId", (req, res) => {
+  con.query(
+    "SELECT f.name, (quantity*f.calories) as calories from foodhistory his, food f where userId =" +
+      req.params.userId +
+      " and his.foodId=f.id",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send({ status: 200, error: null, response: results });
+    }
+  );
+});
+
+//fetch calorieHistory
+app.get("/calorieHistory/:userId", (req, res) => {
+  con.query(
+    "SELECT burnt,taken,suggested,time FROM calorytracking where userID= " +
+      req.params.userId,
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send({ status: 200, error: null, response: results });
+    }
+  );
+});
 
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;
