@@ -4,6 +4,10 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 //database setup
 app.use(function (req, res, next) {
   global.con = mysql.createConnection({
@@ -18,10 +22,46 @@ app.use(function (req, res, next) {
 
 //fetch all food items
 app.get("/food/", (req, res) => {
-  con.query("SELECT * from food", function (error, results, fields) {
+  con.query("SELECT * from food ", function (error, results, fields) {
     if (error) throw error;
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
+});
+
+//fetch water Activity for user
+app.get("/water/:userId", (req, res) => {
+  con.query(
+    "SELECT COALESCE(MAX(quantity), 0)as quantity, IFNULL(5-quantity,5) as remaining  from foodhistory a, food b  where userid=" +
+      req.params.userId +
+      " and a.foodId=b.id and b.name like '%water%' ",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    }
+  );
+});
+
+//fetch calorie Activity for user
+app.get("/calorie/:userId", (req, res) => {
+  con.query(
+    "SELECT taken, suggested FROM calorietracker.calorytracking where userId=" +
+      req.params.userId +
+      " order by time desc limit 1",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    }
+  );
+});
+//fetch foodActivity
+app.get("/userActivity/food/:userId", (req, res) => {
+  con.query(
+    "SELECT * from activityhistory where userid=" + req.params.userId,
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send({ status: 200, error: null, response: results });
+    }
+  );
 });
 
 //insert food values
@@ -41,7 +81,9 @@ app.post("/food/:name/:calorie", (req, res) => {
 //fetch userActivity
 app.get("/userActivity/:userId/", (req, res) => {
   con.query(
-    "SELECT * from activityhistory where userid=" + req.params.userId,
+    "SELECT actHis.caloriesBurnt ,act.name  from activityhistory actHis, activity act where actHis.userid=" +
+      req.params.userId +
+      " and act.id=actHis.activityId",
     function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -66,6 +108,16 @@ app.post("/register/:id/:password", (req, res) => {
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
 });
+//fetch userActivity
+// app.get("/userActivity/:userId", (req, res) => {
+//   con.query(
+//     "SELECT * from activityhistory where userid=" + req.params.userId,
+//     function (error, results, fields) {
+//       if (error) throw error;
+//       res.send({ status: 200, error: null, response: results });
+//     }
+//   );
+// });
 
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;

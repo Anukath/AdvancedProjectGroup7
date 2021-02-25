@@ -1,113 +1,160 @@
-$(function() {
+//Demo data
+var ctx = document.getElementById("myChart").getContext("2d");
+var myChart = new Chart(ctx, {
+  type: "line",
+  data: {
+    labels: [1500, 1600, 1700, 1750, 1800, 1850, 1900, 1950, 1999, 2050],
+    datasets: [
+      {
+        label: "Calorie",
+        data: [1, 23, 4, 5, 6, 3, 5, 7, 3, 36, 66, 5, 12, 19],
+        borderWidth: 1,
+        borderColor: "#3e95cd",
+        fill: true,
+      },
+      {
+        label: "Total Calorie",
+        data: [99, 88, 44, 33, 11, 1, 2, 3, 5, 7, 8, 7, 4],
+        borderWidth: 1,
+        borderColor: "#8e5ea2",
+        fill: true,
+      },
+    ],
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Calories taken per day",
+    },
+  },
+});
+data = {
+  datasets: [
+    {
+      data: [10, 20, 30],
+    },
+  ],
 
-    Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{
-            label: "Calorie Taken",
-            value: 1500
-        }, {
-            label: "Calorie Intake needed",
-            value: 1000
-        }, ],
-        resize: true
-    });
+  // These labels appear in the legend and in the tooltips when hovering different arcs
+  labels: ["Red", "Yellow", "Blue"],
+};
 
-    Morris.Area({
-        element: 'morris-area-chart',
-        data: [{
-            period: '2010 Q1',
-            iphone: 2666,
-            ipad: null,
-            itouch: 2647
-        }, {
-            period: '2010 Q2',
-            iphone: 2778,
-            ipad: 2294,
-            itouch: 2441
-        }, {
-            period: '2010 Q3',
-            iphone: 4912,
-            ipad: 1969,
-            itouch: 2501
-        }, {
-            period: '2010 Q4',
-            iphone: 3767,
-            ipad: 3597,
-            itouch: 5689
-        }, {
-            period: '2011 Q1',
-            iphone: 6810,
-            ipad: 1914,
-            itouch: 2293
-        }, {
-            period: '2011 Q2',
-            iphone: 5670,
-            ipad: 4293,
-            itouch: 1881
-        }, {
-            period: '2011 Q3',
-            iphone: 4820,
-            ipad: 3795,
-            itouch: 1588
-        }, {
-            period: '2011 Q4',
-            iphone: 15073,
-            ipad: 5967,
-            itouch: 5175
-        }, {
-            period: '2012 Q1',
-            iphone: 10687,
-            ipad: 4460,
-            itouch: 2028
-        }, {
-            period: '2012 Q2',
-            iphone: 8432,
-            ipad: 5713,
-            itouch: 1791
-        }],
-        xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
-        pointSize: 2,
-        hideHover: 'auto',
-        resize: true
-    });
-    Morris.Bar({
-        element: 'morris-bar-chart',
-        data: [{
-            y: '2006',
-            a: 100,
-            b: 90
-        }, {
-            y: '2007',
-            a: 75,
-            b: 65
-        }, {
-            y: '2008',
-            a: 50,
-            b: 40
-        }, {
-            y: '2009',
-            a: 75,
-            b: 65
-        }, {
-            y: '2010',
-            a: 50,
-            b: 40
-        }, {
-            y: '2011',
-            a: 75,
-            b: 65
-        }, {
-            y: '2012',
-            a: 100,
-            b: 90
-        }],
-        xkey: 'y',
-        ykeys: ['a', 'b'],
-        labels: ['Series A', 'Series B'],
-        hideHover: 'auto',
-        resize: true
-    });
+options = {
+  legend: {
+    display: true,
+    position: "left",
+  },
+};
+$(document).ready(function () {
+  //Chart for water using api call
+  $.ajax({
+    url: "http://localhost:8080/water/1",
+    success: function (result) {
+      var ctx = document.getElementById("donut").getContext("2d");
+      var jso = JSON.parse(result);
+      dataWater = {
+        datasets: [
+          {
+            data: Object.values(jso["response"][0]),
+            backgroundColor: ["#b00404", "#74ccf4"],
+          },
+        ],
+        labels: ["Remaining", "Drunk"],
 
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+      };
+      var myDoughnutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: dataWater,
+        options: options,
+      });
+    },
+  });
+
+  $.ajax({
+    url: "http://localhost:8080/calorie/1",
+    success: function (result) {
+      var ctx = document.getElementById("donut1").getContext("2d");
+      var jso = JSON.parse(result);
+      dataWater = {
+        datasets: [
+          {
+            data: Object.values(jso["response"][0]),
+            backgroundColor: ["#b00404", "#74ccf4"],
+          },
+        ],
+        labels: ["Taken", "Suggested"],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+      };
+      console.log(dataWater);
+
+      var myDoughnutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: dataWater,
+        options: options,
+      });
+    },
+  });
+
+  $.ajax({
+    url: "http://localhost:8080/userActivity/1",
+    dataType: "json",
+
+    success: function (result) {
+      var ctx = document.getElementById("donut2").getContext("2d");
+      //var jso = JSON.parse(result);
+      const data = Object.keys(result["response"]).map(
+        (key) => result["response"][key].caloriesBurnt
+      );
+      const lab = Object.keys(result["response"]).map(
+        (key) => result["response"][key].name
+      );
+      dataWater = {
+        datasets: [
+          {
+            data: [...data],
+            backgroundColor: [
+              "#2ECC40",
+              "#FF851B",
+              "#7FDBFF",
+              "#B10DC9",
+              "#FFDC00",
+              "#001f3f",
+              "#39CCCC",
+              "#01FF70",
+              "#85144b",
+              "#F012BE",
+              "#3D9970",
+              "#111111",
+              "#AAAAAA",
+            ],
+          },
+        ],
+
+        labels: [...lab],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+      };
+
+      var myDoughnutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: dataWater,
+        options: {
+          legend: {
+            display: true,
+            position: "left",
+          },
+        },
+      });
+    },
+  });
+});
+
+var ctx = document.getElementById("donut3").getContext("2d");
+
+var myDoughnutChart = new Chart(ctx, {
+  type: "doughnut",
+  data: data,
+  options: options,
 });

@@ -8,54 +8,37 @@
     <meta name="author" content="">
 
     <title>Dashboard</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
     <!-- MetisMenu CSS -->
     <link href="../css/metisMenu.min.css" rel="stylesheet">
-
     <!-- Timeline CSS -->
     <link href="../css/timeline.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="../css/startmin.css" rel="stylesheet">
-
     <!-- Morris Charts CSS -->
     <link href="../css/morris.css" rel="stylesheet">
-
     <!-- Custom Fonts -->
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
 <div id="wrapper">
-
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Calorie Intake Tracker</a>
         </div>
-
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-
         <!-- Top Navigation: Left Menu -->
         <ul class="nav navbar-nav navbar-left navbar-top-links">
             <li><a href="dashboard.html"><i class="fa fa-home fa-fw"></i>Dashboard</a></li>
         </ul>
-
         <!-- Top Navigation: Right Menu -->
         <ul class="nav navbar-right navbar-top-links">
             <li class="dropdown navbar-inverse">
@@ -95,11 +78,9 @@
                 </ul>
             </li>
         </ul>
-
         <!-- Sidebar -->
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
-
                 <ul class="nav" id="side-menu">
                     <li class="sidebar-search">
                         <div class="input-group custom-search-form">
@@ -119,7 +100,6 @@
                         <a href="doctors.html" ><i class="fa fa-dashboard fa-fw"></i>Doctors</a>
                     </li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -133,25 +113,19 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-6">
-
-                       <!-- /.panel -->
-                       <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <center> <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart  </center>
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <a href="#" class="btn btn-default btn-block">Hover to view details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>                    
+               <div class="col-lg-3"> <canvas id="donut"></canvas></div>
+               <div class="col-lg-3"> <canvas id="donut1"></canvas></div>
+               <div class="col-lg-3"> <canvas id="donut2"></canvas></div>
+               <div class="col-lg-3"> <canvas id="donut3"></canvas></div>
+     </div>
+    </br>
+            </div>
+                <div class="row">
+                    <canvas id="myChart" height="100" </canvas>
                 </div>
-                
-                
+            <div class="row">
                  <!-- /.col-lg-4 -->
                  <div class="col-lg-6">
                     <div class="panel panel-default">
@@ -171,19 +145,16 @@
                                         <span class="pull-right text-muted small"><em>1500 Cals</em>
                                         </span>
                                 </a>
-
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Calorie left to be consumed
                                         <span class="pull-right text-muted small"><em>1000 Cals</em>
                                         </span>
                                 </a>
-
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Water Goal
                                         <span class="pull-right text-muted small"><em>1.5 / 3 L Achieved</em>
                                         </span>
                                 </a>
-
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Calorie Burn Target
                                         <span class="pull-right text-muted small"><em>1000 Cals</em>
@@ -195,13 +166,11 @@
                                         <span class="pull-right text-muted small"><em>500 Cals</em>
                                         </span>
                                 </a>
-
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Walking Goal
                                         <span class="pull-right text-muted small"><em>30 / 120 Min Achieved</em>
                                         </span>
                                 </a>
-
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Exercise Goal
                                         <span class="pull-right text-muted small"><em>20/60 Min Achieved</em>
@@ -213,33 +182,49 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
+<button id="Click" class="btn btn-primary" type="button">Click me</button>
+<div id="div1">
+</div>
+<table id="example" class="display" style="width:100%">
+</table>>
+
                     </div>
                     <!-- /.panel .chat-panel -->
                 </div>              
-            
                 </div>
             <!-- ... Your content goes here ... -->
         </div>
     </div>
-
 </div>
-
 
 
 <!-- jQuery -->
 <script src="../js/jquery.min.js"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
-
 <!-- Metis Menu Plugin JavaScript -->
 <script src="../js/metisMenu.min.js"></script>
-
 <!-- Morris Charts JavaScript -->
 <script src="../js/raphael.min.js"></script>
 <script src="../js/morris.min.js"></script>
 <script src="../js/startmin.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://raw.githubusercontent.com/google/palette.js/master/palette.js"></script>
 <script src="../my_js/my_js_dashboard.js"></script>
-
+<script>
+  //  $("#Click").click(function(){
+    $(document).ready(function(){
+    $('#example').DataTable( {
+    ajax: {
+        url: 'http://localhost:8080/food',
+        dataSrc: 'response'
+    },
+    columns: [  { "data": "serving" },
+            { "data": "name" }, { "data": "calories" },
+        ]
+});
+});
+</script>
 </body>
 </html>
