@@ -52,7 +52,7 @@ app.post("/activityhistory/:activityId/:userId/:caloriesBurnt/:duration/:date", 
   });
 });
 
-//insert activities values into activity table
+//insert activities values into activity table--- just used once
 app.post("/activity/:name", (req, res) => {
   var sqlQ_A =
     "Insert into activity(name) values('" + req.params.name +
