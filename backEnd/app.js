@@ -25,14 +25,39 @@ app.get("/food/", (req, res) => {
 });
 
 //insert food values
-app.post("/food/:name/:calorie", (req, res) => {
+app.post("/food1/:name/:serving/:calories", (req, res) => {
   var sqlQuery =
-    "Insert into food(name,calories) values('" +
+    "Insert into food(name, serving, calories) values('" +
     req.params.name +
-    "'," +
-    req.params.calorie +
-    ")";
+    "','" + req.params.serving + "','" +
+    req.params.calories +
+    "')";
   con.query(sqlQuery, function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.stringify({ status: 200, error: null, response: results }));
+  });
+});
+
+//insert activities values into activityhistory table 
+app.post("/activityhistory/:activityId/:userId/:caloriesBurnt/:duration/:date", (req, res) => {
+  var sqlQA =
+    "Insert into activityhistory(activityId, userId, caloriesBurnt, duration, date) values('" + req.params.activityId + "','" +
+    req.params.userId +
+    "','" + req.params.caloriesBurnt + "','" +
+    req.params.duration + "','" + req.params.date +
+    "')";
+  con.query(sqlQA, function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.stringify({ status: 200, error: null, response: results }));
+  });
+});
+
+//insert activities values into activity table
+app.post("/activity/:name", (req, res) => {
+  var sqlQ_A =
+    "Insert into activity(name) values('" + req.params.name +
+    "')";
+  con.query(sqlQ_A, function (error, results, fields) {
     if (error) throw error;
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
