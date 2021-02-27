@@ -32,4 +32,19 @@
         });
     });
   
-
+  //The below is for adding food info to the foodhistory table-->
+  //Function overriding may create problem.... last function my override previous
+  // meaning I may have to write different js file for each these functions
+  jQuery(function () {    //jQuery for replacing $(document).ready
+    $('#submit_b').click(function (event) {
+        $.ajax({
+            method: 'post',
+            dataType: 'html',
+            url: 'http://localhost:8080/foodhistory/' + $('#userId').val() + '/' +  $('#foodname').val() + '/' + $('#calorie').val() + '/'+            $('#quantity').val()  + '/' + $('#date').val(),  
+        });
+         // success messaage display
+    alert("Food Info Successfully added to foodhistory table");
+    // refreshing the page 
+    window.location.href=window.location.href;
+    });
+});

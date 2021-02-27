@@ -138,7 +138,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            <center><b><i> Food Information Table Testing</i></b></center>
+                            <center><b><i> Food Information Table</i></b></center>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -161,21 +161,81 @@
                     </div>
                 </div>
 
-
-                <!-- /.form-group -->
                 <!-- /.col-lg-6 -->
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <center>Adding New Food in the Food Database</center>
+                            <center>Adding food info to foodhistory Table</center>
                         </div>
                         <div class="panel-body">
                             <div class="col-lg-12">
                                 <center>
 
+                                    <form method="post" action="http://localhost:8080/foodhistory">
+
+                                        <label for="userId">UserId:</label>
+                                        <input type="number" id="userId" name="userId"
+                                            placeholder="Please enter your UserId">
+
+                                        <br />
+
+                                        <label for="foodname">Food Name:</label>
+                                        <!-- @todo-1 -->
+                                        <input type="text" id="foodname" name="foodname">
+
+                                        <br />
+                                        <label for="calorie">Calorie:</label>
+                                        <input type="number" id="calorie" name="calorie">
+
+                                        <br />
+
+                                        <label for="quantity">Quantity:</label>
+                                        <select id="quantity" name="quantity">
+                                            <option value="1" title="1 serving">1</option>
+                                            <option value="2" title="2 serving">2</option>
+                                            <option value="3" title="3 serving">3</option>
+                                            <option value="4" title="4 serving">4</option>
+                                            <option value="5" title="5 serving">5</option>
+                                            <option value="6" title="6 serving">6</option>
+                                            <option value="7" title="6 serving">7</option>
+                                            <option value="8" title="8 serving">8</option>
+                                            <option value="9" title="9 serving">9</option>
+                                            <option value="10" title="10 serving">10</option>
+                                        </select>
+                                        <br />
+
+                                        <label for="date">Date:</label>
+                                        <input type="date" id="date" name="date">
+
+                                        <br />
+
+
+                                        <button type="button" id="submit_b" name="submit_b" value="submit_b">
+                                            Add
+                                        </button>
+                                    </form>
+                                </center>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- /.form-group -->
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <center>Adding New Food to the Database</center>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="col-lg-12">
+                                <center>
+
                                     <form method="post" action="http://localhost:8080/food1/">
                                         <label for="name">Name:</label>
-                                        <!-- @todo-1 -->
                                         <input type="text" id="name" name="name">
 
                                         <br />
@@ -254,12 +314,6 @@
     <script src="../js/startmin.js"></script>
     <script src="../my_js/food.js"></script>
 
-    <!-- // the below one is for foodinfo page when add button is clicked-->
-    <script>
-        function myFunction() {
-            document.getElementById("demo").innerHTML = "Food Item added.";
-        }
-    </script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
     </script>
 

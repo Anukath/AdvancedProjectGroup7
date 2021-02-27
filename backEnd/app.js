@@ -52,6 +52,20 @@ app.post("/activityhistory/:activityId/:userId/:caloriesBurnt/:duration/:date", 
   });
 });
 
+//insert food information into foodhistory table 
+app.post("/foodhistory/:userId/:foodname/:calorie/:quantity/:date", (req, res) => {
+  var sqlQC =
+    "Insert into foodhistory(userId, foodname, calorie, quantity, date) values('" + req.params.userId + "','" +
+    req.params.foodname +
+    "','" + req.params.calorie + "','" +
+    req.params.quantity + "','" + req.params.date +
+    "')";
+  con.query(sqlQC, function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.stringify({ status: 200, error: null, response: results }));
+  });
+});
+
 //insert activities values into activity table--- just used once
 app.post("/activity/:name", (req, res) => {
   var sqlQ_A =
