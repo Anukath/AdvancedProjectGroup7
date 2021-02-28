@@ -78,9 +78,21 @@ app.post("/activity/:name", (req, res) => {
 });
 
 //fetch userActivity
-app.get("/userActivity/:userId/", (req, res) => {
+app.get("/userActivity/1/", (req, res) => {
   con.query(
-    "SELECT * from activityhistory where userid=" + req.params.userId,
+    "SELECT actHis.caloriesBurnt ,act.name  from activityhistory actHis, activity act where actHis.userid= 15" +
+      // 15 hard coded for now actually it has to be =" + req.params.userId +
+   " and act.id=actHis.activityId",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    }
+  );
+});
+
+//fetch userActivity --------------- we need curdate() function later--- so keep ///it for now plz
+app.get("/userActivity1/:userId/", (req, res) => {
+  con.query("SELECT SUM(caloriesBurnt) from activityhistory where userId = " + req.params.userId  + "and date = curdate();", 
     function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));

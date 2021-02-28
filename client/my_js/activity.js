@@ -13,7 +13,68 @@
         window.location.href=window.location.href;  
         });
     });
- 
+    // code for donut chart for calorie burnt and possibly others
+    jQuery(function () {
+    
+        optionsChart3 = {
+          legend: {
+            display: true,
+            position: "left",
+          },
+          title: {
+            display: true,
+            text: "Activities",
+          },
+        };
+        $.ajax({
+          url: 'http://localhost:8080/userActivity/1/',
+          dataType: "json",
+      
+          success: function (result) {
+            var ctx = document.getElementById("donut2").getContext("2d");
+            //var jso = JSON.parse(result);
+            const data = Object.keys(result["response"]).map(
+              (key) => result["response"][key].caloriesBurnt
+            );
+            const lab = Object.keys(result["response"]).map(
+              (key) => result["response"][key].name
+            );
+            dataWater = {
+              datasets: [
+                {
+                  data: [...data],
+                  backgroundColor: [
+                    "#2ECC40",
+                    "#FF851B",
+                    "#7FDBFF",
+                    "#B10DC9",
+                    "#FFDC00",
+                    "#001f3f",
+                    "#39CCCC",
+                    "#01FF70",
+                    "#85144b",
+                    "#F012BE",
+                    "#3D9970",
+                    "#111111",
+                    "#AAAAAA",
+                  ],
+                },
+              ],
+      
+              labels: [...lab],
+      
+              // These labels appear in the legend and in the tooltips when hovering different arcs
+            };
+      
+            var myDoughnutChart = new Chart(ctx, {
+              type: "doughnut",
+              data: dataWater,
+              options: optionsChart3,
+            });
+          },
+        }); 
+      });
+    
   
     
     /*
@@ -64,5 +125,3 @@ Add
 });
 
 */
-
-
