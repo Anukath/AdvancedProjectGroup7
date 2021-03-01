@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="container">
+    <form action="/auth/login" method="POST" id="login">
+        <div class="header">
+            <h3>Login</h3>
+            <p>No account? Please Register <a href="/signup">here</a></p>
+        </div>
+        
+        <div class="sep"></div>
+        <div class="inputs">
+        
+            <input type="email" name="email" placeholder="Email Address" autofocus />
+            <input type="password" name="password" placeholder="Password" />
+            <button id="Submit" type="submit" value="Login">Login</button>
+        </div>
+    </form>
+        {{#if message}}
+        <h4 class="alert alert-danger">{{message}}</h4>
+        {{/if}}
+
+</div>
+</body>
+</html>
