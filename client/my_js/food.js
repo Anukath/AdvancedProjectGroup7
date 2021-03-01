@@ -1,18 +1,18 @@
 //  $("#Click").click(function(){
 $(document).ready(function () {
-  //   $("#foodIntake").DataTable({
-  //     ajax: {
-  //       url: "http://localhost:8080/foodhistoryTable/1",
-  //       dataSrc: "response",
-  //     },
-  //     columns: [
-  //       { data: "name" },
-  //       { data: "serving" },
-  //       { data: "calories" },
-  //       { data: "quantity" },
-  //       { data: "totalcalories" },
-  //     ],
-  //   });
+    $("#foodIntake").DataTable({
+      ajax: {
+        url: "http://localhost:8080/foodhistoryTable/12",
+        dataSrc: "response",
+      },
+      columns: [
+        { data: "name" },
+        { data: "serving" },
+        { data: "calories" },
+        { data: "quantity" },
+        { data: "totalcalories" },
+      ],
+    });
 
   $("#example").DataTable({
     ajax: {

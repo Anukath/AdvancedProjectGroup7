@@ -74,13 +74,12 @@ app.post(
   "/foodhistory/:userId/:foodname/:calorie/:quantity/:date",
   (req, res) => {
     var sqlQC =
-      "Insert into foodhistory(userId, foodname, calorie, quantity, date) values('" +
+      "Insert into foodhistory1(userId, foodid, quantity, date) values('" +
       req.params.userId +
-      "','" +
+      "'," +
       req.params.foodname +
-      "','" +
-      req.params.calorie +
-      "','" +
+      ",'" +
+      
       req.params.quantity +
       "','" +
       req.params.date +
@@ -150,7 +149,7 @@ app.post("/register/:id/:password", (req, res) => {
 //fetch foodActivity
 app.get("/foodhistoryTable/:userId", (req, res) => {
   con.query(
-    "SELECT f.name,serving,calories, quantity,(quantity*f.calories) as totalcalories from foodhistory his, food f where userId =" +
+    "SELECT f.name,serving,calories, quantity,(quantity*f.calories) as totalcalories from foodhistory1 his, food f where userId =" +
       req.params.userId +
       " and his.foodId=f.id",
     function (error, results, fields) {
