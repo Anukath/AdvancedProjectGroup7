@@ -6,7 +6,7 @@ $(document).ready(function () {
     },
     title: {
       display: true,
-      text: "Water Title",
+      text: "Water",
     },
   };
   //Chart for water using api call
@@ -22,7 +22,7 @@ $(document).ready(function () {
             backgroundColor: ["#2ECC40", "#7FDBFF"],
           },
         ],
-        labels: ["Remaining", "Drunk"],
+        labels: ["Drunk", "Remaining"],
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
       };
@@ -195,36 +195,39 @@ $(document).ready(function () {
       const suggestedLine = Object.keys(result["response"]).map(
         (key) => result["response"][key].suggested
       );
-      const timeX = Object.keys(result["response"]).map(
-        (key) => result["response"][key].time
-      );
-      console.log(timeX);
+      const timeX = Object.keys(result["response"]).map((key) => {
+        result["response"][key].time;
+        c = result["response"][key].time;
+        var date1 = new Date(c);
+        return date1.toLocaleDateString("en-CA");
+      });
       //Demo data
       var ctx = document.getElementById("myChart").getContext("2d");
       var myChart = new Chart(ctx, {
         type: "line",
         data: {
           labels: [...timeX],
+
           datasets: [
             {
               label: "Calories Burnt",
               data: [...burntLine],
               borderWidth: 1,
-              borderColor: "#3e95cd",
+              backgroundColor: "rgba(46, 204, 64, 0.1)",
               fill: true,
             },
             {
               label: "Calories taken",
               data: [...takenLine],
               borderWidth: 1,
-              borderColor: "#8e5ea2",
+              backgroundColor: "rgba(255, 133, 27, 0.1)",
               fill: true,
             },
             {
               label: "Suggested Calories",
               data: [...suggestedLine],
               borderWidth: 1,
-              borderColor: "#8e5ea2",
+              backgroundColor: "rgba(255, 220, 0, 0.1)",
               fill: true,
             },
           ],
@@ -243,10 +246,27 @@ $(document).ready(function () {
           },
           title: {
             display: true,
-            text: "Calories taken per day",
+            text: "Calorie History",
           },
         },
       });
+    },
+  });
+
+  $.ajax({
+    url: "http://localhost:8080/userSummary/1",
+    dataType: "json",
+
+    success: function (result) {
+      const data = Object.keys(result["response"][0]).map(
+        (key) => result["response"][0][key]
+      );
+      $("#calNeeded").html(data[0] + " Cals");
+      $("#calConsumed").html(data[1] + " Cals");
+      $("#calLeft").html(data[2] + " Cals");
+      $("#water").html(data[3] + " Taken");
+      $("#burnTarget").html(data[4] + " Cals");
+      $("#burnt").html(data[5] + " Cals");
     },
   });
 });

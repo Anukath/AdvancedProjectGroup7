@@ -137,36 +137,37 @@
                             <div class="list-group">
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Calorie Needed
-                                        <span class="pull-right text-muted small"><em>2500 Cals</em>
+                                        <span class="pull-right text-muted small"><em><div id="calNeeded"></div></em>
                                         </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Calorie Consumed
-                                        <span class="pull-right text-muted small"><em>1500 Cals</em>
-                                        </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bell-o" aria-hidden="true"></i> Calorie left to be consumed
-                                        <span class="pull-right text-muted small"><em>1000 Cals</em>
-                                        </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bell-o" aria-hidden="true"></i> Water Goal
-                                        <span class="pull-right text-muted small"><em>1.5 / 3 L Achieved</em>
+                                        <span class="pull-right text-muted small"><em><div id="calConsumed"></div></em>
                                         </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Calorie Burn Target
-                                        <span class="pull-right text-muted small"><em>1000 Cals</em>
+                                        <span class="pull-right text-muted small"><em><div id="burnTarget"></div></em>
                                         </span>
                                 </a>
 
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Calorie Burnt
-                                        <span class="pull-right text-muted small"><em>500 Cals</em>
+                                        <span class="pull-right text-muted small"><em><div id="burnt"></div></em>
                                         </span>
                                 </a>
                                 <a href="#" class="list-group-item">
+                                    <i class="fa fa-bell-o" aria-hidden="true"></i> Calorie left to be consumed
+                                        <span class="pull-right text-muted small"><em><div id="calLeft"></div></em>
+                                        </span>
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <i class="fa fa-bell-o" aria-hidden="true"></i> Water Goal
+                                        <span class="pull-right text-muted small"><em><div id="water"></div></em>
+                                        </span>
+                                </a>
+                                
+                                <!-- <a href="#" class="list-group-item">
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Walking Goal
                                         <span class="pull-right text-muted small"><em>30 / 120 Min Achieved</em>
                                         </span>
@@ -175,18 +176,18 @@
                                     <i class="fa fa-bell-o" aria-hidden="true"></i> Exercise Goal
                                         <span class="pull-right text-muted small"><em>20/60 Min Achieved</em>
                                         </span>
-                                </a>
+                                </a> -->
                             </div>
                             <!-- /.list-group -->
                             <a href="#" class="btn btn-default btn-block">View All Alerts</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
-<button id="Click" class="btn btn-primary" type="button">Click me</button>
+<!-- <button id="Click" class="btn btn-primary" type="button">Click me</button>
 <div id="div1">
 </div>
 <table id="example" class="display" style="width:100%">
-</table>>
+</table>> -->
 
                     </div>
                     <!-- /.panel .chat-panel -->
@@ -213,18 +214,17 @@
 <script src="https://raw.githubusercontent.com/google/palette.js/master/palette.js"></script>
 <script src="../my_js/my_js_dashboard.js"></script>
 <script>
-  //  $("#Click").click(function(){
-    $(document).ready(function(){
-    $('#example').DataTable( {
-    ajax: {
-        url: 'http://localhost:8080/food',
-        dataSrc: 'response'
-    },
-    columns: [  { "data": "serving" },
-            { "data": "name" }, { "data": "calories" },
-        ]
-});
-});
+//     $(document).ready(function(){
+//     $('#example').DataTable( {
+//     ajax: {
+//         url: 'http://localhost:8080/food',
+//         dataSrc: 'response'
+//     },
+//     columns: [  { "data": "serving" },
+//             { "data": "name" }, { "data": "calories" },
+//         ]
+// });
+// });
 </script>
 </body>
 </html>

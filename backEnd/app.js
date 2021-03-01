@@ -125,7 +125,21 @@ app.get("/foodCalorie/:userId", (req, res) => {
 app.get("/calorieHistory/:userId", (req, res) => {
   con.query(
     "SELECT burnt,taken,suggested,time FROM calorytracking where userID= " +
-      req.params.userId,
+      req.params.userId +
+      " order by time",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send({ status: 200, error: null, response: results });
+    }
+  );
+});
+
+//fetch foodActivity
+app.get("/userSummary/:userId", (req, res) => {
+  con.query(
+    "select suggested, taken,(suggested+burnt-taken)as remaining ,CONCAT(COALESCE(MAX(quantity), 0),' / 5') as water,0 as burntTarget,burnt from calorytracking c ,  foodhistory a, food b where c.userId=" +
+      req.params.userId +
+      " and a.userId=c.userId and a.foodId=b.id and b.name like '%water%'",
     function (error, results, fields) {
       if (error) throw error;
       res.send({ status: 200, error: null, response: results });
