@@ -14,6 +14,8 @@
         });
     });
     // code for donut chart for calorie burnt and possibly others
+    // but had issue so I replaced with MS Power BI visualization
+    // Just keep it for ref in case I need it in future
     jQuery(function () {
     
         optionsChart3 = {

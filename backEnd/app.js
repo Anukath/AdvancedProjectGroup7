@@ -78,6 +78,7 @@ app.post("/activity/:name", (req, res) => {
 });
 
 //fetch userActivity
+// This may not be need as I have replaced charts with MS Power BI visualization
 app.get("/userActivity/1/", (req, res) => {
   con.query(
     "SELECT actHis.caloriesBurnt ,act.name  from activityhistory actHis, activity act where actHis.userid= 15" +
