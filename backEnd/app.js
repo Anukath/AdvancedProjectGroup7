@@ -4,11 +4,17 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
+//Cors
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 //database setup
 app.use(function (req, res, next) {
   global.con = mysql.createConnection({
     host: "localhost",
     user: "root",
+    //password: "administrator",
     password: "S9841348850@s",
     database: "calorietracker",
   });
@@ -29,7 +35,9 @@ app.post("/food1/:name/:serving/:calories", (req, res) => {
   var sqlQuery =
     "Insert into food(name, serving, calories) values('" +
     req.params.name +
-    "','" + req.params.serving + "','" +
+    "','" +
+    req.params.serving +
+    "','" +
     req.params.calories +
     "')";
   con.query(sqlQuery, function (error, results, fields) {
@@ -38,39 +46,56 @@ app.post("/food1/:name/:serving/:calories", (req, res) => {
   });
 });
 
-//insert activities values into activityhistory table 
-app.post("/activityhistory/:activityId/:userId/:caloriesBurnt/:duration/:date", (req, res) => {
-  var sqlQA =
-    "Insert into activityhistory(activityId, userId, caloriesBurnt, duration, date) values('" + req.params.activityId + "','" +
-    req.params.userId +
-    "','" + req.params.caloriesBurnt + "','" +
-    req.params.duration + "','" + req.params.date +
-    "')";
-  con.query(sqlQA, function (error, results, fields) {
-    if (error) throw error;
-    res.send(JSON.stringify({ status: 200, error: null, response: results }));
-  });
-});
+//insert activities values into activityhistory table
+app.post(
+  "/activityhistory/:activityId/:userId/:caloriesBurnt/:duration/:date",
+  (req, res) => {
+    var sqlQA =
+      "Insert into activityhistory(activityId, userId, caloriesBurnt, duration, date) values('" +
+      req.params.activityId +
+      "','" +
+      req.params.userId +
+      "','" +
+      req.params.caloriesBurnt +
+      "','" +
+      req.params.duration +
+      "','" +
+      req.params.date +
+      "')";
+    con.query(sqlQA, function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    });
+  }
+);
 
-//insert food information into foodhistory table 
-app.post("/foodhistory/:userId/:foodname/:calorie/:quantity/:date", (req, res) => {
-  var sqlQC =
-    "Insert into foodhistory(userId, foodname, calorie, quantity, date) values('" + req.params.userId + "','" +
-    req.params.foodname +
-    "','" + req.params.calorie + "','" +
-    req.params.quantity + "','" + req.params.date +
-    "')";
-  con.query(sqlQC, function (error, results, fields) {
-    if (error) throw error;
-    res.send(JSON.stringify({ status: 200, error: null, response: results }));
-  });
-});
+//insert food information into foodhistory table
+app.post(
+  "/foodhistory/:userId/:foodname/:calorie/:quantity/:date",
+  (req, res) => {
+    var sqlQC =
+      "Insert into foodhistory(userId, foodname, calorie, quantity, date) values('" +
+      req.params.userId +
+      "','" +
+      req.params.foodname +
+      "','" +
+      req.params.calorie +
+      "','" +
+      req.params.quantity +
+      "','" +
+      req.params.date +
+      "')";
+    console.log("Here");
+    con.query(sqlQC, function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    });
+  }
+);
 
 //insert activities values into activity table--- just used once
 app.post("/activity/:name", (req, res) => {
-  var sqlQ_A =
-    "Insert into activity(name) values('" + req.params.name +
-    "')";
+  var sqlQ_A = "Insert into activity(name) values('" + req.params.name + "')";
   con.query(sqlQ_A, function (error, results, fields) {
     if (error) throw error;
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -83,7 +108,7 @@ app.get("/userActivity/1/", (req, res) => {
   con.query(
     "SELECT actHis.caloriesBurnt ,act.name  from activityhistory actHis, activity act where actHis.userid= 15" +
       // 15 hard coded for now actually it has to be =" + req.params.userId +
-   " and act.id=actHis.activityId",
+      " and act.id=actHis.activityId",
     function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -93,7 +118,10 @@ app.get("/userActivity/1/", (req, res) => {
 
 //fetch userActivity --------------- we need curdate() function later--- so keep ///it for now plz
 app.get("/userActivity1/:userId/", (req, res) => {
-  con.query("SELECT SUM(caloriesBurnt) from activityhistory where userId = " + req.params.userId  + "and date = curdate();", 
+  con.query(
+    "SELECT SUM(caloriesBurnt) from activityhistory where userId = " +
+      req.params.userId +
+      "and date = curdate();",
     function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -119,6 +147,18 @@ app.post("/register/:id/:password", (req, res) => {
   });
 });
 
+//fetch foodActivity
+app.get("/foodhistoryTable/:userId", (req, res) => {
+  con.query(
+    "SELECT f.name,serving,calories, quantity,(quantity*f.calories) as totalcalories from foodhistory his, food f where userId =" +
+      req.params.userId +
+      " and his.foodId=f.id",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send({ status: 200, error: null, response: results });
+    }
+  );
+});
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
