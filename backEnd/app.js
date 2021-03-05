@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
   global.con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    //password: "administrator",
+    //was  but it is working with this too password: "administrator",
     password: "S9841348850@s",
     database: "calorietracker",
   });
@@ -33,8 +33,8 @@ app.get("/food/", (req, res) => {
 //insert food values
 app.post("/food1/:name/:serving/:calories", (req, res) => {
   var sqlQuery =
-    "Insert into food(name, serving, calories) values('" +
-    req.params.name +
+    "Insert ignore into food(name, serving, calories) values('" +
+    req.params.name + //insert ignore will silently drop duplicate with no error
     "','" +
     req.params.serving +
     "','" +
@@ -92,9 +92,10 @@ app.post(
   }
 );
 
-//insert activities values into activity table--- just used once
+//insert activities values into activity table
 app.post("/activity/:name", (req, res) => {
-  var sqlQ_A = "Insert into activity(name) values('" + req.params.name + "')";
+  var sqlQ_A = "Insert ignore into activity(name) values('" + req.params.name + "')";   
+  // insert ignore will silently drop the duplicates with no error
   con.query(sqlQ_A, function (error, results, fields) {
     if (error) throw error;
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -113,6 +114,14 @@ app.get("/userActivity/1/", (req, res) => {
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
     }
   );
+});
+
+//fetch all activities along with id and names
+app.get("/activity1/", (req, res) => {
+  con.query("SELECT * from activity", function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.stringify({ status: 200, error: null, response: results }));
+  });
 });
 
 //fetch userActivity --------------- we need curdate() function later--- so keep ///it for now plz
@@ -149,7 +158,7 @@ app.post("/register/:id/:password", (req, res) => {
 //fetch foodActivity
 app.get("/foodhistoryTable/:userId", (req, res) => {
   con.query(
-    "SELECT f.name,serving,calories, quantity,(quantity*f.calories) as totalcalories from foodhistory1 his, food f where userId =" +
+    "SELECT f.name,serving,calories, quantity,(quantity*f.calories) as totalcalories from foodhistory1 his, food f where date = curdate() and userId =" +       //if we want to show all history, we need to remove curdate() cond.
       req.params.userId +
       " and his.foodId=f.id",
     function (error, results, fields) {
