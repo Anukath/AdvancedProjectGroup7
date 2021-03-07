@@ -30,6 +30,15 @@ app.get("/food/", (req, res) => {
   });
 });
 
+//fetching only food name for dropdown to add food to food history------ not 
+//needed now ------------------ can use the same /food/ from up
+app.get("/food_dropdown/", (req, res) => {
+  con.query("SELECT * from food", function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.stringify({ status: 200, error: null, response: results }));
+  });
+});
+
 //insert food values
 app.post("/food1/:name/:serving/:calories", (req, res) => {
   var sqlQuery =
@@ -84,7 +93,7 @@ app.post(
       "','" +
       req.params.date +
       "')";
-    console.log("Here");
+    console.log("Here from foodhistory posting.");
     con.query(sqlQC, function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));

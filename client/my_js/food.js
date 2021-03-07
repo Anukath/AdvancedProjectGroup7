@@ -1,3 +1,5 @@
+
+
 //  $("#Click").click(function(){
 $(document).ready(function () {
     $("#foodIntake").DataTable({
@@ -79,3 +81,42 @@ jQuery(function () {
     window.location.href = window.location.href;
   });
 });
+
+
+// its for dropdown for food
+$(document).ready(function () {  
+  $.ajax({ 
+      type: "GET",  
+      url: "http://localhost:8080/food", 
+      data: "response",  
+      dataType: "json",
+      success: function (data) {  
+        //console.log(data["response"]); 
+        var s = '<option value="-1">Please Select a Food Name</option>';  
+          for (var i = 0; i < data["response"].length; i++) {  
+              s += '<option value="' + data["response"][i]["id"]
+              + '">' + data["response"][i]["name"] + ' / ' + data["response"][i]["serving"] + ' / ' +data["response"][i]["calories"] 
+              + '</option>';  
+          }  
+          $("#foodDropdown").html(s);  
+      }  
+  });  
+});
+
+// for the tabs in food and activities page
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
