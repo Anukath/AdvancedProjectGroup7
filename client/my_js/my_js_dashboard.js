@@ -2,7 +2,7 @@ $(document).ready(function () {
   options = {
     legend: {
       display: true,
-      position: "left",
+      position: "top",
     },
     title: {
       display: true,
@@ -36,11 +36,7 @@ $(document).ready(function () {
   optionsChart1 = {
     legend: {
       display: true,
-      position: "left",
-    },
-    title: {
-      display: true,
-      text: "Calorie Intake",
+      position: "top",
     },
   };
   $.ajax({
@@ -71,11 +67,7 @@ $(document).ready(function () {
   optionsChart3 = {
     legend: {
       display: true,
-      position: "left",
-    },
-    title: {
-      display: true,
-      text: "Activities",
+      position: "top",
     },
   };
   $.ajax({
@@ -128,11 +120,7 @@ $(document).ready(function () {
   optionsChart4 = {
     legend: {
       display: true,
-      position: "left",
-    },
-    title: {
-      display: true,
-      text: "Food",
+      position: "top",
     },
   };
   $.ajax({
@@ -171,7 +159,6 @@ $(document).ready(function () {
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
       };
-      console.log(dataWater);
 
       var myDoughnutChart = new Chart(ctx, {
         type: "doughnut",
@@ -243,10 +230,6 @@ $(document).ready(function () {
                 },
               },
             ],
-          },
-          title: {
-            display: true,
-            text: "Calorie History",
           },
         },
       });
