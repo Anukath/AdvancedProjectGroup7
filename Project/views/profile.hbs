@@ -1,83 +1,93 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="profile.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
+        <title>Profile</title>
 
-<form class="form">
-    <h2>Your Profile Information</h2>
-    <div class="form-group">
-        <label for="email">First Name:</label>
-        <div class="relative">
-            <input class="form-control" id="firstname" type="text" pattern="[a-zA-Z\s]+" required="" autofocus="" title="Username should only contain letters. e.g. Mehdi" autocomplete="" placeholder="Please Type your first name here...">
-            <i class="fa fa-user"></i>
-        </div>
-    </div>
-    <br>
-    <div class="form-group">
-        <label for="email">Last Name:</label>
-        <div class="relative">
-            <input class="form-control" id="lastname" type="text" pattern="[a-zA-Z\s]+" required="" autofocus="" title="Username should only contain letters. e.g.  Lamouchi " autocomplete="" placeholder="Please Type your last name here...">
-            <i class="fa fa-user"></i>
-        </div>
-    </div>
-    <br>
-    <div class="form-group">
-        <label for="email">Email address:</label>
-        <div class="relative">
-            <input class="form-control" type="email" required="" placeholder="Please Type your email address..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-            <i class="fa fa-envelope"></i>
-        </div>
-    </div>
-    <br>
-    <div class="form-group">
-        <label for="email">Phone Number:</label>
-        <div class="relative">
-            <input class="form-control" type="text" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" placeholder="Please Type your Mobile Number...">
-            <i class="fa fa-phone"></i>
-        </div>
-    </div>
-    <br>
-    <div class="form-group">
-        <label for="email">Current Height:</label>
-        <div class="relative">
-            <input class="form-control" id="height" type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" placeholder="Please type your current height in cm">
-            <i class="fa fa-long-arrow-up"></i>
-        </div>
-    </div>
-    <br>
-    <div class="form-group">
-        <label for="email">Current Weight:</label>
-        <div class="relative">
-            <input class="form-control" id="weight" type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" placeholder="Please type your current weight in kg">
-            <i class="fa fa-balance-scale"></i>
-        </div>
-    </div>
-    <br>
-      <div class="form-group">
-          <label for="email">City:</label>
-        <div class="relative">
-            <input class="form-control" type="text" id="contact" required="" placeholder="Please type the city you live in...">
-            <i class="fa fa-map-marker"></i>
-        </div>
-    </div>
-    <br>
-                   
-    <div class="tright">
-        <a href=""><button class="movebtn movebtnre" type="Reset"><i class="fa fa-fw fa-refresh"></i> Reset </button></a>
-        <a href=""><button class="movebtn movebtnsu" type="Submit" onclick="functionSubmit">Save <i class="fa fa-fw fa-paper-plane"></i></button></a>
-    </div>
-  </form>
+        <!-- Bootstrap Core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
 
-  <div class="thanks" style="display: none;">
-      <h4>Thank you!</h4>
-      <p><small>Your profile information have been updated.</small></p>
-  </div>
+        <!-- MetisMenu CSS -->
+        <link href="../css/metisMenu.min.css" rel="stylesheet">
 
-</div>
-<script src="profile.js"></script>
-</body>
+        <!-- Custom CSS -->
+        <link href="../css/startmin.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-panel panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Your Profile Information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" action="/auth/profile" method="POST" id="profile">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label>First Name:</label>
+                                        <input class="form-control" placeholder="First Name" name="firstname" type="text" required="" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Name:</label>
+                                        <input class="form-control" placeholder="Last Name" name="lastname" type="text" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone Number:</label>
+                                        <input class="form-control" placeholder="Phone Number" name="phonenumber" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current Height in Cms:</label>
+                                        <input class="form-control" placeholder="Current Height" name="height" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current Weight in Kgs:</label>
+                                        <input class="form-control" placeholder="Current Weight" name="weight" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Current City:</label>
+                                        <input class="form-control" placeholder="City" name="city" required="" type="text">
+                                    </div>
+                
+                                    <button id="Submit" type="submit" value="Save">Save</button>
+                                </fieldset>
+                            </form>
+                            {{#if message}}
+                            <h4 class="alert alert-danger">{{message}}</h4>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="../js/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../js/metisMenu.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../js/startmin.js"></script>
+
+    </body>
 </html>

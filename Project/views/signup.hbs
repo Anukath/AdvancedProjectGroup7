@@ -1,43 +1,82 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="signup.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
+        <title>Signup</title>
 
-    <div class="container">
-        <form action="/auth/signup" method="POST" id="signup" name="signup">
-          <div class="row">
-            <h4>Register a new account</h4>
-            <div class="input-group input-group-icon">
-              <input type="email" id ="email" name= "email" placeholder="Email Address"/>
-              <div class="input-icon"><i class="fa fa-envelope"></i></div>
+        <!-- Bootstrap Core CSS -->
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- MetisMenu CSS -->
+        <link href="../css/metisMenu.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="../css/startmin.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="login-panel panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Please Sign up</h3>
+                            <br>
+                            <p>Already have an account? Please Login <a href="/login">here</a></p>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" action="/auth/signup" method="POST" id="signup">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Email address" name="email" type="email" autofocus>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Confirm Password" name="passwordConfirm" type="password" value="">
+                                    </div>
+                                    <!-- Change this to a button or input when using this as a form -->
+                                    <button id="Submit" type="submit" value="Register">Signup</button>
+                                </fieldset>
+                            </form>
+                           {{#if message}}
+                            <h4 class="alert alert-danger">{{message}}</h4>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="input-group input-group-icon">
-              <input type="password" id ="password" name="password" placeholder="Password"/>
-              <div class="input-icon"><i class="fa fa-key"></i></div>
-            </div>
-            <div class="input-group input-group-icon">
-              <input type="password" id ="passwordConfirm" name="passwordConfirm" placeholder="Confirm your Password"/>
-              <div class="input-icon"><i class="fa fa-key"></i></div>
-            </div>
-          </div>
-          <div class="row">
-            <h4>Terms and Conditions</h4>
-            <div class="input-group">
-              <input type="checkbox" id="terms"/>
-              <label for="terms">I accept the terms and conditions confirm that I have read the privacy policy.</label>
-            </div>
-            <p>Already have an account? Please login from <a href="/login">here</a></p>
-          </div>
-          <button id="Submit" type="submit" value="Register">Register</button>
-        </form>
-      </div>
-        {{#if message}}
-        <h4 class="alert alert-danger">{{message}}</h4>
-        {{/if}}
-</body>
+        </div>
+
+        <!-- jQuery -->
+        <script src="../js/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../js/metisMenu.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../js/startmin.js"></script>
+
+    </body>
 </html>
+
+

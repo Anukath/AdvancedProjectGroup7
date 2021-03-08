@@ -9,6 +9,27 @@ const db = mysql.createConnection({
     database: process.env.DATABASE
 });
 
+//saving the profile information in the database and calculating the calories needed using the Harris Benedift Formula
+
+exports.profile= async(req, res) => {
+    console.log(req.body);
+    const { firstname, lastname, phonenumber,height,weight,city } = req.body;
+    db.query('INSERT INTO profile SET ?', {firstname: firstname, lastname: lastname, phonenumber:phonenumber , height:height, weight:weight, city:city}, (error, results) =>{
+        if(error){
+            console.log(error);
+        }else{
+            console.log(results);
+            var x = 66 + (13.7* weight) + (5*height) - (6.8*23);
+            console.log('To maintain your current weight you need', x, 'calories');
+            return res.render('profile',{
+                message: 'Information Saved Successfully'
+                
+            });
+        }
+    });
+}
+
+//login process: retrieving information securely from database and authenticating user for access.
 exports.login= async(req, res) => {
    try {
     const{email, password} = req.body;
