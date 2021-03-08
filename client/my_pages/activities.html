@@ -158,8 +158,8 @@
                                 <button class="tablinks" onclick="openInfo(event, 'Activity Info')"
                                     id="defaultOpen">Activity Info</button>
                                 <button class="tablinks" onclick="openInfo(event, 'Add Activity')">Add Activity</button>
-                                <button class="tablinks" onclick="openInfo(event, 'Activity History')">Activity
-                                    History</button>
+                                <button class="tablinks" onclick="openInfo(event, 'Activity History')">Add to Activity History</button>
+                                <button class="tablinks" onclick="openInfo(event, 'Activity table')">Activity History: Current</button>
                             </div>
 
                             <div id="Activity Info" class="tabcontent">
@@ -201,15 +201,10 @@
                                 <h3><i><b>Current Activity History</b></i> </h3>
                                 <form method="post" action="http://localhost:8080/activities">
 
-                                    <label for="activityId">ActivityId:</label>
-                                    <select class="form-control" id="activityId" name="activityId">
-                                        <option value="1" title="1 i.e. Running">1</option>
-                                        <option value="2" title="2 i.e. Swimming">2</option>
-                                        <option value="3" title="3 i.e. Biking">3</option>
-                                        <option value="4" title="4 i.e. Exercising">4</option>
-                                        <option value="5" title="5 i.e. Yoga">5</option>
-                                        <option value="6" title="6 i.e. Walking on Trademill">6</option>
-                                    </select>
+                                    
+                                    <label for="activityDropdown"><b>Activity Name</b></label>
+                                    <select class="form-control" id="activityDropdown" name="activityDropdown"></select>
+
                                     <br />
 
                                     <label for="userId">UserId:</label>
@@ -238,6 +233,23 @@
                                     </button>
                                 </form>
                             </div>
+
+                            <div id="Activity table" class="tabcontent">
+                                <h3><i><b>Today's Food History Table</b></i> </h3>
+                                <table id="activity" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Activity Name</th>
+                                            <th>caloriesBurnt</th>
+                                            <th>Duration</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+
+
                         </div>
                     </div>
 

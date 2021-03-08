@@ -1,7 +1,6 @@
-
-
-//  $("#Click").click(function(){
+// for displaying in food intake info for today in the table in food page
 $(document).ready(function () {
+  //  $("#Click").click(function(){ for displaying in food intake info for today
     $("#foodIntake").DataTable({
       ajax: {
         url: "http://localhost:8080/foodhistoryTable/12",
@@ -16,6 +15,7 @@ $(document).ready(function () {
       ],
     });
 
+    //data table for showing information about food database for ref
   $("#example").DataTable({
     ajax: {
       url: "http://localhost:8080/food",
@@ -30,9 +30,7 @@ $(document).ready(function () {
   });
 });
 
-//The below is for adding new food to the database-->
-//Function overriding may create problem.... last function my override previous
-// meaning I may have to write different js file for each these functions
+//The below is for adding new food to the food table 
 jQuery(function () {
   //jQuery for replacing $(document).ready
   $("#submit").click(function (event) {
@@ -54,9 +52,7 @@ jQuery(function () {
   });
 });
 
-//The below is for adding food info to the foodhistory table-->
-//Function overriding may create problem.... last function my override previous
-// meaning I may have to write different js file for each these functions
+//The below is for adding food info to the foodhistory table
 jQuery(function () {
   //jQuery for replacing $(document).ready
   $("#submit_b").click(function (event) {
@@ -67,9 +63,7 @@ jQuery(function () {
         "http://localhost:8080/foodhistory/" +
         $("#userId").val() +
         "/" +
-        $("#foodname").val() +
-        "/" +
-        $("#calorie").val() +
+        $("#foodDropdown").val() +
         "/" +
         $("#quantity").val() +
         "/" +
@@ -82,7 +76,29 @@ jQuery(function () {
   });
 });
 
+// its for dropdown for food with food name displaying and serving and calorie info in title in the food page
+$(document).ready(function () {  
+  $.ajax({ 
+      type: "GET",  
+      url: "http://localhost:8080/food", 
+      data: "response",  
+      dataType: "json",
+      success: function (data) {  
+        //console.log(data["response"]); 
+        var s = '<option value="-1">Please Select a Food Name</option>';  
+          for (var i = 0; i < data["response"].length; i++) {  
+              s += '<option value="' + data["response"][i]["id"] + '"' 
+               + 'title= "'  + 'serving: ' + data["response"][i]["serving"] + ' / calorie: ' + data["response"][i]["calories"]  + '">' +  data["response"][i]["name"] 
+              + '</option>';  
+          }  
+          //<option value="1" title="1 i.e. Running">1</option>
+          $("#foodDropdown").html(s);  
+      }  
+  });  
+});
 
+
+/*  This is original save it if change doesn't work, i need it---- ref only
 // its for dropdown for food
 $(document).ready(function () {  
   $.ajax({ 
@@ -101,22 +117,4 @@ $(document).ready(function () {
           $("#foodDropdown").html(s);  
       }  
   });  
-});
-
-// for the tabs in food and activities page
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+});    */

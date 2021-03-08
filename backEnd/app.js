@@ -78,22 +78,21 @@ app.post(
   }
 );
 
-//insert food information into foodhistory table
+//insert food information into foodhistory table--- its not inserting ???
+// no error but not doing????
 app.post(
-  "/foodhistory/:userId/:foodname/:calorie/:quantity/:date",
+  "/foodhistory/:userId/:foodId/:quantity/:date",
   (req, res) => {
     var sqlQC =
-      "Insert into foodhistory1(userId, foodid, quantity, date) values('" +
+      "Insert into foodhistory(userId, foodId, quantity, date) values('" +
       req.params.userId +
-      "'," +
-      req.params.foodname +
-      ",'" +
-      
+      "','" + 
+      req.params.foodId + "','" +     
       req.params.quantity +
       "','" +
       req.params.date +
       "')";
-    console.log("Here from foodhistory posting.");
+    //console.log("Hi from foodhistory posting for testing");
     con.query(sqlQC, function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -111,19 +110,6 @@ app.post("/activity/:name", (req, res) => {
   });
 });
 
-//fetch userActivity
-// This may not be need as I have replaced charts with MS Power BI visualization
-app.get("/userActivity/1/", (req, res) => {
-  con.query(
-    "SELECT actHis.caloriesBurnt ,act.name  from activityhistory actHis, activity act where actHis.userid= 15" +
-      // 15 hard coded for now actually it has to be =" + req.params.userId +
-      " and act.id=actHis.activityId",
-    function (error, results, fields) {
-      if (error) throw error;
-      res.send(JSON.stringify({ status: 200, error: null, response: results }));
-    }
-  );
-});
 
 //fetch all activities along with id and names
 app.get("/activity1/", (req, res) => {
@@ -133,18 +119,7 @@ app.get("/activity1/", (req, res) => {
   });
 });
 
-//fetch userActivity --------------- we need curdate() function later--- so keep ///it for now plz
-app.get("/userActivity1/:userId/", (req, res) => {
-  con.query(
-    "SELECT SUM(caloriesBurnt) from activityhistory where userId = " +
-      req.params.userId +
-      "and date = curdate();",
-    function (error, results, fields) {
-      if (error) throw error;
-      res.send(JSON.stringify({ status: 200, error: null, response: results }));
-    }
-  );
-});
+
 
 //register a new user
 app.post("/register/:id/:password", (req, res) => {
@@ -164,10 +139,25 @@ app.post("/register/:id/:password", (req, res) => {
   });
 });
 
-//fetch foodActivity
+/*       Need to fix
+//fetch userActivity ---- but it is not working for some reason
+app.get("/userActivity/1/:userId", (req, res) => {
+  con.query(
+    "SELECT caloriesBurnt , act.name, duration from activityhistory actHis, activity act where date = curdate() and userId =" +  req.params.userId + " and actHis.activityId = act.id",
+      // 15 hard coded for now actually it has to be =" + req.params.userId +
+      
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    }
+  );
+});
+*/
+
+//fetch food info from Foodhistory  table for current (today)
 app.get("/foodhistoryTable/:userId", (req, res) => {
   con.query(
-    "SELECT f.name,serving,calories, quantity,(quantity*f.calories) as totalcalories from foodhistory1 his, food f where date = curdate() and userId =" +       //if we want to show all history, we need to remove curdate() cond.
+    "SELECT f.name,serving,calories, quantity,(quantity*f.calories) as totalcalories from foodhistory his, food f where date = curdate() and userId =" +       //if we want to show all history, we need to remove curdate() cond.
       req.params.userId +
       " and his.foodId=f.id",
     function (error, results, fields) {
@@ -176,6 +166,7 @@ app.get("/foodhistoryTable/:userId", (req, res) => {
     }
   );
 });
+
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
