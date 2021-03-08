@@ -4,10 +4,6 @@ $(document).ready(function () {
       display: true,
       position: "top",
     },
-    title: {
-      display: true,
-      text: "Water",
-    },
   };
   //Chart for water using api call
   $.ajax({

@@ -15,8 +15,8 @@ app.use(function (req, res, next) {
     host: "localhost",
     user: "root",
     //was  but it is working with this too password: "administrator",
-    password: "S9841348850@s",
-    //password:"administrator"
+    //password: "S9841348850@s",
+    password: "administrator",
     database: "calorietracker",
   });
   con.connect();
