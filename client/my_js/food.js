@@ -90,31 +90,10 @@ $(document).ready(function () {
               s += '<option value="' + data["response"][i]["id"] + '"' 
                + 'title= "'  + 'serving: ' + data["response"][i]["serving"] + ' / calorie: ' + data["response"][i]["calories"]  + '">' +  data["response"][i]["name"] 
               + '</option>';  
-          }  
-          //<option value="1" title="1 i.e. Running">1</option>
+          } 
           $("#foodDropdown").html(s);  
       }  
   });  
 });
 
 
-/*  This is original save it if change doesn't work, i need it---- ref only
-// its for dropdown for food
-$(document).ready(function () {  
-  $.ajax({ 
-      type: "GET",  
-      url: "http://localhost:8080/food", 
-      data: "response",  
-      dataType: "json",
-      success: function (data) {  
-        //console.log(data["response"]); 
-        var s = '<option value="-1">Please Select a Food Name</option>';  
-          for (var i = 0; i < data["response"].length; i++) {  
-              s += '<option value="' + data["response"][i]["id"]
-              + '">' + data["response"][i]["name"] + ' / ' + data["response"][i]["serving"] + ' / ' +data["response"][i]["calories"] 
-              + '</option>';  
-          }  
-          $("#foodDropdown").html(s);  
-      }  
-  });  
-});    */

@@ -31,7 +31,6 @@
 
     <link rel="stylesheet" href="../my_css/my_css.css">
 
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,27 +40,22 @@
 </head>
 
 <body>
-
     <div id="wrapper">
-
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Calorie Intake Tracker</a>
             </div>
-
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
             <!-- Top Navigation: Left Menu -->
             <ul class="nav navbar-nav navbar-left navbar-top-links">
                 <li><a href="#"><i class="fa fa-home fa-fw"></i>Activities</a></li>
             </ul>
-
             <!-- Top Navigation: Right Menu -->
             <ul class="nav navbar-right navbar-top-links">
                 <li class="dropdown navbar-inverse">
@@ -101,7 +95,6 @@
                     </ul>
                 </li>
             </ul>
-
             <!-- Sidebar -->
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -128,143 +121,184 @@
                             <a href="doctors.html"><i class="fa fa-dashboard fa-fw"></i>Doctors</a>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
-
         <!-- Page Content -->
-        <div id="page-wrapper" style="background-color:ivory;">
+        <div id="page-wrapper">
             <div class="container-fluid">
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            <center><b><i> Activities</i></b></center>
-                        </h1>
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+                                <center><b> Activities</b></center>
+                            </h1>
+                        </div>
                     </div>
                 </div>
-
-
                 <!-- /.col-lg-6 -->
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <center><b><i>TABS</i></b></center>
+                        <!--Tabs beging-->
+                        <div class="tab">
+                            <button class="tablinks" onclick="openInfo(event, 'Activity Info')"
+                                id="defaultOpen">Activity Info</button>
+                            <button class="tablinks" onclick="openInfo(event, 'Add Activity')">Add Activity</button>
+                            <button class="tablinks" onclick="openInfo(event, 'Activity History')">Add to Activity
+                                History</button>
+                            <button class="tablinks" onclick="openInfo(event, 'Delete Activity')"> Delete Activity
+                                From History</button>
+                            <button class="tablinks" onclick="openInfo(event, 'update act_his table')">Update Activity
+                                Info</button>
+                            <button class="tablinks" onclick="openInfo(event, 'Activity table')">Activity History:Current </button>
+
                         </div>
-                        <div class="panel-body">
-
-                            <div class="tab">
-                                <button class="tablinks" onclick="openInfo(event, 'Activity Info')"
-                                    id="defaultOpen">Activity Info</button>
-                                <button class="tablinks" onclick="openInfo(event, 'Add Activity')">Add Activity</button>
-                                <button class="tablinks" onclick="openInfo(event, 'Activity History')">Add to Activity
-                                    History</button>
-                                <button class="tablinks" onclick="openInfo(event, 'Activity table')">Activity History:Current</button>
-                            </div>
-
-                            <div id="Activity Info" class="tabcontent">
-                                <h3><i><b>Activity Table</b></i> </h3>
-                                <table id="activity1" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-
-                            <div id="Add Activity" class="tabcontent">
-                                <h3><i><b>Add New Activity</b></i> </h3>
-                                <form method="post" action="http://localhost:8080/activity">
-                                    <br />
-
-
+                        <!--Activity information Table-->
+                        <div id="Activity Info" class="tabcontent">
+                            <h3><b>Activity Table</b></h3>
+                            <table id="activity1" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <!--Adding new activity to the activity table-->
+                        <div id="Add Activity" class="tabcontent">
+                            <h3><b>Add New Activity</b></h3>
+                            <form method="post" action="http://localhost:8080/activity">
+                                <div class="form-group">
                                     <label for="name_a">Name:</label>
                                     <input class="form-control" type="text" id="name_a" name="name_a">
-
-
-                                    <br />
-
-
-
-
-
+                                </div>
+                                <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                                     <button type="button" id="submit_act" name="submit_act" value="submit_act"
                                         class="button button1">
-                                        <i><b>SUBMIT</b></i>
+                                        <b>SUBMIT</b>
                                     </button>
-                                </form>
-                            </div>
+                                </span>
 
-                            <div id="Activity History" class="tabcontent">
-                                <h3><i><b>Current Activity History</b></i> </h3>
-                                <form method="post" action="http://localhost:8080/activities">
-
-
+                            </form>
+                        </div>
+                        <!--Adding activity to the activity history table-->
+                        <div id="Activity History" class="tabcontent">
+                            <h3><b>Add Activity to History</b></h3>
+                            <form method="post" action="http://localhost:8080/activities">
+                                <div class="form-group">
                                     <label for="activityDropdown"><b>Activity Name</b></label>
                                     <select class="form-control" id="activityDropdown" name="activityDropdown"></select>
-
-                                    <br />
-
+                                </div>
+                                <div class="form-group">
                                     <label for="userId">UserId:</label>
                                     <input class="form-control" type="number" id="userId" name="userId"
                                         placeholder="Please enter your UserId">
-
-                                    <br />
-
+                                </div>
+                                <div class="form-group">
                                     <label for="caloriesBurnt">Calories Burnt:</label>
                                     <input class="form-control" type="number" id="caloriesBurnt" name="caloriesBurnt">
-
-                                    <br />
+                                </div>
+                                <div class="form-group">
                                     <label for="durarion">Duration(Minutes):</label>
                                     <input class="form-control" type="number" id="duration" name="duration">
-
-                                    <br />
+                                </div>
+                                <div class="form-group">
 
                                     <label for="date">Date:</label>
                                     <input class="form-control" type="date" id="date" name="date">
-
-                                    <br />
-
+                                </div>
+                                <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                                     <button type="button" id="submit_a" name="submit_a" value="submit_a"
                                         class="button button2">
-                                        <i><b>SUBMIT</b></i>
+                                        <b>SUBMIT</b>
                                     </button>
-                                </form>
-                            </div>
+                                </span>
+                            </form>
+                        </div>
+                        <!--Deleting activity from the activity history table-->
+                        <div id="Delete Activity" class="tabcontent">
+                            <h3><b>Delete Activity</b></h3>
+                            <form method="delete" action="http://localhost:8080/deleteactivities">
+                                <div class="form-group">
+                                    <label for="activityDropdown_del"><b>Activity Name</b></label>
+                                    <select class="form-control" id="activityDropdown_del"
+                                        name="activityDropdown_del"></select>
+                                </div>
 
-                            <div id="Activity table" class="tabcontent">
-                                <h3><i><b>Today's Food History Table</b></i> </h3>
-                                <table id="activity" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Activity Name</th>
-                                            <th>caloriesBurnt</th>
-                                            <th>Duration</th>
+                                <div class="form-group">
+                                    <label for="caloriesBurnt_del">Calories Burnt:</label>
+                                    <input class="form-control" type="number" id="caloriesBurnt_del"
+                                        name="caloriesBurnt_del">
+                                </div>
+                                <div class="form-group">
+                                    <label for="durarion_del">Duration(Minutes):</label>
+                                    <input class="form-control" type="number" id="duration_del" name="duration_del">
+                                </div>
+                                <div class="form-group">
 
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
+                                    <label for="date_del">Date:</label>
+                                    <input class="form-control" type="date" id="date_del" name="date_del">
+                                </div>
+                                <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                                    <button type="button" id="submit_del" name="submit_del" value="submit_del"
+                                        class="button button5">
+                                        <b>SUBMIT</b>
+                                    </button>
+                                </span>
+                            </form>
+                        </div>
+                        <!--Updating activity info in activity history table-->
+                        <div id="update act_his table" class="tabcontent">
+                            <h3><b>Update Activity info</b></h3>
+                            <form method="post" action="http://localhost:8080/updateactivityhistory">
+                                <div class="form-group">
+                                    <label for="activityDropdown_update"><b>Activity Name</b></label>
+                                    <select class="form-control" id="activityDropdown_update"
+                                        name="activityDropdown_update"></select>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="caloriesBurnt_update">Calories Burnt:</label>
+                                    <input class="form-control" type="number" id="caloriesBurnt_update"
+                                        name="caloriesBurnt_update">
+                                </div>
+                                <div class="form-group">
+                                    <label for="durarion_update">Duration(Minutes):</label>
+                                    <input class="form-control" type="number" id="duration_update"
+                                        name="duration_update">
+                                </div>
+                                <div class="form-group">
 
-
+                                    <label for="date_update">Date:</label>
+                                    <input class="form-control" type="date" id="date_update" name="date_update">
+                                </div>
+                                <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                                    <button type="button" id="submit_update" name="submit_update" value="submit_update"
+                                        class="button button6">
+                                        <b>SUBMIT</b>
+                                    </button>
+                                </span>
+                            </form>
+                        </div>
+                        <!--Today's activity history information table-->
+                        <div id="Activity table" class="tabcontent">
+                            <h3><b>Today's Food History Table</b></h3>
+                            <table id="activity" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Activity Name</th>
+                                        <th>caloriesBurnt</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
-
-
-
                     <!-- ... Your content goes here ... -->
-
                 </div>
             </div>
-
-
-
         </div>
-
         <!-- jQuery -->
         <script src="../js/jquery.min.js"></script>
 
@@ -274,128 +308,15 @@
         <!-- Metis Menu Plugin JavaScript -->
         <script src="../js/metisMenu.min.js"></script>
 
+        <!-- It is for jumbotron-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
         <!-- Custom Theme JavaScript -->
         <script src="../js/startmin.js"></script>
         <script src="../my_js/activity.js"></script>
         <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 
-
-
-
 </body>
 
 </html>
-
-<!--  for reference in case we need it later--- else I can delete it later
-
-                    <div class="col-lg-12">
-                        <center> <b><i>Activity Table</i></b> </center>
-                        <table id="activity1" class="table table-striped table-bordered" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                </tr>
-                            </thead>
-                        </table>
-                </div>
-            -->
-
-
-
-<!-- /.col-lg-6 
-                  <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <center></center>Adding new Activity to activity Table</center>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-lg-12">
-                               
-
-                                    <form method="post" action="http://localhost:8080/activity">
-                                        <br/>
-                                        <br/>
-                                       
-                                        <label for="name_a">Name:</label>
-                                        <input class="form-control" type="text" id="name_a" name="name_a">
-
-                                                                   
-                                    <br/>
-                                    <br/>
-                                    <br>
-                                    <br>
-                                    <br>
-                                    
-                                    
-                                    
-                                    
-                                    <button type="button" id="submit_act" name="submit_act" value="submit_act">
-                                    Add
-                                    </button>
-                                    </form> 
-                              
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-        -->
-
-
-
-<!-- /.col-lg-6 
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <center>Adding activities info in activityhistory Table</center>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-lg-12">
-                              
-
-                                    <form method="post" action="http://localhost:8080/activities">
-
-                                        <label for="activityId">ActivityId:</label>
-                                        <select class="form-control" id="activityId" name="activityId">
-                                            <option value="1" title="1 i.e. Running">1</option>
-                                            <option value="2" title="2 i.e. Swimming">2</option>
-                                            <option value="3" title="3 i.e. Biking">3</option>
-                                            <option value="4" title="4 i.e. Exercising">4</option>
-                                            <option value="5" title="5 i.e. Yoga">5</option>
-                                            <option value="6" title="6 i.e. Walking on Trademill">6</option>
-                                        </select>
-                                        <br />
-
-                                        <label for="userId">UserId:</label>
-                                        <input class="form-control" type="number" id="userId" name="userId"
-                                            placeholder="Please enter your UserId">
-
-                                        <br />
-
-                                        <label for="caloriesBurnt">Calories Burnt:</label>
-                                        <input class="form-control" type="number" id="caloriesBurnt" name="caloriesBurnt">
-
-                                        <br />
-                                        <label for="durarion">Duration(Minutes):</label>
-                                        <input class="form-control" type="number" id="duration" name="duration">
-
-                                        <br />
-
-                                        <label for="date">Date:</label>
-                                        <input class="form-control" type="date" id="date" name="date">
-
-                                        <br />
-                                        
-                                        <button type="button" id="submit_a" name="submit_a" value="submit_a">
-                                            Add
-                                        </button>
-                                    </form>
-                                
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
--->

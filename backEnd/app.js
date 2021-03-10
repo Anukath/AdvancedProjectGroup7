@@ -24,22 +24,13 @@ app.use(function (req, res, next) {
 
 //fetch all food items
 app.get("/food/", (req, res) => {
-  con.query("SELECT * from food", function (error, results, fields) {
+  con.query("SELECT * from food ORDER BY name ASC", function (error, results, fields) {
     if (error) throw error;
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
 });
 
-//fetching only food name for dropdown to add food to food history------ not 
-//needed now ------------------ can use the same /food/ from up
-app.get("/food_dropdown/", (req, res) => {
-  con.query("SELECT * from food", function (error, results, fields) {
-    if (error) throw error;
-    res.send(JSON.stringify({ status: 200, error: null, response: results }));
-  });
-});
-
-//insert food values
+//insert new food values to food table
 app.post("/food1/:name/:serving/:calories", (req, res) => {
   var sqlQuery =
     "Insert ignore into food(name, serving, calories) values('" +
@@ -78,18 +69,53 @@ app.post(
   }
 );
 
-//insert food information into foodhistory table--- its not inserting ???
-// no error but not doing????
+//deleting activities from activityhistory table
+app.delete(
+  "/deleteactivities/:activityId/:caloriesBurnt/:duration/:date",
+  (req, res) => {
+    var sqlQdel =
+      "Delete from activityhistory where activityId = '" +
+      req.params.activityId +
+      "' and caloriesBurnt ='" + 
+      req.params.caloriesBurnt + "' and duration = '" +
+      req.params.duration + 
+      "' and date = curdate() ";
+    con.query(sqlQdel, function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    });
+  }
+);
+
+//upadating activityhistory table
+app.post(
+  "/updateactivityhistory/:activityId/:caloriesBurnt/:duration/:date",
+  (req, res) => {
+    var sqlQupdate =
+      "Update activityhistory set caloriesBurnt = '" +
+      req.params.caloriesBurnt +
+      "' , " + " duration = '" + 
+      req.params.duration +  "' where activityId = '" +
+      req.params.activityId + 
+      "' and date = curdate()";
+    con.query(sqlQupdate, function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    });
+  }
+);
+
+//insert food information into foodhistory table
 app.post(
   "/foodhistory/:userId/:foodId/:quantity/:date",
   (req, res) => {
     var sqlQC =
       "Insert into foodhistory(userId, foodId, quantity, date) values('" +
       req.params.userId +
-      "','" + 
-      req.params.foodId + "','" +     
+      "', '" + 
+      req.params.foodId + "', '" +     
       req.params.quantity +
-      "','" +
+      "', '" +
       req.params.date +
       "')";
     //console.log("Hi from foodhistory posting for testing");
@@ -113,7 +139,7 @@ app.post("/activity/:name", (req, res) => {
 
 //fetch all activities along with id and names
 app.get("/activity1/", (req, res) => {
-  con.query("SELECT * from activity", function (error, results, fields) {
+  con.query("SELECT * from activity ORDER BY name ASC", function (error, results, fields) {
     if (error) throw error;
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
@@ -159,7 +185,7 @@ app.get("/foodhistoryTable/:userId", (req, res) => {
   con.query(
     "SELECT f.name,serving,calories, quantity,(quantity*f.calories) as totalcalories from foodhistory his, food f where date = curdate() and userId =" +       //if we want to show all history, we need to remove curdate() cond.
       req.params.userId +
-      " and his.foodId=f.id",
+      " and his.foodId=f.id ORDER BY f.name ASC",
     function (error, results, fields) {
       if (error) throw error;
       res.send({ status: 200, error: null, response: results });
