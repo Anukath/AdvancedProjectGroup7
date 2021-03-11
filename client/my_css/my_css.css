@@ -25,31 +25,12 @@
 }
 
 
-/* making power bi reports responsive */
-.container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
-}
-
-.responsive-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
 /*  Down below is for tabs in food and activities pages    */
 
 /* Style the tab */
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
+  border: .5px solid #ccc;  /* was 1, if kept same there is padding */
   background-color: #f1f1f1;
 }
 
@@ -85,9 +66,10 @@
 
 /*    For Buttons  --- Submit buttons      */
 .button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
+  background-color: #007bff; /* */
+  border-radius: 16px;
+  border: #007bff;
+  color: #fff;
   padding: 6px 12px;
   text-align: center;
   text-decoration: none;
@@ -98,72 +80,24 @@
   cursor: pointer;
 }
 
-.button1{
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
 
-.button1:hover {
-  background-color: #4CAF50;
-  color: white;
-}
 
-.button2{
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
 
-.button2:hover {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.button3{
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
-
-.button3:hover {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.button4{
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
-
-.button4:hover {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.button5{
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
-
-.button5:hover {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.button6{
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
-}
-
-.button6:hover {
-  background-color: #4CAF50;
-  color: white;
+.button1, .button2, .button3, .button4, .button5, .button6{
+  background-color: #007bff; 
+  color: #fff; 
+  border: 2px solid #007bff;
 }
 
 
+/*  jumbotron additional style */
+.jumbotron {
+    padding: 30px 15px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    color: inherit;
+    background-color: #eee;
+    border-radius: 6px;
+}
 
 

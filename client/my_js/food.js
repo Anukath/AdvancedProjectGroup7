@@ -61,8 +61,6 @@ jQuery(function () {
       dataType: "html",
       url:
         "http://localhost:8080/foodhistory/" +
-        $("#userId").val() +
-        "/" +
         $("#foodDropdown").val() +
         "/" +
         $("#quantity").val() +

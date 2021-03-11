@@ -48,14 +48,12 @@ app.post("/food1/:name/:serving/:calories", (req, res) => {
 
 //insert activities values into activityhistory table
 app.post(
-  "/activityhistory/:activityId/:userId/:caloriesBurnt/:duration/:date",
+  "/activityhistory/:activityId/:caloriesBurnt/:duration/:date",
   (req, res) => {
     var sqlQA =
       "Insert into activityhistory(activityId, userId, caloriesBurnt, duration, date) values('" +
       req.params.activityId +
-      "','" +
-      req.params.userId +
-      "','" +
+      "', '" + "12' ,'" +
       req.params.caloriesBurnt +
       "','" +
       req.params.duration +
@@ -70,7 +68,7 @@ app.post(
 );
 
 //deleting activities from activityhistory table
-app.delete(
+app.post(
   "/deleteactivities/:activityId/:caloriesBurnt/:duration/:date",
   (req, res) => {
     var sqlQdel =
@@ -80,6 +78,7 @@ app.delete(
       req.params.caloriesBurnt + "' and duration = '" +
       req.params.duration + 
       "' and date = curdate() ";
+      console.log(sqlQdel);
     con.query(sqlQdel, function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -107,12 +106,10 @@ app.post(
 
 //insert food information into foodhistory table
 app.post(
-  "/foodhistory/:userId/:foodId/:quantity/:date",
+  "/foodhistory/:foodId/:quantity/:date",
   (req, res) => {
     var sqlQC =
-      "Insert into foodhistory(userId, foodId, quantity, date) values('" +
-      req.params.userId +
-      "', '" + 
+      "Insert into foodhistory(userId, foodId, quantity, date) values('12', '" + 
       req.params.foodId + "', '" +     
       req.params.quantity +
       "', '" +
@@ -165,20 +162,18 @@ app.post("/register/:id/:password", (req, res) => {
   });
 });
 
-/*       Need to fix
-//fetch userActivity ---- but it is not working for some reason
-app.get("/userActivity/1/:userId", (req, res) => {
+
+//fetch userActivity 
+app.get("/userActivityTable/:userId", (req, res) => {
   con.query(
-    "SELECT caloriesBurnt , act.name, duration from activityhistory actHis, activity act where date = curdate() and userId =" +  req.params.userId + " and actHis.activityId = act.id",
-      // 15 hard coded for now actually it has to be =" + req.params.userId +
-      
+    "SELECT act.name, caloriesBurnt , duration from activityhistory actHis, activity act where date = curdate() and userId =" +  req.params.userId + " and actHis.activityId = act.id ORDER BY act.name ASC",    
     function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
     }
   );
 });
-*/
+
 
 //fetch food info from Foodhistory  table for current (today)
 app.get("/foodhistoryTable/:userId", (req, res) => {

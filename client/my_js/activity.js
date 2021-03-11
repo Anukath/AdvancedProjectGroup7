@@ -5,7 +5,7 @@
             $.ajax({
                 method: 'post',
                 dataType: 'html',
-                url: 'http://localhost:8080/activityhistory/' +  $('#activityDropdown').val()+ '/'+ $('#userId').val() + '/'+  $('#caloriesBurnt').val() + '/'+ $('#duration').val()  + '/'+ $('#date').val(),
+                url: 'http://localhost:8080/activityhistory/' +  $('#activityDropdown').val()+ '/'+  $('#caloriesBurnt').val() + '/'+ $('#duration').val()  + '/'+ $('#date').val(),
             });
             // success messaage display
       alert("Activity Info Successfully deleted from activity history table");
@@ -16,7 +16,7 @@
 // deleting activity from activity history
         $('#submit_del').click(function (event) {
           $.ajax({
-              method: 'delete',
+              method: 'post',
               dataType: 'html',
               url: 'http://localhost:8080/deleteactivities/' +  $('#activityDropdown_del').val()+  '/'+  $('#caloriesBurnt_del').val() + '/'+ $('#duration_del').val()  + '/'+ $('#date_del').val(),
           });
@@ -51,11 +51,11 @@
      
     ],
   });
-  /*             Need to fix
+
 // current activities to be displayed on table for info
-  $("#activity").DataTable({
+  $("#userActivity").DataTable({
     ajax: {
-      url: "http://localhost:8080/userActivity/1/",
+      url: "http://localhost:8080/userActivityTable/",
       dataSrc: "response",
     },
     columns: [
@@ -64,8 +64,6 @@
       { data: "duration" },
     ],
   });
-
-*/
 
 });
 //Adding new activity to the activity table
