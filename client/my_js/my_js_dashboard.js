@@ -1,8 +1,12 @@
 $(document).ready(function () {
   options = {
     legend: {
-      display: true,
+      display: false,
       position: "top",
+    },
+    title: {
+      display: true,
+      text: "Water Intake (Litres)",
     },
   };
   //Chart for water using api call
@@ -31,8 +35,12 @@ $(document).ready(function () {
   });
   optionsChart1 = {
     legend: {
-      display: true,
+      display: false,
       position: "top",
+    },
+    title: {
+      display: true,
+      text: "Calorie Intake",
     },
   };
   $.ajax({
@@ -62,8 +70,12 @@ $(document).ready(function () {
   });
   optionsChart3 = {
     legend: {
-      display: true,
+      display: false,
       position: "top",
+    },
+    title: {
+      display: true,
+      text: "Calories Burnt / Activity",
     },
   };
   $.ajax({
@@ -115,8 +127,12 @@ $(document).ready(function () {
   });
   optionsChart4 = {
     legend: {
-      display: true,
+      display: false,
       position: "top",
+    },
+    title: {
+      display: true,
+      text: "Food Intake",
     },
   };
   $.ajax({
@@ -169,9 +185,9 @@ $(document).ready(function () {
     dataType: "json",
 
     success: function (result) {
-      const burntLine = Object.keys(result["response"]).map(
-        (key) => result["response"][key].burnt
-      );
+      // const burntLine = Object.keys(result["response"]).map(
+      //   (key) => result["response"][key].burnt
+      // );
       const takenLine = Object.keys(result["response"]).map(
         (key) => result["response"][key].taken
       );
@@ -192,25 +208,25 @@ $(document).ready(function () {
           labels: [...timeX],
 
           datasets: [
-            {
-              label: "Calories Burnt",
-              data: [...burntLine],
-              borderWidth: 1,
-              backgroundColor: "rgba(46, 204, 64, 0.1)",
-              fill: true,
-            },
+            // {
+            //   label: "Calories Burnt",
+            //   data: [...burntLine],
+            //   borderWidth: 1,
+            //   backgroundColor: "rgba(46, 204, 64, 0.1)",
+            //   fill: true,
+            // },
             {
               label: "Calories taken",
               data: [...takenLine],
               borderWidth: 1,
-              backgroundColor: "rgba(255, 133, 27, 0.1)",
+              backgroundColor: "rgba(46, 204, 64, 0.2)",
               fill: true,
             },
             {
               label: "Suggested Calories",
               data: [...suggestedLine],
               borderWidth: 1,
-              backgroundColor: "rgba(255, 220, 0, 0.1)",
+              backgroundColor: "rgba(255, 220, 0, 0.2)",
               fill: true,
             },
           ],
@@ -227,6 +243,12 @@ $(document).ready(function () {
               },
             ],
           },
+          title: {
+            display: true,
+            text: "Calorie History",
+          },
+          maintainAspectRatio: false,
+          responsive: true,
         },
       });
     },
