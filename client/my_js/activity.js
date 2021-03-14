@@ -152,6 +152,8 @@ $(document).ready(function () {
       dataType: "html",
       url: url,
     });
+    toastr["error"]("Are you the six fingered man?");
+    toastr["success"]("Are you the six fingered man?");
   });
 });
 //Adding new activity to the activity table
