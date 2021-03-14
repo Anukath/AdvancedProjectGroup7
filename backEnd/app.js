@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
   global.con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    //was  but it is working with this too password: "administrator",
+    //was  but it is working with this too
     //password: "S9841348850@s",
     password: "administrator",
     database: "calorietracker",
@@ -122,15 +122,17 @@ app.post(
 
 //deleting activities from activityhistory table
 app.post(
-  "/deleteactivities/:activityId/:caloriesBurnt/:duration/:date",
+  "/deleteactivities/:userId/:activityId/:caloriesBurnt/:duration",
   (req, res) => {
     var sqlQdel =
-      "Delete from activityhistory where activityId = '" +
+      "DELETE activityhistory FROM activityhistory Inner join activity on activity.id=activityhistory.activityId where activity.name = '" +
       req.params.activityId +
       "' and caloriesBurnt ='" +
       req.params.caloriesBurnt +
       "' and duration = '" +
       req.params.duration +
+      "' and activityhistory.userId= '" +
+      req.params.userId +
       "' and date = curdate() ";
     console.log(sqlQdel);
     con.query(sqlQdel, function (error, results, fields) {
@@ -142,17 +144,20 @@ app.post(
 
 //upadating activityhistory table
 app.post(
-  "/updateactivityhistory/:activityId/:caloriesBurnt/:duration/:date",
+  "/updateactivityhistory/:userId/:activityId/:caloriesBurnt/:duration",
   (req, res) => {
     var sqlQupdate =
-      "Update activityhistory set caloriesBurnt = '" +
+      "Update activityhistory Inner join activity on activity.id=activityhistory.activityId set caloriesBurnt = '" +
       req.params.caloriesBurnt +
       "' , " +
       " duration = '" +
       req.params.duration +
-      "' where activityId = '" +
+      "' where activity.name = '" +
       req.params.activityId +
+      "' and activityhistory.userId= '" +
+      req.params.userId +
       "' and date = curdate()";
+
     con.query(sqlQupdate, function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -312,6 +317,39 @@ app.get("/foodhistoryTable/:userId", (req, res) => {
   );
 });
 
+//upadating foodhistory table
+app.post("/updatefoodhistory/:userId/:foodName/:quantity", (req, res) => {
+  var sqlQupdate =
+    "Update foodhistory Inner join food on food.id=foodhistory.foodId set quantity = '" +
+    req.params.quantity +
+    "' where food.name = '" +
+    req.params.foodName +
+    "' and foodhistory.userId= '" +
+    req.params.userId +
+    "' and date = curdate()";
+
+  con.query(sqlQupdate, function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.stringify({ status: 200, error: null, response: results }));
+  });
+});
+
+//delete foodhistory table
+app.post("/deletefoodhistory/:userId/:foodName/:quantity", (req, res) => {
+  var sqlQupdate =
+    "Delete foodhistory from foodhistory Inner join food on food.id=foodhistory.foodId where quantity = '" +
+    req.params.quantity +
+    "' and food.name = '" +
+    req.params.foodName +
+    "' and foodhistory.userId= '" +
+    req.params.userId +
+    "' and date = curdate()";
+
+  con.query(sqlQupdate, function (error, results, fields) {
+    if (error) throw error;
+    res.send(JSON.stringify({ status: 200, error: null, response: results }));
+  });
+});
 //PORT ENVIRONMENT VARIABLE
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port ${port}..`));
