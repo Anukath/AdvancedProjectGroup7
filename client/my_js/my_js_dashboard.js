@@ -1,113 +1,251 @@
-$(function() {
+$(document).ready(function () {
+  options = {
+    legend: {
+      display: true,
+      position: "top",
+    },
+  };
+  //Chart for water using api call
+  $.ajax({
+    url: "http://localhost:8080/water/1",
+    success: function (result) {
+      var ctx = document.getElementById("donut").getContext("2d");
+      var jso = JSON.parse(result);
+      dataWater = {
+        datasets: [
+          {
+            data: Object.values(jso["response"][0]),
+            backgroundColor: ["#2ECC40", "#7FDBFF"],
+          },
+        ],
+        labels: ["Drunk", "Remaining"],
 
-    Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{
-            label: "Calorie Taken",
-            value: 1500
-        }, {
-            label: "Calorie Intake needed",
-            value: 1000
-        }, ],
-        resize: true
-    });
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+      };
+      var myDoughnutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: dataWater,
+        options: options,
+      });
+    },
+  });
+  optionsChart1 = {
+    legend: {
+      display: true,
+      position: "top",
+    },
+  };
+  $.ajax({
+    url: "http://localhost:8080/calorie/1",
+    success: function (result) {
+      var ctx = document.getElementById("donut1").getContext("2d");
+      var jso = JSON.parse(result);
+      dataWater = {
+        datasets: [
+          {
+            data: Object.values(jso["response"][0]),
+            backgroundColor: ["#2ECC40", "#7FDBFF"],
+          },
+        ],
+        labels: ["Taken", "Suggested"],
 
-    Morris.Area({
-        element: 'morris-area-chart',
-        data: [{
-            period: '2010 Q1',
-            iphone: 2666,
-            ipad: null,
-            itouch: 2647
-        }, {
-            period: '2010 Q2',
-            iphone: 2778,
-            ipad: 2294,
-            itouch: 2441
-        }, {
-            period: '2010 Q3',
-            iphone: 4912,
-            ipad: 1969,
-            itouch: 2501
-        }, {
-            period: '2010 Q4',
-            iphone: 3767,
-            ipad: 3597,
-            itouch: 5689
-        }, {
-            period: '2011 Q1',
-            iphone: 6810,
-            ipad: 1914,
-            itouch: 2293
-        }, {
-            period: '2011 Q2',
-            iphone: 5670,
-            ipad: 4293,
-            itouch: 1881
-        }, {
-            period: '2011 Q3',
-            iphone: 4820,
-            ipad: 3795,
-            itouch: 1588
-        }, {
-            period: '2011 Q4',
-            iphone: 15073,
-            ipad: 5967,
-            itouch: 5175
-        }, {
-            period: '2012 Q1',
-            iphone: 10687,
-            ipad: 4460,
-            itouch: 2028
-        }, {
-            period: '2012 Q2',
-            iphone: 8432,
-            ipad: 5713,
-            itouch: 1791
-        }],
-        xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
-        pointSize: 2,
-        hideHover: 'auto',
-        resize: true
-    });
-    Morris.Bar({
-        element: 'morris-bar-chart',
-        data: [{
-            y: '2006',
-            a: 100,
-            b: 90
-        }, {
-            y: '2007',
-            a: 75,
-            b: 65
-        }, {
-            y: '2008',
-            a: 50,
-            b: 40
-        }, {
-            y: '2009',
-            a: 75,
-            b: 65
-        }, {
-            y: '2010',
-            a: 50,
-            b: 40
-        }, {
-            y: '2011',
-            a: 75,
-            b: 65
-        }, {
-            y: '2012',
-            a: 100,
-            b: 90
-        }],
-        xkey: 'y',
-        ykeys: ['a', 'b'],
-        labels: ['Series A', 'Series B'],
-        hideHover: 'auto',
-        resize: true
-    });
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+      };
+      console.log(dataWater);
 
+      var myDoughnutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: dataWater,
+        options: optionsChart1,
+      });
+    },
+  });
+  optionsChart3 = {
+    legend: {
+      display: true,
+      position: "top",
+    },
+  };
+  $.ajax({
+    url: "http://localhost:8080/userActivity/1",
+    dataType: "json",
+
+    success: function (result) {
+      var ctx = document.getElementById("donut2").getContext("2d");
+      //var jso = JSON.parse(result);
+      const data = Object.keys(result["response"]).map(
+        (key) => result["response"][key].caloriesBurnt
+      );
+      const lab = Object.keys(result["response"]).map(
+        (key) => result["response"][key].name
+      );
+      dataWater = {
+        datasets: [
+          {
+            data: [...data],
+            backgroundColor: [
+              "#2ECC40",
+              "#FF851B",
+              "#7FDBFF",
+              "#B10DC9",
+              "#FFDC00",
+              "#001f3f",
+              "#39CCCC",
+              "#01FF70",
+              "#85144b",
+              "#F012BE",
+              "#3D9970",
+              "#111111",
+              "#AAAAAA",
+            ],
+          },
+        ],
+
+        labels: [...lab],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+      };
+
+      var myDoughnutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: dataWater,
+        options: optionsChart3,
+      });
+    },
+  });
+  optionsChart4 = {
+    legend: {
+      display: true,
+      position: "top",
+    },
+  };
+  $.ajax({
+    url: "http://localhost:8080/foodCalorie/1",
+    success: function (result) {
+      var ctx = document.getElementById("donut3").getContext("2d");
+      const data = Object.keys(result["response"]).map(
+        (key) => result["response"][key].calories
+      );
+      const lab = Object.keys(result["response"]).map(
+        (key) => result["response"][key].name
+      );
+      dataWater = {
+        datasets: [
+          {
+            data: [...data],
+            backgroundColor: [
+              "#2ECC40",
+              "#FF851B",
+              "#7FDBFF",
+              "#B10DC9",
+              "#FFDC00",
+              "#001f3f",
+              "#39CCCC",
+              "#01FF70",
+              "#85144b",
+              "#F012BE",
+              "#3D9970",
+              "#111111",
+              "#AAAAAA",
+            ],
+          },
+        ],
+
+        labels: [...lab],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+      };
+
+      var myDoughnutChart = new Chart(ctx, {
+        type: "doughnut",
+        data: dataWater,
+        options: optionsChart4,
+      });
+    },
+  });
+
+  $.ajax({
+    url: "http://localhost:8080/calorieHistory/1",
+    dataType: "json",
+
+    success: function (result) {
+      const burntLine = Object.keys(result["response"]).map(
+        (key) => result["response"][key].burnt
+      );
+      const takenLine = Object.keys(result["response"]).map(
+        (key) => result["response"][key].taken
+      );
+      const suggestedLine = Object.keys(result["response"]).map(
+        (key) => result["response"][key].suggested
+      );
+      const timeX = Object.keys(result["response"]).map((key) => {
+        result["response"][key].time;
+        c = result["response"][key].time;
+        var date1 = new Date(c);
+        return date1.toLocaleDateString("en-CA");
+      });
+      //Demo data
+      var ctx = document.getElementById("myChart").getContext("2d");
+      var myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: [...timeX],
+
+          datasets: [
+            {
+              label: "Calories Burnt",
+              data: [...burntLine],
+              borderWidth: 1,
+              backgroundColor: "rgba(46, 204, 64, 0.1)",
+              fill: true,
+            },
+            {
+              label: "Calories taken",
+              data: [...takenLine],
+              borderWidth: 1,
+              backgroundColor: "rgba(255, 133, 27, 0.1)",
+              fill: true,
+            },
+            {
+              label: "Suggested Calories",
+              data: [...suggestedLine],
+              borderWidth: 1,
+              backgroundColor: "rgba(255, 220, 0, 0.1)",
+              fill: true,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            xAxes: [
+              {
+                ticks: {
+                  autoSkip: false,
+                  maxRotation: 45,
+                  minRotation: 45,
+                },
+              },
+            ],
+          },
+        },
+      });
+    },
+  });
+
+  $.ajax({
+    url: "http://localhost:8080/userSummary/1",
+    dataType: "json",
+
+    success: function (result) {
+      const data = Object.keys(result["response"][0]).map(
+        (key) => result["response"][0][key]
+      );
+      $("#calNeeded").html(data[0] + " Cals");
+      $("#calConsumed").html(data[1] + " Cals");
+      $("#calLeft").html(data[2] + " Cals");
+      $("#water").html(data[3] + " Taken");
+      $("#burnTarget").html(data[4] + " Cals");
+      $("#burnt").html(data[5] + " Cals");
+    },
+  });
 });
