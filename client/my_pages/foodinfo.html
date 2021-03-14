@@ -2,286 +2,195 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Food</title>
+  <title>Food Info</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- IonIcons -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="../css/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Timeline CSS -->
-    <link href="../css/timeline.css" rel="stylesheet">
+  <!-- Custom Fonts -->
+  <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/my_css/my_css.css">
 
-    <!-- Custom CSS -->
-    <link href="../css/startmin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../my_css/my_css.css">
 
-    <!-- Morris Charts CSS -->
-    <link href="../css/morris.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-    <!-- Custom Fonts -->
-    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="../my_css/my_css.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to to the body tag
+to get the desired effect
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
 
-<body>
-    <div id="wrapper">
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+      </ul>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Calorie Intake Tracker</a>
-            </div>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+      <!-- SEARCH FORM -->
+      <form class="form-inline ml-3">
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
             </button>
-            <!-- Top Navigation: Left Menu -->
-            <ul class="nav navbar-nav navbar-left navbar-top-links">
-                <li><a href="#"><i class="fa fa-home fa-fw"></i>FoodInformation</a></li>
-            </ul>
-            <!-- Top Navigation: Right Menu -->
-            <ul class="nav navbar-right navbar-top-links">
-                <li class="dropdown navbar-inverse">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">5 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> tsubedi <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <!-- Sidebar -->
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </li>
-
-                        <li>
-                        <li>
-                            <a href="dashboard.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
-                        </li>
-
-                        <li>
-                            <a href="activities.html"><i class="fa fa-dashboard fa-fw"></i>Activities</a>
-                        </li>
-                        <li>
-                            <a href="doctors.html"><i class="fa fa-dashboard fa-fw"></i>Doctors</a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="jumbotron">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1 class="page-header">
-                                <center><b> Food </b></center>
-                            </h1>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-12">
-                    <div class="row">
-                        <div class="panel panel-default">
-                            <!--Tabs begins-->
-                            <div class="tab">
-                                <button class="tablinks" onclick="openInfo(event, 'Food Table')" id="defaultOpen">Food
-                                    Table</button>
-                                <button class="tablinks" onclick="openInfo(event, 'Add to Food History')">Add to Food
-                                    History</button>
-                                <button class="tablinks" onclick="openInfo(event, 'Add New Food')">Add New Food</button>
-                                <button class="tablinks" onclick="openInfo(event, 'Food Histrory')">Food History :
-                                    Current</button>
-                            </div>
-
-                            <!--Food database table for reference-->
-                            <div id="Food Table" class="tabcontent">
-                                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Serving</th>
-                                            <th>Calories</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                            <!--Adding food to the food history table-->
-                            <div id="Add to Food History" class="tabcontent">
-                                <form method="post" action="http://localhost:8080/foodhistory">
-                                    <div class="form-group">
-                                        <label for="foodDropdown"><b>Food Name:</b></label>
-                                        <select class="form-control" id="foodDropdown" name="foodDropdown"></select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="quantity">Quantity:</label>
-                                        <select class="form-control" id="quantity" name="quantity">
-                                            <option class="form-control" value="1" title="1 serving">1</option>
-                                            <option value="2" title="2 serving">2</option>
-                                            <option value="3" title="3 serving">3</option>
-                                            <option value="4" title="4 serving">4</option>
-                                            <option value="5" title="5 serving">5</option>
-                                            <option value="6" title="6 serving">6</option>
-                                            <option value="7" title="6 serving">7</option>
-                                            <option value="8" title="8 serving">8</option>
-                                            <option value="9" title="9 serving">9</option>
-                                            <option value="10" title="10 serving">10</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="date">Date:</label>
-                                        <input class="form-control" type="date" id="date" name="date">
-                                    </div>
-                                    <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-                                        <button type="button" id="submit_b" name="submit_b" value="save"
-                                            class="button button3"> Submit
-                                        </button>
-                                    </span>
-                                </form>
-                            </div>
-                            <!--Adding new food to the food table-->
-                            <div id="Add New Food" class="tabcontent">
-                                <form method="post" action="http://localhost:8080/food1/">
-                                    <div class="form-group">
-                                        <label for="name">Name:</label>
-                                        <input class="form-control" type="text" id="name" name="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="serving">Serving:</label>
-                                        <input class="form-control" type="text" id="serving" name="serving">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="calories">Calories:</label>
-                                        <input class="form-control" type="number" id="calories" name="calories">
-                                    </div>
-                                    <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-                                        <button type="button" id="submit" name="submit" value="save"
-                                            class="button button4"> Submit
-                                        </button>
-                                    </span>
-                                </form>
-                            </div>
-                            <!--Today's Food intake information table-->
-                            <div id="Food Histrory" class="tabcontent">
-                                <table id="foodIntake" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Serving</th>
-                                            <th>Calories</th>
-                                            <th>Quantity</th>
-                                            <th>Total Calories</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-
-
-                        <!-- ... Your content goes here ... -->
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        <!-- Trying for making dynamic table using database-->
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      </form>
 
-        <!-- jQuery -->
-        <script src="../js/jquery.min.js"></script>
+      <!-- Right navbar links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Notifications Dropdown Menu -->
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="far fa-bell"></i>
+            <span class="badge badge-warning navbar-badge">15</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <span class="dropdown-item dropdown-header">15 Notifications</span>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i> 4 new messages
+              <span class="float-right text-muted text-sm">3 mins</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-users mr-2"></i> 8 friend requests
+              <span class="float-right text-muted text-sm">12 hours</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-file mr-2"></i> 3 new reports
+              <span class="float-right text-muted text-sm">2 days</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          </div>
+        </li>
 
-        <!-- Bootstrap Core JavaScript -->
-        <script src="../js/bootstrap.min.js"></script>
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="../js/metisMenu.min.js"></script>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i> tsubedi
+          </a>
+          <ul class="dropdown-menu dropdown-user">
+            <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+            </li>
+            <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            </li>
+          </ul>
+        </li>
 
-        <!-- Custom Theme JavaScript -->
-        <script src="../js/startmin.js"></script>
-        <script src="../my_js/food.js"></script>
-        <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 
-        <script src="../my_js/activity.js"></script>
+        <li class="nav-item">
+          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
+              class="fas fa-th-large"></i></a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
 
-        <!-- Ref: https://stackoverflow.com/questions/51388032/submit-a-form-to-mysql-using-ajax/51388192-->
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="foodinfo.html" class="brand-link">
+        <img src="../dist/img/AdminLTELogo.png" alt="App Logo" class="brand-image img-circle elevation-3"
+          style="opacity: .8">
+        <span class="brand-text font-weight-light"><b> CALORIE TRACKER</b></span>
+      </a>
 
-</body>
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+            <li class="nav-item has-treeview menu-open">
+            <li class="nav-item">
+              <a href="./foodinfo.html" class="nav-link active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Food Info</p>
+              </a>
+            </li>
 
-</html>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p> Dashboard </p>
+              </a>
+            </li>
+            <li class="nav-item has-treeview">
+              <a href="activities.html" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Activities</p>
+              </a>
 
-<!--   Ref for now and Can remove later................
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            <center><b><i> Food Information</i></b></center>
-                        </h1>
-                    </div> -->
-<!-- /.col-lg-12 
-                </div>
-                    <div class="col-lg-12">
-                        <center> <b><i>Food Table</i></b> </center>
+            </li>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Main content -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="jumbotron">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <h1 class="page-header">
+                          <center><b> Food Info</b></center>
+                      </h1>
+                  </div>
+              </div>
+          </div>
+           <!-- /.col-lg-6 -->
+           <div class="row">
+           <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <!--Tabs begins-->
+                    <div class="tab">
+                        <button class="tablinks" onclick="openInfo(event, 'Food Table')" id="defaultOpen">Food
+                            Table</button>
+                        <button class="tablinks" onclick="openInfo(event, 'Add to Food History')">Add to Food
+                            History</button>
+                        <button class="tablinks" onclick="openInfo(event, 'Add New Food')">Add New Food</button>
+                        <button class="tablinks" onclick="openInfo(event, 'Food Histrory')">Food History :
+                            Current</button>
+                    </div>
+
+                    <!--Food database table for reference-->
+                    <div id="Food Table" class="tabcontent">
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
@@ -292,73 +201,142 @@
                                 </tr>
                             </thead>
                         </table>
-
                     </div>
-                
--->
-
-<!-- /.col-lg-6 
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <center>Adding food info to foodhistory Table</center>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-lg-12">
-                                    <form method="post" action="http://localhost:8080/foodhistory">
-
-                                        <label for="userId">UserId:</label>
-                                        <input class="form-control" type="number" id="userId" name="userId"
-                                            placeholder="Please enter your UserId">
-
-                                        <br />
-                                      
-                                            <label for="foodDropdown"><b>Food Name</b></label>  
-                                            <select class="form-control" id="foodDropdown" name="foodDropdown"></select>  
-
-                                        <br />
-                                        <label for="calorie">Total Calorie:</label>
-                                        <input class="form-control" type="number" id="calorie" name="calorie">
-                                        <br />
-
-                                        <label for="quantity">Quantity:</label>
-                                        <select class="form-control" id="quantity" name="quantity">
-                                            <option class="form-control" value="1" title="1 serving">1</option>
-                                            <option value="2" title="2 serving">2</option>
-                                            <option value="3" title="3 serving">3</option>
-                                            <option value="4" title="4 serving">4</option>
-                                            <option value="5" title="5 serving">5</option>
-                                            <option value="6" title="6 serving">6</option>
-                                            <option value="7" title="6 serving">7</option>
-                                            <option value="8" title="8 serving">8</option>
-                                            <option value="9" title="9 serving">9</option>
-                                            <option value="10" title="10 serving">10</option>
-                                        </select>
-                                        <br />
-
-                                        <label for="date">Date:</label>
-                                        <input class="form-control" type="date" id="date" name="date">
-
-                                        <br />
-
-
-                                        <button type="button" id="submit_b" name="submit_b" value="submit_b">
-                                            Add
-                                        </button>
-                                    </form>
-                               
+                    <!--Adding food to the food history table-->
+                    <div id="Add to Food History" class="tabcontent">
+                        <form method="post" action="http://localhost:8080/foodhistory">
+                            <div class="form-group">
+                                <label for="foodDropdown"><b>Food Name:</b></label>
+                                <select class="form-control" id="foodDropdown" name="foodDropdown"></select>
                             </div>
-                        </div>
-
+                            <div class="form-group">
+                                <label for="quantity">Quantity:</label>
+                                <select class="form-control" id="quantity" name="quantity">
+                                    <option class="form-control" value="1" title="1 serving">1</option>
+                                    <option value="2" title="2 serving">2</option>
+                                    <option value="3" title="3 serving">3</option>
+                                    <option value="4" title="4 serving">4</option>
+                                    <option value="5" title="5 serving">5</option>
+                                    <option value="6" title="6 serving">6</option>
+                                    <option value="7" title="6 serving">7</option>
+                                    <option value="8" title="8 serving">8</option>
+                                    <option value="9" title="9 serving">9</option>
+                                    <option value="10" title="10 serving">10</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Date:</label>
+                                <input class="form-control" type="date" id="date" name="date">
+                            </div>
+                            <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                                <button type="button" id="submit_b" name="submit_b" value="save"
+                                    class="button button3"> Submit
+                                </button>
+                            </span>
+                        </form>
+                    </div>
+                    <!--Adding new food to the food table-->
+                    <div id="Add New Food" class="tabcontent">
+                        <form method="post" action="http://localhost:8080/food1/">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input class="form-control" type="text" id="name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="serving">Serving:</label>
+                                <input class="form-control" type="text" id="serving" name="serving">
+                            </div>
+                            <div class="form-group">
+                                <label for="calories">Calories:</label>
+                                <input class="form-control" type="number" id="calories" name="calories">
+                            </div>
+                            <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                                <button type="button" id="submit" name="submit" value="save"
+                                    class="button button4"> Submit
+                                </button>
+                            </span>
+                        </form>
+                    </div>
+                    <!--Today's Food intake information table-->
+                    <div id="Food Histrory" class="tabcontent">
+                        <table id="foodIntake" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Serving</th>
+                                    <th>Calories</th>
+                                    <th>Quantity</th>
+                                    <th>Total Calories</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
 
--->
 
-<!--
-
+                <!-- ... Your content goes here ... -->
             </div>
-
         </div>
-        -->
-<!-- /.row -->
+
+      </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <strong>Template Source : Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.0.3
+      </div>
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- REQUIRED SCRIPTS -->
+
+  <!-- jQuery -->
+  <script src="../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE -->
+  <script src="../dist/js/adminlte.js"></script>
+
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="../plugins/chart.js/Chart.min.js"></script>
+  <script src="../dist/js/demo.js"></script>
+  <script src="../dist/js/pages/dashboard3.js"></script>
+
+    <!-- jQuery and other from previous -->
+    <script src="../js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../js/metisMenu.min.js"></script>
+
+    <!-- It is for jumbotron-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/startmin.js"></script>
+    <script src="../my_js/activity.js"></script>
+    <script src="../my_js/food.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</body>
+
+</html>
