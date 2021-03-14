@@ -64,9 +64,9 @@
   border-top: none;
 }
 
-/*    For Buttons  --- Submit buttons      */
+/*    For Buttons  --- Submit buttons      
 .button {
-  background-color: #007bff; /* */
+  background-color: #007bff; 
   border-radius: 16px;
   border: #007bff;
   color: #fff;
