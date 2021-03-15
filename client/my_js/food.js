@@ -93,8 +93,17 @@ $(document).ready(function () {
     $.each($tds, function (i, el) {
       var txt = $(this).find("input").val();
       url = url + "/" + txt;
+
       $(this).html(txt);
+      //calculate the total calories burnt
+      $row
+        .find("td:nth-child(5)")
+        .html(
+          $row.find("td:nth-child(4)").last()[0].outerText *
+            $row.find("td:nth-child(3)").last()[0].outerText
+        );
     });
+
     //update the total colories taken
     $.ajax({
       method: "post",
