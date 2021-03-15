@@ -1,0 +1,17 @@
+.btn-primary{
+  float: right;
+}
+
+  /*  jumbotron additional style */
+  .jumbotron {
+      padding: 30px 15px;
+      margin-bottom: 15px;
+      margin-top: 15px;
+      color: inherit;
+      background-color: #eee;
+      border-radius: 6px;
+  }
+  
+  li{
+    list-style: none;
+  }
