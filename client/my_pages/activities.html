@@ -116,6 +116,13 @@
               </a>
 
             </li>
+            <li class="nav-item has-treeview">
+              <a href="goal.html" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Goal</p>
+              </a>
+
+            </li>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -169,7 +176,7 @@
                 </div>
                 <!--Adding new activity to the activity table-->
                 <div id="Add Activity" class="tabcontent">
-                  <form method="post" action="http://localhost:8080/activity">
+                  <form method="post" action="http://localhost:5000/activity">
                     <div class="form-group">
                       <label for="name_a">Name:</label>
                       <input class="form-control" type="text" id="name_a" name="name_a">
@@ -183,7 +190,7 @@
                 </div>
                 <!--Adding activity to the activity history table-->
                 <div id="Activity History" class="tabcontent">
-                  <form method="post" action="http://localhost:8080/activities">
+                  <form method="post" action="http://localhost:5000/activities">
                     <div class="form-group">
                       <label for="activityDropdown"><b>Activity Name:</b></label>
                       <select class="form-control select2" id="activityDropdown" name="activityDropdown"></select>

@@ -130,6 +130,13 @@ to get the desired effect
                 <p>Food Info</p>
               </a>
             </li>
+            <li class="nav-item has-treeview">
+              <a href="goal.html" class="nav-link">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>Goal</p>
+              </a>
+
+            </li>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -180,7 +187,7 @@ to get the desired effect
                 </div>
                 <!--Adding food to the food history table-->
                 <div id="Add to Food History" class="tabcontent">
-                  <form method="post" action="http://localhost:8080/foodhistory">
+                  <form method="post" action="http://localhost:5000/foodhistory">
                     <div class="form-group">
                       <label for="foodDropdown"><b>Food Name:</b></label>
                       <select class="form-control" id="foodDropdown" name="foodDropdown"></select>
@@ -213,7 +220,7 @@ to get the desired effect
                 </div>
                 <!--Adding new food to the food table-->
                 <div id="Add New Food" class="tabcontent">
-                  <form method="post" action="http://localhost:8080/food1/">
+                  <form method="post" action="http://localhost:5000/food1/">
                     <div class="form-group">
                       <label for="name">Name:</label>
                       <input class="form-control" type="text" id="name" name="name">
