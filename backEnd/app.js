@@ -15,8 +15,8 @@ app.use(function (req, res, next) {
     host: "localhost",
     user: "root",
     //was  but it is working with this too
-    //password: "S9841348850@s",
-    password: "administrator",
+    password: "S9841348850@s",
+    //password: "administrator",
     database: "calorietracker",
   });
   con.connect();
@@ -268,7 +268,7 @@ app.get("/foodCalorie/:userId", (req, res) => {
 //fetch calorieHistory
 app.get("/calorieHistory/:userId", (req, res) => {
   con.query(
-    "SELECT burnt,taken,suggested,time FROM calorytracking where userID= " +
+    "SELECT burnt,taken,suggested, time FROM calorytracking where userID= " +
       req.params.userId +
       " order by time",
     function (error, results, fields) {
