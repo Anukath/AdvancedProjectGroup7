@@ -100,7 +100,11 @@ $(document).ready(function () {
   $("#userActivity").on("mousedown.edit", "i.fa.fa-pencil", function (e) {
     $(this).removeClass().addClass("fa fa-check");
     var $row = $(this).closest("tr").off("mousedown");
-    var $tds = $row.find("td").not(":nth-last-child(2)").not(":last");
+    var $tds = $row
+      .find("td")
+      .not(":first")
+      .not(":nth-last-child(2)")
+      .not(":last");
 
     $.each($tds, function (i, el) {
       var txt = $(this).text();
@@ -137,9 +141,14 @@ $(document).ready(function () {
   $("#userActivity").on("mousedown.save", "i.fa.fa-check", function (e) {
     $(this).removeClass().addClass("fa fa-pencil");
     var $row = $(this).closest("tr");
-    var $tds = $row.find("td").not(":nth-last-child(2)").not(":last");
+    var $tds = $row
+      .find("td")
+      .not(":first")
+      .not(":nth-last-child(2)")
+      .not(":last");
     //add user info
-    var url = "http://localhost:8080/updateactivityhistory/1";
+    var url = "http://localhost:8080/updateactivityhistory/1/";
+    url = url + $row.find("td").first()[0].outerText;
 
     $.each($tds, function (i, el) {
       var txt = $(this).find("input").val();
@@ -152,8 +161,8 @@ $(document).ready(function () {
       dataType: "html",
       url: url,
     });
-    toastr["error"]("Are you the six fingered man?");
-    toastr["success"]("Are you the six fingered man?");
+    // toastr["error"]("Are you the six fingered man?");
+    // toastr["success"]("Are you the six fingered man?");
   });
 });
 //Adding new activity to the activity table

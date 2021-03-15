@@ -32,6 +32,7 @@ $(document).ready(function () {
     var $row = $(this).closest("tr").off("mousedown");
     var $tds = $row
       .find("td")
+      .not(":first")
       .not(":nth-child(2)")
       .not(":nth-child(3)")
       .not(":nth-child(5)")
@@ -57,7 +58,6 @@ $(document).ready(function () {
       .not(":last");
     //add user info
     var url = "http://localhost:8080/deletefoodhistory/1";
-
     $.each($tds, function (i, el) {
       console.log($(this));
       var txt = $(this)[0].outerText;
@@ -80,13 +80,15 @@ $(document).ready(function () {
     var $row = $(this).closest("tr");
     var $tds = $row
       .find("td")
+      .not(":first")
       .not(":nth-child(2)")
       .not(":nth-child(3)")
       .not(":nth-child(5)")
       .not(":nth-last-child(2)")
       .not(":last");
     //add user info
-    var url = "http://localhost:8080/updatefoodhistory/1";
+    var url = "http://localhost:8080/updatefoodhistory/1/";
+    url = url + $row.find("td").first()[0].outerText;
 
     $.each($tds, function (i, el) {
       var txt = $(this).find("input").val();
