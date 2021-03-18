@@ -1,3 +1,4 @@
+<!--Tek's Page ---- and The complete layout which everyone is using the same for uniformity-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Food Info</title>
+  <title>Food</title>
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- IonIcons -->
@@ -35,7 +36,7 @@ to get the desired effect
 -->
 
 <body class="hold-transition sidebar-mini">
-      <div class="wrapper">
+  <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
@@ -46,7 +47,7 @@ to get the desired effect
       </ul>
 
       <!-- Right navbar links -->
-          <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
@@ -120,14 +121,14 @@ to get the desired effect
             <li class="nav-item has-treeview">
               <a href="activities.html" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Activities</p>
+                <p>Workout</p>
               </a>
 
             </li>
             <li class="nav-item">
               <a href="./foodinfo.html" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Food Info</p>
+                <p>Food</p>
               </a>
             </li>
             <li class="nav-item has-treeview">
@@ -152,24 +153,22 @@ to get the desired effect
             <div class="row">
               <div class="col-lg-12">
                 <h1 class="page-header">
-                  <center><b> Food Info</b></center>
+                  <center><b> Food</b></center>
                 </h1>
               </div>
             </div>
           </div>
           <!-- /.col-lg-6 -->
+        <div class="my_padding">
           <div class="row">
             <div class="col-lg-12">
               <div class="panel panel-default">
                 <!--Tabs begins-->
                 <div class="tab">
-                  <button class="tablinks" onclick="openInfo(event, 'Food Table')" id="defaultOpen">Food
-                    Table</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Add to Food History')">Add to Food
-                    History</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Add New Food')">Add New Food</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Food Histrory')">Food History :
-                    Current</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Food Table')" id="defaultOpen">Food</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Add New Food')">Add Food</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Add to Food History')">Record Intake</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Food Histrory')">Intake History</button>
                 </div>
 
                 <!--Food database table for reference-->
@@ -180,7 +179,7 @@ to get the desired effect
                         <th>ID</th>
                         <th>Name</th>
                         <th>Serving</th>
-                        <th>Calories</th>
+                        <th>Calorie</th>
                       </tr>
                     </thead>
                   </table>
@@ -189,7 +188,8 @@ to get the desired effect
                 <div id="Add to Food History" class="tabcontent">
                   <form method="post" action="http://localhost:5000/foodhistory">
                     <div class="form-group">
-                      <label for="foodDropdown"><b>Food Name:</b></label>
+                      <!--Dropdown contents comes from the food database table-->
+                      <label for="foodDropdown"><b>Name:</b></label>
                       <select class="form-control" id="foodDropdown" name="foodDropdown"></select>
                     </div>
                     <div class="form-group">
@@ -222,16 +222,16 @@ to get the desired effect
                 <div id="Add New Food" class="tabcontent">
                   <form method="post" action="http://localhost:5000/food1/">
                     <div class="form-group">
-                      <label for="name">Name:</label>
-                      <input class="form-control" type="text" id="name" name="name">
+                      <label for="name" >Name:</label>
+                      <input class="form-control" type="text" id="name" name="name" placeholder="Please enter new food name to add to the Food database">
                     </div>
                     <div class="form-group">
                       <label for="serving">Serving:</label>
-                      <input class="form-control" type="text" id="serving" name="serving">
+                      <input class="form-control" type="text" id="serving" name="serving" placeholder="Please enter standard Serving info (1: 100g, 1: 1 litre, ... etc.)">
                     </div>
                     <div class="form-group">
-                      <label for="calories">Calories:</label>
-                      <input class="form-control" type="number" id="calories" name="calories">
+                      <label for="calories">Calorie:</label>
+                      <input class="form-control" type="number" id="calories" name="calories" placeholder="Please enter calorie per serving">
                     </div>
                     <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                       <button class="btn btn-primary" type="button" id="submit" name="submit" value="save"
@@ -247,9 +247,9 @@ to get the desired effect
                       <tr>
                         <th>Name</th>
                         <th>Serving</th>
-                        <th>Calories</th>
+                        <th>Calorie</th>
                         <th>Quantity</th>
-                        <th>Total Calories</th>
+                        <th>Total Calorie</th>
                         <th></th>
                         <th></th>
                       </tr>
@@ -262,6 +262,7 @@ to get the desired effect
               <!-- ... Your content goes here ... -->
             </div>
           </div>
+        </div>
 
         </div>
         <!-- /.container-fluid -->

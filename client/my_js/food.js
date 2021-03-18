@@ -101,6 +101,8 @@ $(document).ready(function () {
       dataType: "html",
       url: url,
     });
+    // refreshing the page--- so that the change can be seen but it will go to main page-------- not sure good idea to do or not-- please remove if needed
+    window.location.href = window.location.href;
   });
 
   //data table for showing information about food database for ref
@@ -171,7 +173,7 @@ $(document).ready(function () {
     dataType: "json",
     success: function (data) {
       //console.log(data["response"]);
-      var s = '<option value="-1">Please Select a Food Name</option>';
+      var s = '<option value="-1">Please Select Food</option>';
       for (var i = 0; i < data["response"].length; i++) {
         s +=
           '<option value="' +

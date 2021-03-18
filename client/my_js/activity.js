@@ -209,7 +209,7 @@ $(document).ready(function () {
     dataType: "json",
     success: function (data) {
       //console.log(data["response"]);
-      var s = '<option value="-1">Please Select an Activity Name</option>';
+      var s = '<option value="-1">Please Select Workout</option>';
       for (var i = 0; i < data["response"].length; i++) {
         s +=
           '<option value="' +

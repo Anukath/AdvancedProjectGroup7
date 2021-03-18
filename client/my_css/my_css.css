@@ -1,3 +1,4 @@
+/*
 .map-responsive{
 
   overflow:hidden;
@@ -23,7 +24,7 @@
   position:absolute;
 
 }
-
+*/
 
 /*  Down below is for tabs in food and activities pages    */
 
@@ -98,4 +99,8 @@
     color: inherit;
     background-color: #eee;
     border-radius: 6px;
+}
+.my_padding {
+  margin-bottom: 15px;
+
 }
