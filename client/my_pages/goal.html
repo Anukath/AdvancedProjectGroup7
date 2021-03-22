@@ -19,6 +19,8 @@
   <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/my_css/goal.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -133,12 +135,7 @@
       <div class="content">
         <div class="container-fluid">
           <div class="jumbotron">
-            <div class="row">
-              <div class="col-lg-12">
-                <h1 class="page-header">
-                  <center><b> Goal</b></center>
-                </h1>
-            </div>
+          
         </div>
     </div>
 </div>
@@ -150,12 +147,28 @@
                     <form name = "f" action="" id="bmrform">
                         <fieldset>
                             <div class="form-group">
-                                <label>Current Weight in Kgs:</label>
+                                <label>Current Weight:</label>
                                 <input class="form-control" placeholder="Current Weight" id="weight"  maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
+                                <div class="form-check">
+                                  <input class="form-check-input"  type="radio" name="selectedWeight" value="kgs">
+                                  <label class="form-check-label">kg</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio"  name="selectedWeight" value="lbs">
+                                  <label class="form-check-label">lb</label>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>Current Height in Cms:</label>
+                                <label>Current Height</label>
                                 <input class="form-control" placeholder="Current Height" id="height" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
+                                <div class="form-check">
+                                  <input class="form-check-input"  type="radio" name="selectedHeight" value="cms">
+                                  <label class="form-check-label">cm</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio"  name="selectedHeight" value="ins">
+                                  <label class="form-check-label">in</label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label>Age:</label>
@@ -195,12 +208,29 @@
                                     <label class="form-check-label">Very hard daily exercise (sports/physical job 2X day training)</label>
                                 </div>
                             </div>
+                            <div class="form-group">
+                              <label>Formula:</label>
+                              <div class="form-check">
+                                <input class="form-check-input" name="selectedFormula" type="radio"  value="HarrisBenedict">
+                                <label class="form-check-label">Harris-Benedict Equation <i title="Created in 1919, this old formula is still used to estimate the amount of calories you need every day" class="fas fa-info-circle"></i></label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio"  name="selectedFormula" value="MifflinSt">
+                                <label class="form-check-label">Mifflin-St Jeor Equation <i title="This formula allows you to calculate your bmr, it is believed that this is the most accurate formula till this day" class="fas fa-info-circle"></i></label>
+                              </div>
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio"  name="selectedFormula" value="KatchMcArdle">
+                                  <label class="form-check-label">Katch-McArdle Equation <i title="This formula allows you to calculate your bmr, by taking into account your Lean-Body Mass" class="fas fa-info-circle"></i></label>
+                                  
+                              </div>
+                          </div>
+
                             <button class="btn btn-primary" type="button" onClick="calculate()">Calculate</button>
                         </fieldset>
                     </form>
                     <br>
-                    <li class="alert alert-success" id="answer"></li>
-                    <li class="alert alert-success" id="answer2"></li>
+                    <li class="alert alert-info" id="answer"></li>
+                    <li class="alert alert-info" id="answer2"></li>
                 </div>
             </div>
         </div>
@@ -214,11 +244,31 @@
         var field3 = document.getElementById("age").value;
         var field4 = document.getElementsByName("selectedGender");
 
+        var field6 = document.getElementsByName("selectedWeight");
+        for( i = 0 ; i < field6.length; i++){
+            if(field6[i].type="radio"){
+                if(field6[i].checked){
+                    var weight = field6[i].value;
+                    console.log(weight);
+                }
+            }
+          }
+
+        var field7 = document.getElementsByName("selectedHeight");
+        for( i = 0 ; i < field7.length; i++){
+            if(field7[i].type="radio"){
+                if(field7[i].checked){
+                    var height = field7[i].value;
+                    console.log(height);
+                }
+            }
+          }
+        
         for( i = 0 ; i < field4.length; i++){
             if(field4[i].type="radio"){
                 if(field4[i].checked){
-                    var apple = field4[i].value;
-                    console.log(apple);
+                    var gender = field4[i].value;
+                    console.log(gender);
                 }
             }
         }
@@ -226,104 +276,156 @@
         for( i = 0 ; i < field5.length; i++){
             if(field5[i].type="radio"){
                 if(field5[i].checked){
-                    var orange = field5[i].value;
-                    console.log(orange);
+                    var activityIntensity = field5[i].value;
+                    console.log(activityIntensity);
                 }
             }
         }
 
-
-        if (apple == "male"){
-                if(orange == "little"){
-                    var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
-                    var result = bmr * 1.2;
-                    var result2 = result - 500; 
-                if(!isNaN(result)){
-                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
-
-                }
-            } else if (orange == "light"){
-                    var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
-                    var result = bmr * 1.375;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
-                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
-                }
-            }else if (orange == "moderate"){
-                    var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
-                    var result = bmr * 1.55;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
-                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get " + result2 + " calories per day";
-                }
-            }else if (orange == "hard"){
-                    var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
-                    var result = bmr * 1.725;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
-                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
-                }
-            }else if (orange == "veryhard"){
-                    var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
-                    var result = bmr * 1.9;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
-                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+        var field8 = document.getElementsByName("selectedFormula");
+        for( i = 0 ; i < field8.length; i++){
+            if(field8[i].type="radio"){
+                if(field8[i].checked){
+                    var formula = field8[i].value;
+                    console.log(formula);
                 }
             }
+          }
 
+        if(weight == "lbs"){
+          field1 = field1/2.2046;
+          console.log(field1);
+        }  
 
+        if(height == "ins"){
+          field2 = field2/0.39370;
+          console.log(field2);
+        }  
 
-        }else if  (apple == "female"){
-            if(orange == "little"){
-                    var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
-                    var result = bmr * 1.2;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
+        if(formula == "HarrisBenedict"){
+
+          if(gender == "male"){
+            if(activityIntensity == "little"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              var result = bmr * 1.2;
+              var result2 = result - 500;
+              if(!isNaN(result)){
                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
-                }
-            } else if (orange == "light"){
-                    var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
-                    var result = bmr * 1.375;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
-                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get  "  + result2 + " calories per day";
-                }
-            }else if (orange == "moderate"){
-                    var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
-                    var result = bmr * 1.55;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
-                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get  "  + result2 + " calories per day";
-                }
-            }else if (orange == "hard"){
-                    var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
-                    var result = bmr * 1.725;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
-                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
-                }
-            }else if (orange == "veryhard"){
-                    var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
-                    var result = bmr * 1.9;
-                    var result2 = result - 500;
-                if(!isNaN(result)){
-                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
-                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
-                }
+              }
+            } else if (activityIntensity == "light"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              var result = bmr * 1.375;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+              }
+            } else if (activityIntensity == "moderate"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              var result = bmr * 1.55;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get " + result2 + " calories per day";
+              }
+            } else if (activityIntensity == "hard"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              var result = bmr * 1.725;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+              }
+            } else if (activityIntensity == "veryhard"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              var result = bmr * 1.9;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+              }
             }
+          } else if (gender == "female"){
+            if(activityIntensity == "little"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              var result = bmr * 1.2;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+              }
+            }else if (activityIntensity == "light"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              var result = bmr * 1.375;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get  "  + result2 + " calories per day";
+              }
+            }else if (activityIntensity == "moderate"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              var result = bmr * 1.55;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get  "  + result2 + " calories per day";
+              }
+            }else if (activityIntensity == "hard"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              var result = bmr * 1.725;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+              }
+            }else if (activityIntensity == "veryhard"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              var result = bmr * 1.9;
+              var result2 = result - 500;
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + result + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+              }
+            }
+          }
+        }else if (formula == "MifflinSt"){
+          if(gender == "male"){
+            var result = (10 * (field1)) + (6.25* (field2)) - (5*(field3)) + 5;
+            var result2 = result - 500;
+            if(!isNaN(result)){
+              document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + result + " and to maintain your weight you need " + result + " calories daily";
+              document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+            }
+          }else if (gender == "female"){
+            var result = (10 * (field1)) + (6.25 * (field2)) - (5*(field3)) - 161;
+            var result2 = result - 500;
+            if(!isNaN(result)){
+              document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + result + " and to maintain your weight you need " + result + " calories daily";
+              document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2 + " calories per day";
+            }
+          }
+        }else if (formula == "KatchMcArdle"){
+          if(gender == "male"){
+            var lbm = ((field1)*0.407)+((field2)*0.276) - 19.2;
+            var bmr = 370 + (21.6 * lbm);
+            var result2 = bmr - 500;
+            if(!isNaN(bmr)){
+              document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + bmr + " calories daily";
+            }
+          }else if (gender == "female"){
+            var lbm = (0.252 * (field1)) + (0.473 *(field2)) - 48.3;
+            var bmr = 370 + (21.6 * lbm);
+            var result2 = bmr - 500;
+            if(!isNaN(bmr)){
+              document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmr + " and to maintain your weight you need " + bmr + " calories daily";
+            }
+          }
 
-    }
-}
+        }
+
+
+      }
 </script>
 
 
