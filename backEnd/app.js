@@ -37,13 +37,14 @@ app.get("/food/", (req, res) => {
 //fetch water Activity for user
 app.get("/water/:userId", (req, res) => {
   con.query(
-    "SELECT COALESCE(MAX(quantity), 0)as quantity, IFNULL(5-quantity,5) as remaining  from foodhistory a, food b  where userid=" +
+    "SELECT COALESCE(MAX(quantity), 0)as quantity, IFNULL(15-quantity,15) as remaining  from foodhistory a, food b  where userid=" +
       req.params.userId +
-      " and a.foodId=b.id and b.name like '%water%' ",
-    function (error, results, fields) {
+      " and a.foodId=b.id and b.name like '%water%'  and a.date = curdate()",
+    function (error, results, fields) {   // and a.date = curdate() is my addition
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
     }
+//https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/water/art-20044256#:~:text=So%20how%20much%20fluid%20does,fluids%20a%20day%20for%20women  U.S. National Academies of Sciences, Engineering, and Medicine
   );
 });
 
@@ -257,7 +258,8 @@ app.get("/foodCalorie/:userId", (req, res) => {
   con.query(
     "SELECT f.name, (quantity*f.calories) as calories from foodhistory his, food f where userId =" +
       req.params.userId +
-      " and his.foodId=f.id",
+      " and his.foodId=f.id and date = curdate()",
+      // and date = curdate() is my addition -- Tek
     function (error, results, fields) {
       if (error) throw error;
       res.send({ status: 200, error: null, response: results });

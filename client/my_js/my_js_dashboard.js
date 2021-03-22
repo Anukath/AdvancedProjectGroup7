@@ -6,7 +6,7 @@ $(document).ready(function () {
     },
     title: {
       display: true,
-      text: "Water Intake (Litres)",
+      text: "Water Intake (Approx 15 glasses/cups)",
     },
   };
   //Chart for water using api call
