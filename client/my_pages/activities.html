@@ -100,7 +100,7 @@
             <li class="nav-item">
               <a href="dashboard.html" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p> Dashboard </p>
+                <p> Statistics </p>
               </a>
             </li>
             <li class="nav-item">
@@ -148,20 +148,20 @@
           <div class="my_padding">
           <div class="row">
             <div class="col-lg-12">
-              <div class="panel panel-default">
+             <div class="panel panel-default"> 
                 <!--Tabs beging-->
                 <div class="tab">
-                  <button class="tablinks" onclick="openInfo(event, 'Activity Info')" id="defaultOpen">Workout</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Add Activity')">Add Workout</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Activity History')">Record Workout </button>
+                  <button class="tablinks" onclick="openInfo(event, 'Activity Info')" id="defaultOpen">List</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Add Activity')">New Workout</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Activity History')">Record</button>
 
                   <!-- <button class="tablinks" onclick="openInfo(event, 'Delete Activity')"> Delete Activity
                               From History</button>
                           <button class="tablinks" onclick="openInfo(event, 'update act_his table')">Update
                               Activity
                               Info</button> -->
-                  <button class="tablinks" onclick="openInfo(event, 'Activity table')">Workout Summary </button>
-                </div>
+                  <button class="tablinks" onclick="openInfo(event, 'Activity table')">Summary </button>
+               </div>
                 <!--Activity information Table-->
                 <div id="Activity Info" class="tabcontent">
                   <table id="activity1" class="table table-striped table-bordered" style="width:100%">
@@ -178,13 +178,15 @@
                   <form method="post" action="http://localhost:5000/activity">
                     <div class="form-group">
                       <label for="name_a">Name:</label>
-                      <input class="form-control" type="text" id="name_a" name="name_a" placeholder="Please enter new workout name to add to the workout database">
+                      <input class="form-control" type="text" id="name_a" name="name_a" placeholder="Please enter new workout name you would like to add to the workout database">
                     </div>
+                    <footer>   <!--- I am not sure this footer has any meaning but still adding. And same flows for my all the pages-->
                     <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                       <button class="btn btn-primary" type="button" id="submit_act" name="submit_act" value="submit_act"
                         class="button button1"> Submit
                       </button>
                     </span>
+                  </footer>
                   </form>
                 </div>
                 <!--Adding activity to the activity history table-->
@@ -207,11 +209,13 @@
                       <label for="date">Date:</label>
                       <input class="form-control" type="date" id="date" name="date">
                     </div>
+                    <footer>
                     <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                       <button class="btn btn-primary" type="button" id="submit_a" name="submit_a" value="submit_a"
                         class="button button2"> Submit
                       </button>
                     </span>
+                  </footer>
                   </form>
                 </div>
                 <!--Deleting activity from the activity history table-->

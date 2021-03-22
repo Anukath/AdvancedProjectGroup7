@@ -182,7 +182,7 @@ $(document).ready(function () {
     dataType: "json",
     success: function (data) {
       //console.log(data["response"]);
-      var s = '<option value="-1">Please Select Food</option>';
+      var s = '<option value="-1">Please Select Food that you would like to add to the food history</option>';
       for (var i = 0; i < data["response"].length; i++) {
         s +=
           '<option value="' +

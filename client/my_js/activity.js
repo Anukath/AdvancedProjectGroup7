@@ -209,7 +209,7 @@ $(document).ready(function () {
     dataType: "json",
     success: function (data) {
       //console.log(data["response"]);
-      var s = '<option value="-1">Please Select Workout</option>';
+      var s = '<option value="-1">Please Select Workout that you would like to add to the activity history</option>';
       for (var i = 0; i < data["response"].length; i++) {
         s +=
           '<option value="' +
@@ -221,7 +221,7 @@ $(document).ready(function () {
       $("#activityDropdown").html(s);
     },
   });
-  // its for dropdown for activity with name displaying to make user easy deleting activity from Activity hitory
+  // its for dropdown for activity with name displaying to make user easy deleting activity from Activity hitory ---- I think not used----
   $.ajax({
     type: "GET",
     url: "http://localhost:8080/activity1",
@@ -242,7 +242,7 @@ $(document).ready(function () {
     },
   });
 
-  // its for dropdown for activity with name displaying to make user easy updating activity info in Activity hitory
+  // its for dropdown for activity with name displaying to make user easy updating activity info in Activity hitory  ---- I think not used----
   $.ajax({
     type: "GET",
     url: "http://localhost:8080/activity1",

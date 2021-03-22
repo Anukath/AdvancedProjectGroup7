@@ -114,7 +114,7 @@ to get the desired effect
             <li class="nav-item">
               <a href="dashboard.html" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p> Dashboard </p>
+                <p> Statistics </p>
               </a>
             </li>
 
@@ -165,10 +165,10 @@ to get the desired effect
               <div class="panel panel-default">
                 <!--Tabs begins-->
                 <div class="tab">
-                  <button class="tablinks" onclick="openInfo(event, 'Food Table')" id="defaultOpen">Food</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Add New Food')">Add Food</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Add to Food History')">Record Intake</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Food Histrory')">Intake Summary</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Food Table')" id="defaultOpen">List</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Add New Food')">New Food</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Add to Food History')">Record</button>
+                  <button class="tablinks" onclick="openInfo(event, 'Food Histrory')">Summary</button>
                 </div>
 
                 <!--Food database table for reference-->
@@ -211,11 +211,13 @@ to get the desired effect
                       <label for="date">Date:</label>
                       <input class="form-control" type="date" id="date" name="date">
                     </div>
+                    <footer>
                     <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                       <button class="btn btn-primary" type="button" id="submit_b" name="submit_b" value="save"
                         class="button button3"> Submit
                       </button>
                     </span>
+                  </footer>
                   </form>
                 </div>
                 <!--Adding new food to the food table-->
@@ -223,7 +225,7 @@ to get the desired effect
                   <form method="post" action="http://localhost:5000/food1/">
                     <div class="form-group">
                       <label for="name" >Name:</label>
-                      <input class="form-control" type="text" id="name" name="name" placeholder="Please enter new food name to add to the Food database">
+                      <input class="form-control" type="text" id="name" name="name" placeholder="Please enter new food name you would like to add to the Food database">
                     </div>
                     <div class="form-group">
                       <label for="serving">Serving:</label>
@@ -233,11 +235,13 @@ to get the desired effect
                       <label for="calories">Calorie:</label>
                       <input class="form-control" type="number" id="calories" name="calories" placeholder="Please enter calorie per serving">
                     </div>
+                    <footer>
                     <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                       <button class="btn btn-primary" type="button" id="submit" name="submit" value="save"
                         class="button button4"> Submit
                       </button>
                     </span>
+                  </footer>
                   </form>
                 </div>
                 <!--Today's Food intake information table-->
