@@ -69,7 +69,7 @@ $(document).ready(function () {
       url: "http://localhost:8080/activity1/",
       dataSrc: "response",
     },
-    columns: [{ data: "id" }, { data: "name" }],
+    columns: [ { data: "name" }],
   });
 
   // current activities to be displayed on table for info

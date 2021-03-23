@@ -121,7 +121,6 @@ $(document).ready(function () {
       dataSrc: "response",
     },
     columns: [
-      { data: "id" },
       { data: "name" },
       { data: "serving" },
       { data: "calories" },
@@ -155,6 +154,7 @@ jQuery(function () {
 jQuery(function () {
   //jQuery for replacing $(document).ready
   $("#submit_b").click(function (event) {
+  
     $.ajax({
       method: "post",
       dataType: "html",
@@ -172,6 +172,19 @@ jQuery(function () {
     window.location.href = window.location.href;
   });
 });
+
+/*  var bool = $("#date").val();
+    if (bool == NULL)
+    { today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //As January is 0.
+      var yyyy = today.getFullYear();
+      if(dd<10) dd='0'+dd;
+      if(mm<10) mm='0'+mm;
+      sp = '-';
+      bool = (yyyy+sp+mm+sp+mm);
+      $("#date").val() = bool
+    }   not sure this is the way or not */
 
 // its for dropdown for food with food name displaying and serving and calorie info in title in the food page
 $(document).ready(function () {

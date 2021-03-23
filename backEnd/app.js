@@ -86,12 +86,12 @@ app.post("/food1/:name/:serving/:calories", (req, res) => {
   });
 });
 
-//fetch userActivity
+//fetch userActivity  ------ this is being used in 3rd donut chart in Statistics
 app.get("/userActivity/:userId/", (req, res) => {
   con.query(
     "SELECT actHis.caloriesBurnt ,act.name  from activityhistory actHis, activity act where actHis.userid=" +
       req.params.userId +
-      " and act.id=actHis.activityId",
+      " and act.id=actHis.activityId and date = curdate()",
     function (error, results, fields) {
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
@@ -184,11 +184,10 @@ app.post(
 //     });
 //   }
 // );
-//insert food information into foodhistory table--- its not inserting ???
-// no error but not doing????
+//insert food information into foodhistory table
 app.post("/foodhistory/:userId/:foodId/:quantity/:date", (req, res) => {
   var sqlQC =
-    "Insert into foodhistory(userId, foodId, quantity, date) values('" +
+    "Insert into foodhistory (userId, foodId, quantity, date) values('" +
     req.params.userId +
     "','" +
     req.params.foodId +
@@ -243,7 +242,7 @@ app.post("/register/:id/:password", (req, res) => {
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
 });
-//fetch foodActivity
+//fetch foodActivity   ----- I don't thik its used as it says foodactivity and users activityhistory
 app.get("/foodActivity/food/:userId", (req, res) => {
   con.query(
     "SELECT * from activityhistory where userid=" + req.params.userId,
@@ -253,7 +252,7 @@ app.get("/foodActivity/food/:userId", (req, res) => {
     }
   );
 });
-//fetch foodCalorie
+//fetch foodCalorie from foodhistory table
 app.get("/foodCalorie/:userId", (req, res) => {
   con.query(
     "SELECT f.name, (quantity*f.calories) as calories from foodhistory his, food f where userId =" +
@@ -267,9 +266,9 @@ app.get("/foodCalorie/:userId", (req, res) => {
   );
 });
 
-//fetch calorieHistory
+//fetch calorieHistory    ------ this is for chart (last one)-----
 app.get("/calorieHistory/:userId", (req, res) => {
-  con.query(
+  con.query(   
     "SELECT burnt,taken,suggested, time FROM calorytracking where userID= " +
       req.params.userId +
       " order by time",
@@ -280,7 +279,7 @@ app.get("/calorieHistory/:userId", (req, res) => {
   );
 });
 
-//fetch foodActivity
+//fetch foodActivity   ----- for chart ---- for calorie-----???
 app.get("/userSummary/:userId", (req, res) => {
   con.query(
     "select suggested, taken,(suggested+burnt-taken)as remaining ,CONCAT(COALESCE(MAX(quantity), 0),' / 5') as water,0 as burntTarget,burnt from calorytracking c ,  foodhistory a, food b where c.userId=" +
@@ -293,7 +292,7 @@ app.get("/userSummary/:userId", (req, res) => {
   );
 });
 
-//fetch userActivity
+//fetch userActivity from activity history ---- for Current history table
 app.get("/userActivityTable/:userId", (req, res) => {
   con.query(
     "SELECT act.name, caloriesBurnt , duration from activityhistory actHis, activity act where date = curdate() and userId =" +
