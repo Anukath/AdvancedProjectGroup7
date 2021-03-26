@@ -37,10 +37,10 @@ app.get("/food/", (req, res) => {
 //fetch water Activity for user
 app.get("/water/:userId", (req, res) => {
   con.query(
-    "SELECT COALESCE(MAX(quantity), 0)as quantity, IFNULL(15-quantity,15) as remaining  from foodhistory a, food b  where userid=" +
+    "SELECT COALESCE(sum(quantity), 0)as quantity, IFNULL(15-quantity,15) as remaining  from foodhistory a, food b  where userid=" +
       req.params.userId +
       " and a.foodId=b.id and b.name like '%water%'  and a.date = curdate()",
-    function (error, results, fields) {   // and a.date = curdate() is my addition
+    function (error, results, fields) {   // changed to sum from max in coalesce and a.date = curdate() is my addition
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
     }
@@ -51,6 +51,20 @@ app.get("/water/:userId", (req, res) => {
 //fetch calorie Activity for user
 app.get("/calorie/:userId", (req, res) => {
   con.query(
+    "SELECT (select sum(f.calories * f_his.quantity) as cal_taken from calorietracker.food f, calorietracker.foodhistory f_his where f.id = f_his.foodId and f_his.date = curdate()), cal_tracking.suggested FROM calorietracker.calorytracking cal_tracking where userId=" +
+      req.params.userId +
+      " and time = curdate() ",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send(JSON.stringify({ status: 200, error: null, response: results }));
+    }
+    // SELECT (select sum(f.calories * f_his.quantity) as cal_taken from calorietracker.food f, calorietracker.foodhistory f_his where  f.id = f_his.foodId and f_his.date = curdate()), cal_tracking.suggested FROM calorietracker.calorytracking cal_tracking where cal_tracking.userId= 1 and time = curdate(); This worked in workbench ---- tested
+  );
+});
+
+/*//fetch calorie Activity for user   ---- this is the original prepared by anukaran ------  and he used for 2nd donut and big chart --- 
+app.get("/calorie/:userId", (req, res) => {
+  con.query(
     "SELECT taken, suggested FROM calorietracker.calorytracking where userId=" +
       req.params.userId +
       " order by time desc limit 1",
@@ -59,7 +73,7 @@ app.get("/calorie/:userId", (req, res) => {
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
     }
   );
-});
+}); */
 
 //fetching only food name for dropdown to add food to food history------ not
 //needed now ------------------ can use the same /food/ from up
@@ -201,6 +215,7 @@ app.post("/foodhistory/:userId/:foodId/:quantity/:date", (req, res) => {
     if (error) throw error;
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
+  // ; insert into calorytracking (userId, taken, time) values ('" + req.params.userId + "' , ('" + req.params.quantity + "' * (select calories from food where id ='" + req.params.foodId + "' )), '" + req.params.date  +  "');";   --- some complain--- need to check it work---
 });
 
 //insert activities values into activity table
@@ -242,7 +257,7 @@ app.post("/register/:id/:password", (req, res) => {
     res.send(JSON.stringify({ status: 200, error: null, response: results }));
   });
 });
-//fetch foodActivity   ----- I don't thik its used as it says foodactivity and users activityhistory
+//fetch foodActivity   ----- I don't think its used as it says foodactivity and users activityhistory
 app.get("/foodActivity/food/:userId", (req, res) => {
   con.query(
     "SELECT * from activityhistory where userid=" + req.params.userId,
@@ -269,7 +284,7 @@ app.get("/foodCalorie/:userId", (req, res) => {
 //fetch calorieHistory    ------ this is for chart (last one)-----
 app.get("/calorieHistory/:userId", (req, res) => {
   con.query(   
-    "SELECT burnt,taken,suggested, time FROM calorytracking where userID= " +
+    "SELECT burnt, taken, suggested, time FROM calorytracking where userID= " +
       req.params.userId +
       " order by time",
     function (error, results, fields) {
@@ -278,6 +293,20 @@ app.get("/calorieHistory/:userId", (req, res) => {
     }
   );
 });
+//select date, sum((f.calories * his.quantity)) as t_cal from food f, foodhistory his where f.id = his.foodId GROUP BY date_format( `date`, '%Y-%m-%d') ORDER BY date; ---- worked in mysql without making it as subquery
+
+/*//fetch calorieHistory    ------ this is for chart (last one)----- this is Anukaran's original one and I think it was done on dummy data........ 
+app.get("/calorieHistory/:userId", (req, res) => {
+  con.query(   
+    "SELECT burnt,taken,suggested, time FROM calorytracking where userID= " +
+      req.params.userId +
+      " order by time",
+    function (error, results, fields) {
+      if (error) throw error;
+      res.send({ status: 200, error: null, response: results });
+    }
+  );
+}); */
 
 //fetch foodActivity   ----- for chart ---- for calorie-----???
 app.get("/userSummary/:userId", (req, res) => {
