@@ -48,7 +48,7 @@ app.get("/water/:userId", (req, res) => {
   );
 });
 
-//fetch calorie Activity for user
+//fetch calorie Activity for user  ------ used in second donut 
 app.get("/calorie/:userId", (req, res) => {
   con.query(
     "SELECT (select sum(f.calories * f_his.quantity) as cal_taken from calorietracker.food f, calorietracker.foodhistory f_his where f.id = f_his.foodId and f_his.date = curdate()), cal_tracking.suggested FROM calorietracker.calorytracking cal_tracking where userId=" +
