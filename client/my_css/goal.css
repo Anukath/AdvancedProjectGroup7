@@ -14,3 +14,15 @@
   li{
     list-style: none;
   }
+
+
+.card-primary{
+  align-content: center;
+}
+.row{
+justify-content: center;
+}
+
+.alert{
+  display: none;
+}
