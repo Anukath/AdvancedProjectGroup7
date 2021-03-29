@@ -1,3 +1,6 @@
+// Two lines to set default date to today -- so -- users don't have to do anything and they will have option of chosing other days as well
+let today = new Date().toISOString().substr(0, 10);
+document.querySelector("#date").value = today;
 //adding activities to activity history table
 $(document).ready(function () {
   //jQuery for replacing $(document).ready
