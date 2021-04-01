@@ -159,113 +159,116 @@ to get the desired effect
             </div>
           </div>
           <!-- /.col-lg-6 -->
-        <div class="my_padding">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="panel panel-default">
-                <!--Tabs begins-->
-                <div class="tab">
-                  <button class="tablinks" onclick="openInfo(event, 'Food Table')" id="defaultOpen">List</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Add New Food')">New Food</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Add to Food History')">Record</button>
-                  <button class="tablinks" onclick="openInfo(event, 'Food Histrory')">Summary</button>
+          <div class="my_padding">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="panel panel-default">
+                  <!--Tabs begins-->
+                  <div class="tab">
+                    <button class="tablinks" onclick="openInfo(event, 'Food Table')" id="defaultOpen">List</button>
+                    <button class="tablinks" onclick="openInfo(event, 'Add New Food')">New Food</button>
+                    <button class="tablinks" onclick="openInfo(event, 'Add to Food History')">Record</button>
+                    <button class="tablinks" onclick="openInfo(event, 'Food Histrory')">Summary</button>
+                  </div>
+
+                  <!--Food database table for reference-->
+                  <div id="Food Table" class="tabcontent">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Serving</th>
+                          <th>Calorie</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <!--Adding food to the food history table-->
+                  <div id="Add to Food History" class="tabcontent">
+                    <form method="post" action="http://localhost:5000/foodhistory">
+                      <div class="form-group">
+                        <!--Dropdown contents comes from the food database table-->
+                        <label for="foodDropdown"><b>Name:</b></label>
+                        <select class="form-control" id="foodDropdown" name="foodDropdown"></select>
+                      </div>
+                      <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <select class="form-control" id="quantity" name="quantity">
+                          <option class="form-control" value="1" title="1 serving">1</option>
+                          <option value="2" title="2 serving">2</option>
+                          <option value="3" title="3 serving">3</option>
+                          <option value="4" title="4 serving">4</option>
+                          <option value="5" title="5 serving">5</option>
+                          <option value="6" title="6 serving">6</option>
+                          <option value="7" title="6 serving">7</option>
+                          <option value="8" title="8 serving">8</option>
+                          <option value="9" title="9 serving">9</option>
+                          <option value="10" title="10 serving">10</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input class="form-control" type="date" id="date" name="date">
+                      </div>
+                      <footer>
+                        <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                          <button class="btn btn-primary" type="button" id="submit_b" name="submit_b" value="save"
+                            class="button button3"> Submit
+                          </button>
+                        </span>
+                      </footer>
+                    </form>
+                  </div>
+                  <!--Adding new food to the food table-->
+                  <div id="Add New Food" class="tabcontent">
+                    <form method="post" action="http://localhost:5000/food1/">
+                      <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input class="form-control" type="text" id="name" name="name"
+                          placeholder="Please enter new food name you would like to add to the Food database">
+                      </div>
+                      <div class="form-group">
+                        <label for="serving">Serving:</label>
+                        <input class="form-control" type="text" id="serving" name="serving"
+                          placeholder="Please enter standard Serving info (1: 100g, 1: 1 litre, ... etc.)">
+                      </div>
+                      <div class="form-group">
+                        <label for="calories">Calorie:</label>
+                        <input class="form-control" type="number" id="calories" name="calories"
+                          placeholder="Please enter calorie per serving">
+                      </div>
+                      <footer>
+                        <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+                          <button class="btn btn-primary" type="button" id="submit" name="submit" value="save"
+                            class="button button4"> Submit
+                          </button>
+                        </span>
+                      </footer>
+                    </form>
+                  </div>
+                  <!--Today's Food intake information table-->
+                  <div id="Food Histrory" class="tabcontent">
+                    <table id="foodIntake" class="table table-striped table-bordered" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Serving</th>
+                          <th>Calorie</th>
+                          <th>Quantity</th>
+                          <th>Total Calorie</th>
+                          <th></th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
                 </div>
 
-                <!--Food database table for reference-->
-                <div id="Food Table" class="tabcontent">
-                  <table id="example" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Serving</th>
-                        <th>Calorie</th>
-                      </tr>
-                    </thead>
-                  </table>
-                </div>
-                <!--Adding food to the food history table-->
-                <div id="Add to Food History" class="tabcontent">
-                  <form method="post" action="http://localhost:5000/foodhistory">
-                    <div class="form-group">
-                      <!--Dropdown contents comes from the food database table-->
-                      <label for="foodDropdown"><b>Name:</b></label>
-                      <select class="form-control" id="foodDropdown" name="foodDropdown"></select>
-                    </div>
-                    <div class="form-group">
-                      <label for="quantity">Quantity:</label>
-                      <select class="form-control" id="quantity" name="quantity">
-                        <option class="form-control" value="1" title="1 serving">1</option>
-                        <option value="2" title="2 serving">2</option>
-                        <option value="3" title="3 serving">3</option>
-                        <option value="4" title="4 serving">4</option>
-                        <option value="5" title="5 serving">5</option>
-                        <option value="6" title="6 serving">6</option>
-                        <option value="7" title="6 serving">7</option>
-                        <option value="8" title="8 serving">8</option>
-                        <option value="9" title="9 serving">9</option>
-                        <option value="10" title="10 serving">10</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="date">Date:</label>
-                      <input class="form-control" type="date" id="date" name="date">
-                    </div>
-                    <footer>
-                    <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-                      <button class="btn btn-primary" type="button" id="submit_b" name="submit_b" value="save"
-                        class="button button3"> Submit
-                      </button>
-                    </span>
-                  </footer>
-                  </form>
-                </div>
-                <!--Adding new food to the food table-->
-                <div id="Add New Food" class="tabcontent">
-                  <form method="post" action="http://localhost:5000/food1/">
-                    <div class="form-group">
-                      <label for="name" >Name:</label>
-                      <input class="form-control" type="text" id="name" name="name" placeholder="Please enter new food name you would like to add to the Food database">
-                    </div>
-                    <div class="form-group">
-                      <label for="serving">Serving:</label>
-                      <input class="form-control" type="text" id="serving" name="serving" placeholder="Please enter standard Serving info (1: 100g, 1: 1 litre, ... etc.)">
-                    </div>
-                    <div class="form-group">
-                      <label for="calories">Calorie:</label>
-                      <input class="form-control" type="number" id="calories" name="calories" placeholder="Please enter calorie per serving">
-                    </div>
-                    <footer>
-                    <span style="display:flex; justify-content:flex-end; width:100%; padding:0;">
-                      <button class="btn btn-primary" type="button" id="submit" name="submit" value="save"
-                        class="button button4"> Submit
-                      </button>
-                    </span>
-                  </footer>
-                  </form>
-                </div>
-                <!--Today's Food intake information table-->
-                <div id="Food Histrory" class="tabcontent">
-                  <table id="foodIntake" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>Name</th>
-                        <th>Serving</th>
-                        <th>Calorie</th>
-                        <th>Quantity</th>
-                        <th>Total Calorie</th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                  </table>
-                </div>
+
+                <!-- ... Your content goes here ... -->
               </div>
-
-
-              <!-- ... Your content goes here ... -->
             </div>
           </div>
-        </div>
 
         </div>
         <!-- /.container-fluid -->

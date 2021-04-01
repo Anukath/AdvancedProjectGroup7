@@ -39,7 +39,7 @@ $(document).ready(function () {
       position: "top",
     },
     title: {
-      display: true,
+      display: false,
       text: "Calorie Intake",
     },
   };
@@ -74,7 +74,7 @@ $(document).ready(function () {
       position: "top",
     },
     title: {
-      display: true,
+      display: false,
       text: "Calories Burnt / Activity",
     },
   };
@@ -131,7 +131,7 @@ $(document).ready(function () {
       position: "top",
     },
     title: {
-      display: true,
+      display: false,
       text: "Food Intake",
     },
   };
@@ -244,7 +244,7 @@ $(document).ready(function () {
             ],
           },
           title: {
-            display: true,
+            display: false,
             text: "Calorie History",
           },
           maintainAspectRatio: false,
