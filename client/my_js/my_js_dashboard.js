@@ -5,7 +5,7 @@ $(document).ready(function () {
       position: "top",
     },
     title: {
-      display: true,
+      display: false,
       text: "Water Intake (Approx 15 glasses/cups)",
     },
   };
