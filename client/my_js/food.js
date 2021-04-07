@@ -1,4 +1,4 @@
-// for displaying in food intake info for today in the table in food page
+// for displaying in food intake info for today in the table in food page with edit and delete options
 $(document).ready(function () {
   //  $("#Click").click(function(){ for displaying in food intake info for today
   var foodIntaketable = $("#foodIntake").DataTable({

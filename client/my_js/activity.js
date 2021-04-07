@@ -75,7 +75,7 @@ $(document).ready(function () {
     columns: [ { data: "name" }],
   });
 
-  // current activities to be displayed on table for info
+  // current activities to be displayed on table for info with edit and delete options
   var userActivityTable = $("#userActivity").DataTable({
     ajax: {
       url: "http://localhost:8080/userActivityTable/1",

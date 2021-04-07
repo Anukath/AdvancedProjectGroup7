@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  // donut chart for water intake
   options = {
     legend: {
       display: false,
@@ -6,6 +7,7 @@ $(document).ready(function () {
     },
     title: {
       display: false,
+      // Suggested approx 15 glasses
       text: "Water Intake (Approx 15 glasses/cups)",
     },
   };
@@ -33,6 +35,7 @@ $(document).ready(function () {
       });
     },
   });
+   // donut chart for calorie intake
   optionsChart1 = {
     legend: {
       display: false,
@@ -68,6 +71,7 @@ $(document).ready(function () {
       });
     },
   });
+   // donut chart for calorie burnt/activity
   optionsChart3 = {
     legend: {
       display: false,
@@ -125,6 +129,7 @@ $(document).ready(function () {
       });
     },
   });
+   // donut chart for food intake
   optionsChart4 = {
     legend: {
       display: false,
@@ -179,7 +184,7 @@ $(document).ready(function () {
       });
     },
   });
-
+ // For chart for calorie History
   $.ajax({
     url: "http://localhost:8080/calorieHistory/1",
     dataType: "json",
@@ -253,7 +258,6 @@ $(document).ready(function () {
       });
     },
   });
-
   $.ajax({
     url: "http://localhost:8080/userSummary/1",
     dataType: "json",
