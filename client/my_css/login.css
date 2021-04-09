@@ -1,7 +1,14 @@
+/*
+    Styling Sheet for the Login Page
+    Created by: Mehdi Lamouchi.
+*/
+
+/*Styling for the button*/
 .btn-primary{
     float: right;
 }
 
+/*Styling for the panel-title*/
 .panel-title{
     padding-bottom: 10px;
 }

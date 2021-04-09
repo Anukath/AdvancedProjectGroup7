@@ -1,3 +1,9 @@
+/*
+  Styling Sheet for the landing page "index.html"
+  Created by: Mehdi Lamouchi 
+*/
+
+/*Properties of the Page*/
 *,
 *::before,
 *::after {
@@ -6,6 +12,7 @@
   box-sizing: inherit;
 }
 
+/* Choosing the font-family and the font-size and the screolling behavior*/
 html {
   font-family: "Nunito", sans-serif;
   font-size: 10px;
@@ -13,17 +20,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor tag decoration */
 a {
   text-decoration: none;
 }
+
+/* Unordered list styling */
 
 ul {
   list-style: none;
 }
 
+/* Paragraph Styling */
+
 p {
   font-size: 1.6rem;
 }
+
+/* Images Properties */
 
 img {
   width: 100%;
@@ -31,10 +45,13 @@ img {
   height: auto;
 }
 
+/* Styling of the sections (padding) */
+
 section {
   padding: 5rem 0;
 }
 
+/* Styling of the header*/
 header {
   width: 100%;
   height: 5rem;
@@ -44,12 +61,16 @@ header {
   z-index: 1;
 }
 
+/* Styling of the container*/
+
 .container {
   width: 100%;
   max-width: 98rem;
   margin: 0 auto;
   padding: 0 1.5 rem;
 }
+
+/* Styling of the navbar*/
 
 nav {
   width: 100%;
@@ -64,6 +85,8 @@ nav {
   width: 2rem;
 }
 
+/* Styling of the navbar in mobile*/
+
 .menu-icons i {
   font-size: 3.5rem;
   color: #fafafa;
@@ -74,6 +97,7 @@ nav {
   color: #eb648c;
 }
 
+/* Styling of the navigation-list*/
 .nav-list {
   width: 25rem;
   height: 100vh;
@@ -129,10 +153,11 @@ nav {
   bottom: -3px;
   width: 100%;
   height: 4.7rem;
-  background: url("/images/wave-small.png") center no-repeat;
+  background: url("../images/wave-small.png") center no-repeat;
   background-size: cover;
 }
 
+/* Styling of the main-message class*/
 .main-message {
   width: 100%;
   max-width: 50rem;
@@ -150,6 +175,7 @@ nav {
   margin: 1rem 0;
 }
 
+/* Styling of the buttons*/
 .btn {
   background-color: #eb648c;
   border-radius: 2rem;
@@ -165,10 +191,12 @@ nav {
   background-color: #ce587b;
 }
 
+/* Styling of the page's app benefits section*/
 .benefits-app {
   padding: 0;
 }
 
+/* Styling of the title-heading class*/
 .title-heading {
   text-align: center;
   text-transform: uppercase;
@@ -190,6 +218,7 @@ nav {
   text-transform: lowercase;
 }
 
+/* Styling of the page's list*/
 .list-grid {
   padding: 0;
   display: grid;
@@ -237,6 +266,7 @@ nav {
   margin: 2rem 0;
 }
 
+/* Styling of the page's team section (about us) - class .team'*/
 .team {
   width: 100%;
   height: 80vh;
@@ -257,7 +287,7 @@ nav {
   left: 0;
   width: 100%;
   height: 4.7rem;
-  background: url("/images/wave-small-reversed.png") center no-repeat;
+  background: url("../images/wave-small-reversed.png") center no-repeat;
   background-size: cover;
 }
 .team-grid {
@@ -297,6 +327,7 @@ nav {
   margin: 2rem 0;
 }
 
+/* Styling of the name heading class*/
 .name-heading {
   text-align: center;
   text-transform: uppercase;
@@ -313,6 +344,7 @@ nav {
   margin: 0.5rem 0 1rem;
 }
 
+/* Styling of the page's Contact section*/
 .contact {
   text-align: center;
   margin-bottom: 10rem;
@@ -320,6 +352,7 @@ nav {
   margin-top: 0;
 }
 
+/* Styling of the page's footer*/
 footer {
   padding: 2.5rem 0;
   background-color: #d7d4ed;
@@ -327,25 +360,31 @@ footer {
   color: rgba(0, 0, 0, 0.7);
 }
 
+/* Styling of the page in different screens*/
+
+/*min-width 350px*/
+
 @media screen and (min-width: 350px) {
   .main-message {
     transform: translateY(40%);
   }
 }
 
+/*min-width 470px*/
 @media screen and (min-width: 470px) {
   .hero::before {
     height: 9.4rem;
-    background: url("/images/wave-medium.png");
+    background: url("../images/wave-medium.png");
     background-size: cover;
   }
   .team::before {
     height: 9.4rem;
-    background: url("/images/wave-medium-reversed.png");
+    background: url("../images/wave-medium-reversed.png");
     background-size: cover;
   }
 }
 
+/*min-width 700px*/
 @media screen and (min-width: 700px) {
   header {
     height: 8rem;
@@ -413,19 +452,21 @@ footer {
   }
 }
 
+/*min-width 950px*/
 @media screen and (min-width: 950px) {
   .hero::before {
     height: 22.7rem;
-    background: url("/images/wave-large.png");
+    background: url("../images/wave-large.png");
     background-size: cover;
   }
   .team::before {
     height: 22.7rem;
-    background: url("/images/wave-large-reversed.png");
+    background: url("../images/wave-large-reversed.png");
     background-size: cover;
   }
 }
 
+/*min-width 1200px*/
 @media screen and (min-width: 1200px) {
   .hero {
     height: 75vh;

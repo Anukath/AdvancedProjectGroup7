@@ -1,3 +1,8 @@
+/*Styling Sheet for the goal page*/
+/*Created by Mehdi Lamouchi*/
+
+
+/*Styling for the Calculate button*/
 .btn-primary{
   float: right;
 }
@@ -10,19 +15,23 @@
       background-color: #f4f6f9;
       border-radius: 6px;
   }
-  
+
+ /*Styling for the list*/ 
   li{
     list-style: none;
   }
 
-
+/*Styling for the card*/ 
 .card-primary{
   align-content: center;
 }
+
+/*Styling for the row*/ 
 .row{
 justify-content: center;
 }
 
+/*Styling for the alert-boxes*/ 
 .alert{
   display: none;
 }
