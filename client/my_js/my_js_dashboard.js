@@ -35,7 +35,7 @@ $(document).ready(function () {
       });
     },
   });
-   // donut chart for calorie intake
+  // donut chart for calorie intake
   optionsChart1 = {
     legend: {
       display: false,
@@ -54,7 +54,10 @@ $(document).ready(function () {
       dataWater = {
         datasets: [
           {
-            data: Object.values(jso["response"][0]),
+            data:
+              jso["response"].length > 0
+                ? Object.values(jso["response"][0])
+                : null,
             backgroundColor: ["#2ECC40", "#7FDBFF"],
           },
         ],
@@ -71,7 +74,7 @@ $(document).ready(function () {
       });
     },
   });
-   // donut chart for calorie burnt/activity
+  // donut chart for calorie burnt/activity
   optionsChart3 = {
     legend: {
       display: false,
@@ -87,6 +90,7 @@ $(document).ready(function () {
     dataType: "json",
 
     success: function (result) {
+      console.log(result);
       var ctx = document.getElementById("donut2").getContext("2d");
       //var jso = JSON.parse(result);
       const data = Object.keys(result["response"]).map(
@@ -129,7 +133,7 @@ $(document).ready(function () {
       });
     },
   });
-   // donut chart for food intake
+  // donut chart for food intake
   optionsChart4 = {
     legend: {
       display: false,
@@ -184,7 +188,7 @@ $(document).ready(function () {
       });
     },
   });
- // For chart for calorie History
+  // For chart for calorie History
   $.ajax({
     url: "http://localhost:8080/calorieHistory/1",
     dataType: "json",
