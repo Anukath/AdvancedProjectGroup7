@@ -1,10 +1,14 @@
+// Author: Tek,Anukaran Kathuria
+
+// require to load all the modules
 const mysql = require("mysql");
 const express = require("express");
 // const Joi = require("joi"); //used for validation
+//used for routing
 const app = express();
 app.use(express.json());
 
-//Cors
+//Allow cors
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   next();
@@ -23,7 +27,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-//fetch all food items
+//fetch all food items from database
 app.get("/food/", (req, res) => {
   con.query(
     "SELECT * from food ORDER BY name ASC",
@@ -40,15 +44,16 @@ app.get("/water/:userId", (req, res) => {
     "SELECT COALESCE(sum(quantity), 0)as quantity, IFNULL(15-quantity,15) as remaining  from foodhistory a, food b  where userid=" +
       req.params.userId +
       " and a.foodId=b.id and b.name like '%water%'  and a.date = curdate()",
-    function (error, results, fields) {   // changed to sum from max in coalesce and a.date = curdate() is my addition
+    function (error, results, fields) {
+      // changed to sum from max in coalesce and a.date = curdate() is my addition
       if (error) throw error;
       res.send(JSON.stringify({ status: 200, error: null, response: results }));
     }
-//https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/water/art-20044256#:~:text=So%20how%20much%20fluid%20does,fluids%20a%20day%20for%20women  U.S. National Academies of Sciences, Engineering, and Medicine
+    //https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/water/art-20044256#:~:text=So%20how%20much%20fluid%20does,fluids%20a%20day%20for%20women  U.S. National Academies of Sciences, Engineering, and Medicine
   );
 });
 
-//fetch calorie Activity for user  ------ used in second donut 
+//fetch calorie Activity for user  ------ used in second donut
 app.get("/calorie/:userId", (req, res) => {
   con.query(
     "SELECT (select sum(f.calories * f_his.quantity) as cal_taken from calorietracker.food f, calorietracker.foodhistory f_his where f.id = f_his.foodId and f_his.date = curdate()), cal_tracking.suggested FROM calorietracker.calorytracking cal_tracking where userId=" +
@@ -273,7 +278,7 @@ app.get("/foodCalorie/:userId", (req, res) => {
     "SELECT f.name, (quantity*f.calories) as calories from foodhistory his, food f where userId =" +
       req.params.userId +
       " and his.foodId=f.id and date = curdate()",
-      // and date = curdate() is my addition -- Tek
+    // and date = curdate() is my addition -- Tek
     function (error, results, fields) {
       if (error) throw error;
       res.send({ status: 200, error: null, response: results });
@@ -283,7 +288,7 @@ app.get("/foodCalorie/:userId", (req, res) => {
 
 //fetch calorieHistory    ------ this is for chart (last one)-----
 app.get("/calorieHistory/:userId", (req, res) => {
-  con.query(   
+  con.query(
     "SELECT burnt, taken, suggested, time FROM calorytracking where userID= " +
       req.params.userId +
       " order by time",

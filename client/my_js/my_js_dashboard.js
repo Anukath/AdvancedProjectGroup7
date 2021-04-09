@@ -1,3 +1,6 @@
+// Author: Anukaran Kathuria
+// This page has all the jquery for dashboard page
+// This method runs when page is loaded
 $(document).ready(function () {
   // donut chart for water intake
   options = {
@@ -13,6 +16,7 @@ $(document).ready(function () {
   };
   //Chart for water using api call
   $.ajax({
+    // Call to backend for fetching data
     url: "http://localhost:8080/water/1",
     success: function (result) {
       var ctx = document.getElementById("donut").getContext("2d");
@@ -24,9 +28,8 @@ $(document).ready(function () {
             backgroundColor: ["#2ECC40", "#7FDBFF"],
           },
         ],
+        // Setting labels
         labels: ["Drunk", "Remaining"],
-
-        // These labels appear in the legend and in the tooltips when hovering different arcs
       };
       var myDoughnutChart = new Chart(ctx, {
         type: "doughnut",
@@ -51,6 +54,7 @@ $(document).ready(function () {
     success: function (result) {
       var ctx = document.getElementById("donut1").getContext("2d");
       var jso = JSON.parse(result);
+      // if response length is 0, then pass null, to avoid break
       dataWater = {
         datasets: [
           {
@@ -65,7 +69,6 @@ $(document).ready(function () {
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
       };
-      console.log(dataWater);
 
       var myDoughnutChart = new Chart(ctx, {
         type: "doughnut",
@@ -197,16 +200,19 @@ $(document).ready(function () {
       // const burntLine = Object.keys(result["response"]).map(
       //   (key) => result["response"][key].burnt
       // );
+      // setting multiple lines
       const takenLine = Object.keys(result["response"]).map(
         (key) => result["response"][key].taken
       );
       const suggestedLine = Object.keys(result["response"]).map(
         (key) => result["response"][key].suggested
       );
+      //creating labels from date
       const timeX = Object.keys(result["response"]).map((key) => {
         result["response"][key].time;
         c = result["response"][key].time;
         var date1 = new Date(c);
+        // converting date format
         return date1.toLocaleDateString("en-CA");
       });
       //Demo data
@@ -240,6 +246,7 @@ $(document).ready(function () {
             },
           ],
         },
+        // tilting the x axis label to an angle of 45 degree
         options: {
           scales: {
             xAxes: [
@@ -262,20 +269,21 @@ $(document).ready(function () {
       });
     },
   });
+  // Setting values for the summary table
   $.ajax({
-    url: "http://localhost:8080/userSummary/1",
-    dataType: "json",
+  //   url: "http://localhost:8080/userSummary/1",
+  //   dataType: "json",
 
-    success: function (result) {
-      const data = Object.keys(result["response"][0]).map(
-        (key) => result["response"][0][key]
-      );
-      $("#calNeeded").html(data[0] + " Cals");
-      $("#calConsumed").html(data[1] + " Cals");
-      $("#calLeft").html(data[2] + " Cals");
-      $("#water").html(data[3] + " Taken");
-      $("#burnTarget").html(data[4] + " Cals");
-      $("#burnt").html(data[5] + " Cals");
-    },
-  });
+  //   success: function (result) {
+  //     const data = Object.keys(result["response"][0]).map(
+  //       (key) => result["response"][0][key]
+  //     );
+  //     $("#calNeeded").html(data[0] + " Cals");
+  //     $("#calConsumed").html(data[1] + " Cals");
+  //     $("#calLeft").html(data[2] + " Cals");
+  //     $("#water").html(data[3] + " Taken");
+  //     $("#burnTarget").html(data[4] + " Cals");
+  //     $("#burnt").html(data[5] + " Cals");
+  //   },
+  // });
 });
