@@ -270,7 +270,7 @@ $(document).ready(function () {
     },
   });
   // Setting values for the summary table
-  $.ajax({
+  // $.ajax({
   //   url: "http://localhost:8080/userSummary/1",
   //   dataType: "json",
 
