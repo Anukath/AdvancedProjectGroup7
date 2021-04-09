@@ -1,3 +1,8 @@
+<!--
+  Goal Page: This page is used to calculate the amount of calories needed/recommended for every user.
+  Created by: Mehdi Lamouchi
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Custom Fonts -->
   <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/my_css/goal.css">
+  <link rel="stylesheet" href="../my_css/goal.css" >
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 
@@ -72,7 +77,7 @@
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
             </li>
             <li class="divider"></li>
-            <li><a href="login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </li>
           </ul>
         </li>
@@ -98,27 +103,27 @@
             <li class="nav-item has-treeview menu-open">
             <li class="nav-item">
               <a href="dashboard.html" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fa fa-bar-chart"></i>
                 <p> Dashboard </p>
               </a>
             </li>
             <li class="nav-item">
               <a href="./activities.html" class="nav-link">
-                <i class="nav-icon fas fa-football-ball"></i>
+                <i class="nav-icon fa fa-heartbeat"></i>
                 <p>Activities</p>
               </a>
             </li>
             </li>
             <li class="nav-item has-treeview">
               <a href="foodinfo.html" class="nav-link">
-                <i class="nav-icon fas fa-apple-alt"></i>
+                <i class="nav-icon fa fa-cutlery"></i>
                 <p>Food Info</p>
               </a>
 
             </li>
             <li class="nav-item has-treeview">
                 <a href="goal.html" class="nav-link active">
-                  <i class="nav-icon fas fa-weight"></i>
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>Goal</p>
                 </a>
   
@@ -144,7 +149,9 @@
                     <form name = "f" action="" id="bmrform">
                         <fieldset>
                             <div class="form-group">
+                              <!--Form for the user to input their body measurements and the level of activities they do each week-->
                               <br>
+                              <!--Weight-->
                                 <label>Current Weight:</label>
                                 <input class="form-control" placeholder="e.g. 85" id="weight"  maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
                                 <div class="form-check">
@@ -157,6 +164,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                              <!--height-->
                                 <label>Current Height</label>
                                 <input class="form-control" placeholder="e.g. 175" id="height" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
                                 <div class="form-check">
@@ -169,10 +177,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                              <!--Age-->
                                 <label>Age:</label>
                                 <input class="form-control" placeholder="e.g. 23" id="age" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
                             </div>
                             <div class="form-group">
+                              <!--Gender-->
                                 <label>Gender:</label>
                                 <div class="form-check">
                                   <input class="form-check-input"  type="radio" name="selectedGender" value="male">
@@ -184,6 +194,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                              <!--Physical Activity-->
                                 <label>Physical Activity:</label>
                                 <div class="form-check">
                                   <input class="form-check-input" name="selectedActivity" type="radio"  value="little">
@@ -207,6 +218,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                              <!--Choosing the formula-->
                               <label>Formula:</label>
                               <div class="form-check">
                                 <input class="form-check-input" name="selectedFormula" type="radio"  value="HarrisBenedict">
@@ -225,10 +237,13 @@
                         </fieldset>
                     </form>
                     <br>
+                    <!--Placeholders to show the answer later after pressing the button Calculate.-->
                     <li class="alert alert-info" id="answer"></li>
                     <li class="alert alert-info" id="answer2"></li>
+                    <!-- Button to share the app on Twitter -->
                     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Hey Guys, I&#39;ve been using this new calorie tracking app, and it&#39;s awesome! Please give it a try and let&#39;s all reach our goals! " data-show-count="false">Tweet</a>
                 </div>
+                <br>
             </div>
         </div>
     </div>
@@ -241,10 +256,14 @@
 
 
 <script>
+ /*Function to calculate the amount of calories recommended + the BMI of each of them.*/
     function calculate(){
+      /*This is to remove the alert boxes before the button is clicked, and then to show it when it is pressed.*/
       $(".alert").show();
+
       $(".twitter-share-button").show();
 
+      /*Getting the body measurements and user details from the form, and storing them in variables.*/
         var field1 = document.getElementById("weight").value;
         var field2 = document.getElementById("height").value;
         var field3 = document.getElementById("age").value;
@@ -308,6 +327,7 @@
           console.log(field2);
         }  
 
+        /*Implementation of the Harris Benedict Formula*/
         if(formula == "HarrisBenedict"){
 
           if(gender == "male"){
@@ -425,6 +445,8 @@
               }
             }
           }
+
+        /*Implementation of the Mifflin-St Jeor Equation*/
         }else if (formula == "MifflinSt"){
           if(gender == "male"){
             var result = (10 * (field1)) + (6.25* (field2)) - (5*(field3)) + 5;
@@ -445,6 +467,8 @@
               document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
             }
           }
+        
+        /*Implementation of the Katch McArdle formula*/
         }else if (formula == "KatchMcArdle"){
           if(gender == "male"){
             var lbm = ((field1)*0.407)+((field2)*0.276) - 19.2;

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Dashboard</title>
+  <title>Statistics</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
@@ -25,8 +25,6 @@
   <link rel="stylesheet" href="../my_css/my_css.css">
 
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -39,7 +37,6 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
-
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
@@ -69,7 +66,6 @@
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
         </li>
-
         <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="fa fa-user fa-fw"></i> tsubedi
@@ -87,7 +83,6 @@
       </ul>
     </nav>
     <!-- /.navbar -->
-
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
@@ -107,23 +102,21 @@
             <li class="nav-item has-treeview menu-open">
             <li class="nav-item">
               <a href="dashboard.html" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p> Dashboard </p>
+                <i class="nav-icon fa fa-bar-chart" aria-hidden="true"></i>
+                <p> Statistics </p>
               </a>
             </li>
-
             <li class="nav-item has-treeview">
               <a href="activities.html" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Activities</p>
+                <i class="nav-icon fa fa-heartbeat" aria-hidden="true"></i>
+                <p>Workout</p>
               </a>
             </li>
-
             </li>
             <li class="nav-item">
               <a href="./foodinfo.html" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Food Info</p>
+                <i class="nav-icon fa fa-cutlery"></i>
+                <p>Food</p>
               </a>
             </li>
             <li class="nav-item has-treeview">
@@ -131,14 +124,12 @@
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Goal</p>
               </a>
-
             </li>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
     </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Main content -->
@@ -148,50 +139,68 @@
             <div class="row">
               <div class="col-lg-12">
                 <h1 class="page-header">
-                  <center><b> Dashboard </b></center>
+                  <center><b> Statistics </b></center>
                 </h1>
               </div>
             </div>
           </div>
           <!-- /.col-lg-6 -->
-
-		   <div class="row">
-          <div class="col-lg-3">
-          <div class="card-outline card card-info" >
-            
-            <canvas id="donut"> </canvas>
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="card-outline card card-info">
+                <div class="card-header">
+                  <h5 class="card-title">Water Intake (glasses/cups)</h5>
+                </div>
+                <div class="card-body">
+                  <canvas id="donut"> </canvas>
+                </div>
+              </div>
+              <!-- /.card-body -->
             </div>
-            <!-- /.card-body -->
+            <div class="col-lg-3">
+              <div class="card-outline card card-info">
+                <div class="card-header">
+                  <h5 class="card-title">Calorie Intake</h5>
+                </div>
+                <div class="card-body">
+                  <canvas id="donut1"> </canvas>
+                </div>
+                <!-- /.card-body -->
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="card-outline card card-info">
+                <div class="card-header">
+                  <h5 class="card-title">Calories Burnt / Activity</h5>
+                </div>
+                <div class="card-body">
+                  <canvas id="donut2"> </canvas>
+                </div>
+                <!-- /.card-body -->
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="card-outline card card-info">
+                <div class="card-header">
+                  <h5 class="card-title">Food Intake</h5>
+                </div>
+                <div class="card-body">
+                  <canvas id="donut3"> </canvas>
+                </div>
+                <!-- /.card-body -->
+              </div>
+            </div>
           </div>
-          <div class="col-lg-3">
-            <div class="card-outline card card-info" >
-                          
-            <canvas id="donut1"> </canvas>
-            <!-- /.card-body -->
-          </div>          </div>
-
-          <div class="col-lg-3">
-            <div class="card-outline card card-info" >
-                          
-            <canvas id="donut2"> </canvas>
-            <!-- /.card-body -->
-          </div>          </div>
-
-          <div class="col-lg-3">
-            <div class="card-outline card card-info" >
-                          
-            <canvas id="donut3"> </canvas>
-            <!-- /.card-body -->
-          </div>          </div>
-
-        </div>
-        
-        <div  class="card-outline card card-info" style="height: 300px">
-          <!-- <div class=" col-lg-12" > -->
-           
+          <div class="card-outline card card-info" style="height: 300px">
+            <!-- <div class=" col-lg-12" > -->
+            <div class="card-header">
+              <h5 class="card-title">Calorie History</h5>
+            </div>
+            <div class="card-body">
               <canvas id="myChart"> </canvas>
             </div>
-            <!-- /.card-body -->
+          </div>
+          <!-- /.card-body -->
           <!-- <canvas id="" height="100" </canvas> -->
           <!-- /.panel-heading -->
           <!-- <div class=" col-lg-6" style="padding: 0">
@@ -243,16 +252,12 @@
               
             </div>
           </div> 
-		  
           </div>
  -->
         </div>
-      
       </div>
-      
     </div>
     <!-- /.content-wrapper -->
-
     <!-- Main Footer -->
     <footer class="main-footer">
       <strong>Copyright &copy; 2020-2021 <a href="#">About</a>.</strong>
@@ -263,16 +268,13 @@
     </footer>
   </div>
   <!-- ./wrapper -->
-
   <!-- REQUIRED SCRIPTS -->
-
   <!-- jQuery -->
   <script src="../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE -->
   <script src="../dist/js/adminlte.js"></script>
-
   <!-- OPTIONAL SCRIPTS -->
   <script src="../plugins/chart.js/Chart.min.js"></script>
   <script src="../dist/js/demo.js"></script>
@@ -289,17 +291,14 @@
 
   <!-- It is for jumbotron-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
   <!-- Custom Theme JavaScript -->
   <script src="../js/startmin.js"></script>
   <script src="../my_js/activity.js"></script>
   <script src="../my_js/food.js"></script>
   <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
   <script src="../my_js/my_js_dashboard.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
