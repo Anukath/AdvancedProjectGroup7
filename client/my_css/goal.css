@@ -1,7 +1,4 @@
-.btn-primary{
-  float: right;
-}
-
+/*
 .map-responsive{
 
   overflow:hidden;
@@ -27,7 +24,7 @@
   position:absolute;
 
 }
-
+*/
 
 /*  Down below is for tabs in food and activities pages    */
 
@@ -96,14 +93,18 @@
 
 /*  jumbotron additional style */
 .jumbotron {
-    padding: 30px 15px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    padding: 15px 15px;
+    /* margin-bottom: 15px;
+    margin-top: 10px; */
     color: inherit;
     background-color: #eee;
     border-radius: 6px;
+    
 }
-  
-  li{
-    list-style: none;
-  }
+.my_padding {
+  margin-bottom: 15px;
+
+}
+.panel-default {
+  background-color: white;
+}
