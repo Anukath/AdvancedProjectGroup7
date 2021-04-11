@@ -1,3 +1,8 @@
+<!--
+  Goal Page: This page is used to calculate the amount of calories needed/recommended for every user.
+  Created by: Mehdi Lamouchi
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +22,10 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Custom Fonts -->
   <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../my_css/goal.css" >
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../my_css/my_css.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -71,7 +77,7 @@
             <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
             </li>
             <li class="divider"></li>
-            <li><a href="login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </li>
           </ul>
         </li>
@@ -97,302 +103,427 @@
             <li class="nav-item has-treeview menu-open">
             <li class="nav-item">
               <a href="dashboard.html" class="nav-link">
-                <i class="nav-icon fa fa-bar-chart" aria-hidden="true"></i>
-                <p> Statistics </p>
+                <i class="nav-icon fa fa-bar-chart"></i>
+                <p> Dashboard </p>
               </a>
             </li>
             <li class="nav-item">
               <a href="./activities.html" class="nav-link">
-                <i class=" nav-icon fa fa-heartbeat" aria-hidden="true"></i>
-                <p>Workout</p>
+                <i class="nav-icon fa fa-heartbeat"></i>
+                <p>Activities</p>
               </a>
             </li>
             </li>
             <li class="nav-item has-treeview">
               <a href="foodinfo.html" class="nav-link">
                 <i class="nav-icon fa fa-cutlery"></i>
-                <p>Food</p>
+                <p>Food Info</p>
               </a>
 
             </li>
             <li class="nav-item has-treeview">
-              <a href="goal.html" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Goal</p>
-              </a>
-
-            </li>
+                <a href="goal.html" class="nav-link active">
+                  <i class="nav-icon fas fa-tachometer-alt"></i>
+                  <p>Goal</p>
+                </a>
+  
+              </li>
         </nav>
         <!-- /.sidebar-menu -->
       </div>
       <!-- /.sidebar -->
     </aside>
-
+ 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Main content -->
       <div class="content">
         <div class="container-fluid">
-          <div class="jumbotron">
-            <div class="row">
-              <div class="col-lg-12">
-                <h1 class="page-header">
-                  <center><b> Goal</b></center>
-                </h1>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-lg-6 -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="panel panel-default">
-                <div>
-                  <form name="f" action="" id="bmrform">
-                    <fieldset>
-                      <div class="form-group">
-                        <label>Current Weight in Kgs:</label>
-                        <input class="form-control" placeholder="Current Weight" id="weight" maxlength="3"
-                          oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
-                      </div>
-                      <div class="form-group">
-                        <label>Current Height in Cms:</label>
-                        <input class="form-control" placeholder="Current Height" id="height" maxlength="3"
-                          oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
-                      </div>
-                      <div class="form-group">
-                        <label>Age:</label>
-                        <input class="form-control" placeholder="Age" id="age" maxlength="2"
-                          oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
-                      </div>
-                      <div class="form-group">
-                        <label>Gender:</label>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="selectedGender" value="male">
-                          <label class="form-check-label">Male</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="selectedGender" value="female">
-                          <label class="form-check-label">Female</label>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label>Physical Activity:</label>
-                        <div class="form-check">
-                          <input class="form-check-input" name="selectedActivity" type="radio" value="little">
-                          <label class="form-check-label">Little or No Exercise</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="selectedActivity" value="light">
-                          <label class="form-check-label">Light exercise (sports 1-3 days/week)</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="selectedActivity" value="moderate">
-                          <label class="form-check-label">Moderate exercise (sports 3-5 days/week)</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="selectedActivity" value="hard">
-                          <label class="form-check-label">Hard exercise (sports 6-7 days/week)</label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="selectedActivity" value="veryhard">
-                          <label class="form-check-label">Very hard daily exercise (sports/physical job 2X day
-                            training)</label>
-                        </div>
-                      </div>
-                      <button class="btn btn-primary" type="button" onClick="calculate()">Calculate</button>
-                    </fieldset>
-                  </form>
-                  <br>
-                  <li class="alert alert-success" id="answer"></li>
-                  <li class="alert alert-success" id="answer2"></li>
-
+         <br>
+      </div>
+<div class="card card-primary">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+                <div class="panel-body">
+                    <form name = "f" action="" id="bmrform">
+                        <fieldset>
+                            <div class="form-group">
+                              <!--Form for the user to input their body measurements and the level of activities they do each week-->
+                              <br>
+                              <!--Weight-->
+                                <label>Current Weight:</label>
+                                <input class="form-control" placeholder="e.g. 85" id="weight"  maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
+                                <div class="form-check">
+                                  <input class="form-check-input"  type="radio" name="selectedWeight" value="kgs">
+                                  <label class="form-check-label">kg</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio"  name="selectedWeight" value="lbs">
+                                  <label class="form-check-label">lb</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              <!--height-->
+                                <label>Current Height</label>
+                                <input class="form-control" placeholder="e.g. 175" id="height" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
+                                <div class="form-check">
+                                  <input class="form-check-input"  type="radio" name="selectedHeight" value="cms">
+                                  <label class="form-check-label">cm</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio"  name="selectedHeight" value="ins">
+                                  <label class="form-check-label">in</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              <!--Age-->
+                                <label>Age:</label>
+                                <input class="form-control" placeholder="e.g. 23" id="age" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required="" type="text">
+                            </div>
+                            <div class="form-group">
+                              <!--Gender-->
+                                <label>Gender:</label>
+                                <div class="form-check">
+                                  <input class="form-check-input"  type="radio" name="selectedGender" value="male">
+                                  <label class="form-check-label">Male</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio"  name="selectedGender" value="female">
+                                  <label class="form-check-label">Female</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              <!--Physical Activity-->
+                                <label>Physical Activity:</label>
+                                <div class="form-check">
+                                  <input class="form-check-input" name="selectedActivity" type="radio"  value="little">
+                                  <label class="form-check-label">Little or No Exercise</label>
+                                </div>
+                                <div class="form-check">
+                                  <input class="form-check-input" type="radio"  name="selectedActivity" value="light">
+                                  <label class="form-check-label">Light exercise (sports 1-3 days/week)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"  name="selectedActivity"value="moderate">
+                                    <label class="form-check-label">Moderate exercise (sports 3-5 days/week)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"  name="selectedActivity" value="hard">
+                                    <label class="form-check-label">Hard exercise (sports 6-7 days/week)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"  name="selectedActivity" value="veryhard">
+                                    <label class="form-check-label">Very hard daily exercise (sports/physical job 2X day training)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                              <!--Choosing the formula-->
+                              <label>Formula:</label>
+                              <div class="form-check">
+                                <input class="form-check-input" name="selectedFormula" type="radio"  value="HarrisBenedict">
+                                <label class="form-check-label">Harris-Benedict Equation <i title="Roza, A. M., & Shizgal, H. M. (1984). The Harris Benedict equation reevaluated: resting energy requirements and the body cell mass. The American journal of clinical nutrition, 40(1), 168-182." class="fas fa-info-circle"></i></label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio"  name="selectedFormula" value="MifflinSt">
+                                <label class="form-check-label">Mifflin-St Jeor Equation <i title="Frankenfield, D., Roth-Yousey, L., Compher, C., & Evidence Analysis Working Group. (2005). Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review. Journal of the American Dietetic association, 105(5), 775-789." class="fas fa-info-circle"></i></label>
+                              </div>
+                              <div class="form-check">
+                                  <input class="form-check-input" type="radio"  name="selectedFormula" value="KatchMcArdle">
+                                  <label class="form-check-label">Katch-McArdle Equation <i title="El-Kateb, S., Sridharan, S., Farrington, K., Fan, S., & Davenport, A. (2018). Comparison of equations of resting and total energy expenditure in peritoneal dialysis patients using body composition measurements determined by multi-frequency bioimpedance. Clinical nutrition, 37(2), 646-650." class="fas fa-info-circle"></i></label>
+                                  
+                              </div>
+                          </div>
+                        </fieldset>
+                    </form>
+                    <br>
+                    <!--Placeholders to show the answer later after pressing the button Calculate.-->
+                    <li class="alert alert-info" id="answer"></li>
+                    <li class="alert alert-info" id="answer2"></li>
+                    <!-- Button to share the app on Twitter -->
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="Hey Guys, I&#39;ve been using this new calorie tracking app, and it&#39;s awesome! Please give it a try and let&#39;s all reach our goals! " data-show-count="false">Tweet</a>
                 </div>
-                <!-- ... Your content goes here ... -->
-              </div>
-
+                <br>
             </div>
-          </div>
-
         </div>
-        <!-- /.container-fluid -->
-      </div>
-      <!-- /.content -->
     </div>
-    <!-- Main Footer -->
-    <footer class="main-footer">
-      <strong>Copyright &copy; 2020-2021 <a href="#">About</a>.</strong>
-      All rights reserved.
-      <div class="float-right d-none d-sm-inline-block">
-        CALORIE TRACKER
-      </div>
-    </footer>
-    <!-- /.content-wrapper -->
+</div>
+<button class="btn btn-primary" type="button"  onClick="calculate()">Calculate</button>
+<br>
+<br>
+<br>
 
-    <script>
-      function calculate() {
+
+
+<script>
+ /*Function to calculate the amount of calories recommended + the BMI of each of them.*/
+    function calculate(){
+      /*This is to remove the alert boxes before the button is clicked, and then to show it when it is pressed.*/
+      $(".alert").show();
+
+      $(".twitter-share-button").show();
+
+      /*Getting the body measurements and user details from the form, and storing them in variables.*/
         var field1 = document.getElementById("weight").value;
         var field2 = document.getElementById("height").value;
         var field3 = document.getElementById("age").value;
         var field4 = document.getElementsByName("selectedGender");
 
-        for (i = 0; i < field4.length; i++) {
-          if (field4[i].type = "radio") {
-            if (field4[i].checked) {
-              var apple = field4[i].value;
-              console.log(apple);
+        var field6 = document.getElementsByName("selectedWeight");
+        for( i = 0 ; i < field6.length; i++){
+            if(field6[i].type="radio"){
+                if(field6[i].checked){
+                    var weight = field6[i].value;
+                    console.log(weight);
+                }
             }
           }
+
+        var field7 = document.getElementsByName("selectedHeight");
+        for( i = 0 ; i < field7.length; i++){
+            if(field7[i].type="radio"){
+                if(field7[i].checked){
+                    var height = field7[i].value;
+                    console.log(height);
+                }
+            }
+          }
+        
+        for( i = 0 ; i < field4.length; i++){
+            if(field4[i].type="radio"){
+                if(field4[i].checked){
+                    var gender = field4[i].value;
+                    console.log(gender);
+                }
+            }
         }
         var field5 = document.getElementsByName("selectedActivity");
-        for (i = 0; i < field5.length; i++) {
-          if (field5[i].type = "radio") {
-            if (field5[i].checked) {
-              var orange = field5[i].value;
-              console.log(orange);
+        for( i = 0 ; i < field5.length; i++){
+            if(field5[i].type="radio"){
+                if(field5[i].checked){
+                    var activityIntensity = field5[i].value;
+                    console.log(activityIntensity);
+                }
+            }
+        }
+
+        var field8 = document.getElementsByName("selectedFormula");
+        for( i = 0 ; i < field8.length; i++){
+            if(field8[i].type="radio"){
+                if(field8[i].checked){
+                    var formula = field8[i].value;
+                    console.log(formula);
+                }
             }
           }
+
+        if(weight == "lbs"){
+          field1 = field1/2.2046;
+          console.log(field1);
+        }  
+
+        if(height == "ins"){
+          field2 = field2/0.39370;
+          console.log(field2);
+        }  
+
+        /*Implementation of the Harris Benedict Formula*/
+        if(formula == "HarrisBenedict"){
+
+          if(gender == "male"){
+            if(activityIntensity == "little"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.2;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+              }
+            } else if (activityIntensity == "light"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.375;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+              }
+            } else if (activityIntensity == "moderate"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.55;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get " + result2Fixed + " calories per day";
+              }
+            } else if (activityIntensity == "hard"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.725;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+              }
+            } else if (activityIntensity == "veryhard"){
+              var bmr = 66 + (13.7 * (field1)) + ( 5 * (field2)) - (6.8 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.9;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+              }
+            }
+          } else if (gender == "female"){
+            if(activityIntensity == "little"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.2;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+              }
+            }else if (activityIntensity == "light"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.375;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get  "  + result2Fixed + " calories per day";
+              }
+            }else if (activityIntensity == "moderate"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.55;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get  "  + result2Fixed + " calories per day";
+              }
+            }else if (activityIntensity == "hard"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.725;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                 document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                 document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+              }
+            }else if (activityIntensity == "veryhard"){
+              var bmr = 655 + (9.6 * (field1)) + ( 1.8 * (field2)) - (4.7 * (field3));
+              bmrFixed = Math.round(bmr);
+              var result = bmr * 1.9;
+              resultFixed = Math.round(result);
+              var result2 = result - 500;
+              var result2Fixed = Math.round(result2);
+              if(!isNaN(result)){
+                document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + resultFixed + " calories daily";
+                document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+              }
+            }
+          }
+
+        /*Implementation of the Mifflin-St Jeor Equation*/
+        }else if (formula == "MifflinSt"){
+          if(gender == "male"){
+            var result = (10 * (field1)) + (6.25* (field2)) - (5*(field3)) + 5;
+            resultFixed = Math.round(result);
+            var result2 = result - 500;
+            var result2Fixed = Math.round(result2);
+            if(!isNaN(result)){
+              document.getElementById("answer").innerHTML="To maintain your weight you need " + resultFixed + " calories daily";
+              document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+            }
+          }else if (gender == "female"){
+            var result = (10 * (field1)) + (6.25 * (field2)) - (5*(field3)) - 161;
+            resultFixed = Math.round(result);
+            var result2 = result - 500;
+            var result2Fixed = Math.round(result2);
+            if(!isNaN(result)){
+              document.getElementById("answer").innerHTML="To maintain your weight you need " + resultFixed + " calories daily";
+              document.getElementById("answer2").innerHTML="To lose weight, we recommend you get "  + result2Fixed + " calories per day";
+            }
+          }
+        
+        /*Implementation of the Katch McArdle formula*/
+        }else if (formula == "KatchMcArdle"){
+          if(gender == "male"){
+            var lbm = ((field1)*0.407)+((field2)*0.276) - 19.2;
+            var bmr = 370 + (21.6 * lbm);
+            bmrFixed = Math.round(bmr);
+            var result2 = bmr - 500;
+            var result2Fixed = Math.round(result2);
+            if(!isNaN(bmr)){
+              document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + result2Fixed + " calories daily";
+            }
+          }else if (gender == "female"){
+            var lbm = (0.252 * (field1)) + (0.473 *(field2)) - 48.3;
+            var bmr = 370 + (21.6 * lbm);
+            bmrFixed = Math.round(bmr);
+            var result2 = bmr - 500;
+            var result2Fixed = Math.round(result2);
+            if(!isNaN(bmr)){
+              document.getElementById("answer").innerHTML="Your Basal Metabolic Rate is " + bmrFixed + " and to maintain your weight you need " + result2Fixed + " calories daily";
+            }
+          }
+
         }
 
 
-        if (apple == "male") {
-          if (orange == "little") {
-            var bmr = 66 + (13.7 * (field1)) + (5 * (field2)) - (6.8 * (field3));
-            var result = bmr * 1.2;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get " + result2 +
-                " calories per day";
-
-            }
-          } else if (orange == "light") {
-            var bmr = 66 + (13.7 * (field1)) + (5 * (field2)) - (6.8 * (field3));
-            var result = bmr * 1.375;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get " + result2 +
-                " calories per day";
-            }
-          } else if (orange == "moderate") {
-            var bmr = 66 + (13.7 * (field1)) + (5 * (field2)) - (6.8 * (field3));
-            var result = bmr * 1.55;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get " + result2 +
-                " calories per day";
-            }
-          } else if (orange == "hard") {
-            var bmr = 66 + (13.7 * (field1)) + (5 * (field2)) - (6.8 * (field3));
-            var result = bmr * 1.725;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get " + result2 +
-                " calories per day";
-            }
-          } else if (orange == "veryhard") {
-            var bmr = 66 + (13.7 * (field1)) + (5 * (field2)) - (6.8 * (field3));
-            var result = bmr * 1.9;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get " + result2 +
-                " calories per day";
-            }
-          }
-
-
-
-        } else if (apple == "female") {
-          if (orange == "little") {
-            var bmr = 655 + (9.6 * (field1)) + (1.8 * (field2)) - (4.7 * (field3));
-            var result = bmr * 1.2;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get " + result2 +
-                " calories per day";
-            }
-          } else if (orange == "light") {
-            var bmr = 655 + (9.6 * (field1)) + (1.8 * (field2)) - (4.7 * (field3));
-            var result = bmr * 1.375;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get  " + result2 +
-                " calories per day";
-            }
-          } else if (orange == "moderate") {
-            var bmr = 655 + (9.6 * (field1)) + (1.8 * (field2)) - (4.7 * (field3));
-            var result = bmr * 1.55;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get  " + result2 +
-                " calories per day";
-            }
-          } else if (orange == "hard") {
-            var bmr = 655 + (9.6 * (field1)) + (1.8 * (field2)) - (4.7 * (field3));
-            var result = bmr * 1.725;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get " + result2 +
-                " calories per day";
-            }
-          } else if (orange == "veryhard") {
-            var bmr = 655 + (9.6 * (field1)) + (1.8 * (field2)) - (4.7 * (field3));
-            var result = bmr * 1.9;
-            var result2 = result - 500;
-            if (!isNaN(result)) {
-              document.getElementById("answer").innerHTML = "Your Basal Metabolic Rate is " + bmr +
-                " and to maintain your weight you need " + result + " calories daily";
-              document.getElementById("answer2").innerHTML = "To lose weight, we recommend you get " + result2 +
-                " calories per day";
-            }
-          }
-
-        }
       }
-    </script>
+</script>
 
 
-    <!-- REQUIRED SCRIPTS -->
+  <!-- REQUIRED SCRIPTS -->
 
-    <!-- jQuery -->
-    <script src="../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE -->
-    <script src="../dist/js/adminlte.js"></script>
-    <!-- OPTIONAL SCRIPTS -->
-    <script src="../plugins/chart.js/Chart.min.js"></script>
-    <script src="../dist/js/demo.js"></script>
-    <!-- jQuery and other from previous -->
-    <script src="../js/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../js/metisMenu.min.js"></script>
-    <!-- It is for jumbotron-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <!-- <script src="../js/startmin.js"></script> -->
-    <script src="../my_js/goal.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- jQuery -->
+  <script src="../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE -->
+  <script src="../dist/js/adminlte.js"></script>
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="../plugins/chart.js/Chart.min.js"></script>
+  <script src="../dist/js/demo.js"></script>
+  <script src="../dist/js/pages/dashboard3.js"></script>
+  <!-- jQuery and other from previous -->
+  <script src="../js/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../js/bootstrap.min.js"></script>
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="../js/metisMenu.min.js"></script>
+  <!-- It is for jumbotron-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script src="../js/startmin.js"></script>
+  <script src="../my_js/goal.js"></script>
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 
 </html>
